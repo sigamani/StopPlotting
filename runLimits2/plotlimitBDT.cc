@@ -149,7 +149,7 @@ void plot_limit(TString dir){
   		  char filename[500];
 
 
-                  sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_10_mT100/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);
+                  sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_11_mT100/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);
 
    
                   ifstream ifile(filename);
@@ -174,10 +174,11 @@ void plot_limit(TString dir){
                 limittree->Draw("limit>>expP", "quantileExpected>0.83 && quantileExpected<0.84");
 
 
-		double limit = ReturnCleanedLimit( x, y, expM->GetMean(), dir, true, 1);
+		double limit = ReturnCleanedLimit( x, y, exp->GetMean(), dir, true, "Exp");
+//		double limit = exp->GetMean();
 
 		        if (limit < 1.0){
-		        hist_exp->Fill(x,y,limit);
+		        hist_exp->Fill(x,y,1./limit);
 			file->Close();
 
 		}

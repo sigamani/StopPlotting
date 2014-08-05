@@ -33,23 +33,6 @@ using namespace std;
 
 
 
-int maxbin(TH1D* histo){
-  int bi = 0;
-  double max = 0;
-  for( int i = 1; i <= histo->GetNbinsX(); i++){
-
-    //if( histo->GetBinContent(i) > max && histo->GetBinError(i) < histo->GetBinContent(i) ){
-    if( histo->GetBinContent(i) > max ){
-      max = histo->GetBinContent(i);
-      bi = i;
-    }
-  }
-  return bi;
-}
-
-
-
-
 
 void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLSP){
 
@@ -78,11 +61,12 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 	  if (SignalRegion == "T2bw025_4")   {SignalRegion_ = "R4";   }
    	  if (SignalRegion == "T2bw025_6")   {SignalRegion_ = "R6";   }
 
-	  if (SignalRegion == "T2bw050_1_lowDM") {SignalRegion_ = "R1"; }
-	  if (SignalRegion == "T2bw050_1_highDM") {SignalRegion_ = "R1"; }
+	  if (SignalRegion == "T2bw050_1_lowLSP") {SignalRegion_ = "R1"; }
+	  if (SignalRegion == "T2bw050_1_highLSP") {SignalRegion_ = "R1"; }
  	  if (SignalRegion == "T2bw050_3")   {SignalRegion_ = "R3";   }   
 	  if (SignalRegion == "T2bw050_4")   {SignalRegion_ = "R4";   }
-	  if (SignalRegion == "T2bw050_5")   {SignalRegion_ = "R5";   }
+	  if (SignalRegion == "T2bw050_5_lowDM")   {SignalRegion_ = "R5";   }
+	  if (SignalRegion == "T2bw050_5_highDM")   {SignalRegion_ = "R5";   }
    	  if (SignalRegion == "T2bw050_6")   {SignalRegion_ = "R6";   }
 
 
@@ -92,7 +76,8 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
    	  if (SignalRegion == "T2bw075_5_lowDM")   {SignalRegion_ = "R5";   }
    	  if (SignalRegion == "T2bw075_5_highDM")   {SignalRegion_ = "R5";   }
 
- 	  if (SignalRegion == "T2tt_1")   {SignalRegion_ = "R1";   }   
+ 	  if (SignalRegion == "T2tt_1_lowLSP")   {SignalRegion_ = "R1";   }   
+ 	  if (SignalRegion == "T2tt_1_highLSP")   {SignalRegion_ = "R1";   }   
 	  if (SignalRegion == "T2tt_2_lowDM")   {SignalRegion_ = "R2";   }
 	  if (SignalRegion == "T2tt_2_highDM")   {SignalRegion_ = "R2";   }
 	  if (SignalRegion == "T2tt_5_lowDM")   {SignalRegion_ = "R5";   }
@@ -115,11 +100,13 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
           TH1D* signalPRESEL = (TH1D*)sig.Get("Events_Preselection_S"+TString(stop)+"_N"+TString(neut));
 
           int nbins = signal->GetNbinsX();
-          double BDTdefCut = signalcut(decay_mode, MSTOP, MLSP); 
 
+//          double BDTdefCut = signalcut(decay_mode, MSTOP, MLSP); 
+          double BDTdefCut =  BDTcut(SignalRegion) ; 
 	  //double cut = BDTdefCut + BDTdefCutOffset;
+
 	  double cut = BDTdefCut; 
-          int max_bin = signal->GetXaxis()->FindBin(cut); // Do CLs minimization 
+          int max_bin = signal->GetXaxis()->FindBin(cut); 
           double nsignal = signal->Integral(max_bin,nbins+1);
           double nsignal_RAW = signal_RAW->Integral(max_bin,nbins+1);
           double nsignalJESUp = signalJESUp->Integral(max_bin,nbins+1);
@@ -162,14 +149,14 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 	  bkg_err = backgroundPrediction_BDT_T2bw025_6(BDTdefCutOffset).second ; 
 	  }
 
-	if (SignalRegion == "T2bw050_1_lowDM") {
-	  bkg = backgroundPrediction_BDT_T2bw050_1_lowDM(BDTdefCutOffset).first  ; 
-	  bkg_err = backgroundPrediction_BDT_T2bw050_1_lowDM(BDTdefCutOffset).second ; 
+	if (SignalRegion == "T2bw050_1_lowLSP") {
+	  bkg = backgroundPrediction_BDT_T2bw050_1_lowLSP(BDTdefCutOffset).first  ; 
+	  bkg_err = backgroundPrediction_BDT_T2bw050_1_lowLSP(BDTdefCutOffset).second ; 
 	  }
 
-	if (SignalRegion == "T2bw050_1_highDM") {
-	  bkg = backgroundPrediction_BDT_T2bw050_1_highDM(BDTdefCutOffset).first  ; 
-	  bkg_err = backgroundPrediction_BDT_T2bw050_1_highDM(BDTdefCutOffset).second ; 
+	if (SignalRegion == "T2bw050_1_highLSP") {
+	  bkg = backgroundPrediction_BDT_T2bw050_1_highLSP(BDTdefCutOffset).first  ; 
+	  bkg_err = backgroundPrediction_BDT_T2bw050_1_highLSP(BDTdefCutOffset).second ; 
 	  }
 
 	if (SignalRegion == "T2bw050_3") {
@@ -182,10 +169,16 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 	  bkg_err = backgroundPrediction_BDT_T2bw050_4(BDTdefCutOffset).second ; 
 	  }
 
-	if (SignalRegion == "T2bw050_5") {
-	  bkg = backgroundPrediction_BDT_T2bw050_5(BDTdefCutOffset).first  ; 
-	  bkg_err = backgroundPrediction_BDT_T2bw050_5(BDTdefCutOffset).second ; 
+	if (SignalRegion == "T2bw050_5_lowDM") {
+	  bkg = backgroundPrediction_BDT_T2bw050_5_lowDM(BDTdefCutOffset).first  ; 
+	  bkg_err = backgroundPrediction_BDT_T2bw050_5_lowDM(BDTdefCutOffset).second ; 
 	  }
+
+	if (SignalRegion == "T2bw050_5_highDM") {
+	  bkg = backgroundPrediction_BDT_T2bw050_5_highDM(BDTdefCutOffset).first  ; 
+	  bkg_err = backgroundPrediction_BDT_T2bw050_5_highDM(BDTdefCutOffset).second ; 
+	  }
+
 
 	if (SignalRegion == "T2bw050_6") {
 	  bkg = backgroundPrediction_BDT_T2bw050_6(BDTdefCutOffset).first  ; 
@@ -217,9 +210,14 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 	  bkg_err = backgroundPrediction_BDT_T2bw075_5_highDM(BDTdefCutOffset).second ; 
 	  }
 
-	if (SignalRegion == "T2tt_1") {
-	  bkg = backgroundPrediction_BDT_T2tt_1(BDTdefCutOffset).first  ; 
-	  bkg_err = backgroundPrediction_BDT_T2tt_1(BDTdefCutOffset).second ; 
+	if (SignalRegion == "T2tt_1_lowLSP") {
+	  bkg = backgroundPrediction_BDT_T2tt_1_lowLSP(BDTdefCutOffset).first  ; 
+	  bkg_err = backgroundPrediction_BDT_T2tt_1_lowLSP(BDTdefCutOffset).second ; 
+	  }
+
+	if (SignalRegion == "T2tt_1_highLSP") {
+	  bkg = backgroundPrediction_BDT_T2tt_1_highLSP(BDTdefCutOffset).first  ; 
+	  bkg_err = backgroundPrediction_BDT_T2tt_1_highLSP(BDTdefCutOffset).second ; 
 	  }
 
 	if (SignalRegion == "T2tt_2_lowDM") {
@@ -372,7 +370,7 @@ void createTableCLsBDT(TString decay_mode, double BDTdefCutOffset, TString Signa
   tablesFile.close();
 
 
-  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_11_mT100/"+TString(decay_mode)+"_CUT"+TString(CUT)+"/";
+  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_12_mT100/"+TString(decay_mode)+"_CUT"+TString(CUT)+"/";
   gSystem->Exec("mkdir -p "+savedir); 
   gSystem->Exec("mv "+TString(datacardname)+" "+savedir); 
 
