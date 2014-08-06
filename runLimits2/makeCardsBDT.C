@@ -101,7 +101,6 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 
           int nbins = signal->GetNbinsX();
 
-//          double BDTdefCut = signalcut(decay_mode, MSTOP, MLSP); 
           double BDTdefCut =  BDTcut(SignalRegion) ; 
 	  //double cut = BDTdefCut + BDTdefCutOffset;
 
@@ -178,7 +177,6 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 	  bkg = backgroundPrediction_BDT_T2bw050_5_highDM(BDTdefCutOffset).first  ; 
 	  bkg_err = backgroundPrediction_BDT_T2bw050_5_highDM(BDTdefCutOffset).second ; 
 	  }
-
 
 	if (SignalRegion == "T2bw050_6") {
 	  bkg = backgroundPrediction_BDT_T2bw050_6(BDTdefCutOffset).first  ; 
@@ -266,26 +264,8 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
          
           double tot_err = sqrt(stat_err*stat_err + BVetotot*BVetotot + JEStot*JEStot + 3*3 + 5*5 + 2.2*2.2 );
 
-/*
-          cout << "n_signal: \t\t\t \t\t\t"<< nsignal << endl;
-          cout << "preselec1, preselec2:\t\t\t\t\t "<< nsignalpreselection << ", "<< nsignalpreselection2 << endl;
-
-          //cout << "n_signalJESUp: "<< nsignalJESUp << " ("<< JESUp  << "%)"<< endl;
-          //cout << "n_signalJESDown: "<< nsignalJESDown <<  " ("<< JESDown  << "%)"<<  endl;
-         // cout << "n_signalBVetoBCUp: "<< nsignalBVetoBCUp << " ("<< BVetoBCUp  << "%)"<< endl;
-          //cout << "n_signalBVetoBCDown: "<< nsignalBVetoBCDown << " ("<< BVetoBCDown  << " %)"<<  endl;
-          //cout << "n_signalBVetoLightUp: "<< nsignalBVetoLightUp << " ("<< BVetoLightUp  << "%)"<< endl;
-          //cout << "n_signalBVetoLightDown: "<< nsignalBVetoLightDown << " ("<< BVetoLightDown  << " %)"<<  endl;
-          //cout << " **** " << endl;
-          cout << "JES: \t\t\t\t\t\t\t"<<  JEStot << " %"<<  endl;
-          cout << "BVETO:\t\t\t\t\t\t\t "<< BVetotot <<  " %"<<  endl;
-          cout << "STAT:\t\t\t\t\t\t\t "<< stat_err <<  " %"<<  endl;
-          cout << "TOT (add 2.2% + 3% + 5\% to JES/BVETO/STAT):\t\t "<< tot_err <<  " %"<<  endl;
-          cout << " **** " << endl; 
-*/		
 		
 	  double sig_err_percentage = tot_err/100. + 1.;
-
 
 
  
@@ -303,12 +283,6 @@ void makeCards(TString decay_mode ){
       int start = 0;
       int end = 0;
       // -9 to 4 is 0.45 to 0.2
- /*
-      if (decay_mode == "T2tt") { start = -3; end = 0;}
-      if (decay_mode == "T2bw025") { start = -3; end = 0;}
-      if (decay_mode == "T2bw050") { start = -2; end = 0;}
-      if (decay_mode == "T2bw075") { start = -3; end = 0;}
-*/
 
       for(int z= start; z<= end; z+=1){
 
@@ -370,7 +344,7 @@ void createTableCLsBDT(TString decay_mode, double BDTdefCutOffset, TString Signa
   tablesFile.close();
 
 
-  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_12_mT100/"+TString(decay_mode)+"_CUT"+TString(CUT)+"/";
+  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_11_mT100/"+TString(decay_mode)+"_CUT"+TString(CUT)+"/";
   gSystem->Exec("mkdir -p "+savedir); 
   gSystem->Exec("mv "+TString(datacardname)+" "+savedir); 
 
