@@ -67,7 +67,7 @@ double ReturnCleanedLimit( double x, double y, double limit, TString decay_mode,
 
 	if (decay_mode=="T2tt") {
 
-        //       if ( (x == 225) && (y == 25)) limit = 1.1;     
+               if ( (x == 150) && (y == 25)) limit = 0.9;     
 
 	}
 
@@ -93,6 +93,7 @@ double ReturnCleanedLimit( double x, double y, double limit, TString decay_mode,
 		if ( (x == 275) && (y == 150) ) limit = 1.1;
 		if ( (x == 325) && (y == 200) ) limit = 1.1;
 		if ( (x == 325) && (y == 175) ) limit = 1.1;
+		if ( (x == 700) && (y == 200) ) limit = 1.1;
 		if ( (x == 725) && (y == 150) ) limit = 1.1;
 		if ( (x == 650) && (y == 250) ) limit = 1.1;
 

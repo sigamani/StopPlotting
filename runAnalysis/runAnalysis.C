@@ -1869,24 +1869,37 @@ int main (int argc, char *argv[])
 
 	     int genset_ = -999;
 	     int set_ = -999;
-
-	     LHAPDF::initPDFSetM(genset_, "CT10nlo");
+	     double pdf_weight;
+	     
+	     LHAPDF::initPDFSetM(genset_, "cteq6l1");
   	     LHAPDF::initPDFM(genset_, 0); 
-	     LHAPDF::initPDFSetM(set_, "CT10nlo");
-	     LHAPDF::initPDFM(set_,2);
 
-             double fx1Q0gen = LHAPDF::xfxM(genset_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton;
-             double fx2Q0gen = LHAPDF::xfxM(genset_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton;
+	     //for (int n = 1 ; n <= 2 ; n++){
 
-             double fx1Qi = LHAPDF::xfxM(set_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton; 
-             double fx2Qi = LHAPDF::xfxM(set_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton; 
+	     //LHAPDF::initPDFSetM(set_, "cteq6l1");
+	     //LHAPDF::initPDFM(set_,43);
+
+             double fx1Q0gen = LHAPDF::xfx(genset_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton;
+             double fx2Q0gen = LHAPDF::xfx(genset_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton;
+
+             //double fx1Qi = LHAPDF::xfx(set_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton; 
+             //double fx2Qi = LHAPDF::xfx(set_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton; 
          
     	     // calculate weight from ratio
-             //double pdf_weight = ((fx1Qi*fx2Qi)/(fx1Q0gen*fx2Q0gen));
-             double pdf_weight = ((fx1Qi*fx2Qi)/(fx1Q0gen*fx2Q0gen));
-             //double pdf_weight = ((fx1Q0gen*fx2Q0gen));
 
-	     cout << pdf_weight << endl;
+	     cout << "fx1Q0gen: "<< fx1Q0gen << endl;
+	     cout << "fx2Q0gen: "<< fx2Q0gen << endl;
+	     //cout << "fx1Qi: "<< fx1Qi << endl;
+	     //cout << "fx2Qi: "<< fx2Qi << endl;
+	     //cout << "pdf_weight: " << pdf_weight << endl;
+	     cout << "****** " << endl;
+
+             //pdf_weight = ((fx1Qi*fx2Qi)/(fx1Q0gen*fx2Q0gen));
+
+	    // }
+
+
+	     //cout << pdf_weight << endl;
 
 
 			double width = fabs(myEvent.mNeutralino - 1);

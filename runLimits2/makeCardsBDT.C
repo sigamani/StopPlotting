@@ -25,8 +25,8 @@
 
 
 #include "../signalRegionDefinitions.h" 
-#include "../backgroundPredictions_MT100.h" 
-
+//#include "../backgroundPredictions_MT100.h" 
+#include "../offshellTOP.C"
 
 using namespace std;
 
@@ -102,9 +102,9 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
           int nbins = signal->GetNbinsX();
 
           double BDTdefCut =  BDTcut(SignalRegion) ; 
-	  //double cut = BDTdefCut + BDTdefCutOffset;
+	  //double cut = BDTdefCut; 
+	  double cut = BDTdefCut + BDTdefCutOffset;  //FOR OFFSET SCAN
 
-	  double cut = BDTdefCut; 
           int max_bin = signal->GetXaxis()->FindBin(cut); 
           double nsignal = signal->Integral(max_bin,nbins+1);
           double nsignal_RAW = signal_RAW->Integral(max_bin,nbins+1);
@@ -263,13 +263,9 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
           if (stat_err != stat_err) stat_err = 0.;
          
           double tot_err = sqrt(stat_err*stat_err + BVetotot*BVetotot + JEStot*JEStot + 3*3 + 5*5 + 2.2*2.2 );
-
-		
 	  double sig_err_percentage = tot_err/100. + 1.;
 
-
- 
-            createTableCLsBDT(decay_mode, BDTdefCutOffset, SignalRegion, MSTOP, MLSP,  nsignal, sig_err_percentage, bkg, bkg_err_percentage);
+          createTableCLsBDT(decay_mode, BDTdefCutOffset, SignalRegion, MSTOP, MLSP,  nsignal, sig_err_percentage, bkg, bkg_err_percentage);
 	  
 }
 
@@ -280,9 +276,8 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 void makeCards(TString decay_mode ){
 
       cout << decay_mode << endl;  
-      int start = 0;
-      int end = 0;
-      // -9 to 4 is 0.45 to 0.2
+      int start = -3;
+      int end = 3;
 
       for(int z= start; z<= end; z+=1){
 
@@ -290,9 +285,9 @@ void makeCards(TString decay_mode ){
 
             //cout << BDTdefCutOffset << endl;
 	
-              for(int x=100; x<=800; x+=25){
+              for(int x=100; x<=300; x+=25){
 	
-    	              for(int y=0; y<=700; y+=25){
+    	              for(int y=0; y<=300; y+=25){
 
 				 if (x - y > 99){  
 					 cout << "S"<<x << "N"<<y<<endl;	
@@ -344,7 +339,7 @@ void createTableCLsBDT(TString decay_mode, double BDTdefCutOffset, TString Signa
   tablesFile.close();
 
 
-  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_11_mT100/"+TString(decay_mode)+"_CUT"+TString(CUT)+"/";
+  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_11_T2tt1_mT100/"+TString(decay_mode)+"_CUT"+TString(CUT)+"/";
   gSystem->Exec("mkdir -p "+savedir); 
   gSystem->Exec("mv "+TString(datacardname)+" "+savedir); 
 
