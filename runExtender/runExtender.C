@@ -29,6 +29,7 @@ using namespace std;
 #include <TLorentzVector.h>
 #include "TMVA/Tools.h"
 #include "TMVA/Reader.h"
+#include "LHAPDF/LHAPDF.h"
 
 
 // Define format of input file
@@ -894,12 +895,16 @@ int main (int argc, char *argv[])
 
 
 
-   //vector<Float_t> BDToutputs_t2bw025, BDToutputs_t2bw050, BDToutputs_t2bw075, BDToutputs_t2tt;
-   Int_t isUsedInBDTTraining;
+   vector<Float_t> PDF_Weights_CT10, PDF_Weights_MSTW08, PDF_Weights_NNPDF21; 
+
+   Int_t isUsedInBDT;
    Float_t m3b_2; 
 
+   theOutputTree->Branch("PDF_Weights_CT10",     "std::vector<Float_t>",          &(PDF_Weights_CT10));
+   theOutputTree->Branch("PDF_Weights_MSTW08",   "std::vector<Float_t>",          &(PDF_Weights_MSTW08));
+   theOutputTree->Branch("PDF_Weights_NNPDF21",  "std::vector<Float_t>",         &(PDF_Weights_NNPDF21));
 
-   theOutputTree->Branch("isUsedInBDTTraining",     	    &(isUsedInBDTTraining));
+   theOutputTree->Branch("isUsedInBDT",     	    &(isUsedInBDT));
    theOutputTree->Branch("BDT_output_t2bw025_R1",     	    &(BDT_output_t2bw025_R1));
    theOutputTree->Branch("BDT_output_t2bw025_R3",     	    &(BDT_output_t2bw025_R3));
    theOutputTree->Branch("BDT_output_t2bw025_R4",     	    &(BDT_output_t2bw025_R4));
@@ -973,43 +978,117 @@ int main (int argc, char *argv[])
 
 
         bool isSignal = false;
-        //bool isTTbar  = false;
         bool isTTbarmadgraph = false;
 
         if (myEvent.mStop == -1) { isSignal = false;}
                 else isSignal = true;
 
-//        if (string(argv[1]).find("ttbar") != std::string::npos) isTTbar = true;
         if (string(argv[1]).find("madgraph") != std::string::npos) isTTbarmadgraph = true;
 
 
+        if ( isSignal && ((myEvent.event%2)==1)) isUsedInBDT = 1;
+        //if ( isTTbarmadgraph )  	         isUsedInBDT = 1;
+		else isUsedInBDT = 0;
 
-        if ( isSignal && ((myEvent.event%2)==1)) isUsedInBDTTraining = 1;
-        if ( isTTbarmadgraph )  	         isUsedInBDTTraining = 1;
- 
-		else isUsedInBDTTraining = 0;
+        if (myEvent.nJets < 4) continue;
+
+
+	         int genset_ = 1;
+	         int genset1_ = 2;
+	         int genset2_ = 3;
+	         int set_ = 4;
+	         int set1_ = 5;
+	         int set2_ = 6;
+
+
+	    	 LHAPDF::setVerbosity(0); 
+			 Float_t pdf_weight = 0;
+	     
+			 LHAPDF::initPDFSetM(genset_, "CT10");
+			 LHAPDF::initPDFM(genset_, 0); 
+
+			 LHAPDF::initPDFSetM(genset1_, "MSTW2008lo68cl");
+			 LHAPDF::initPDFM(genset1_, 0); 
+
+			 LHAPDF::initPDFSetM(genset2_, "NNPDF21_lo_as_0119_100");
+			 LHAPDF::initPDFM(genset1_, 0); 
+
+
+	         PDF_Weights_CT10.clear();           
+			 PDF_Weights_MSTW08.clear();
+			 PDF_Weights_NNPDF21.clear();
+
+			 for (int n = 1 ; n <= 52 ; n += 1){
+			 LHAPDF::initPDFSetM(set_, "CT10");
+			 LHAPDF::initPDFM(set_,n);
+
+
+			 double fx1Q0gen = LHAPDF::xfx(genset_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton;
+             double fx2Q0gen = LHAPDF::xfx(genset_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton;
+
+             double fx1Qi = LHAPDF::xfx(set_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton; 
+             double fx2Qi = LHAPDF::xfx(set_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton; 
+             pdf_weight = ((fx1Qi*fx2Qi)/(fx1Q0gen*fx2Q0gen));
+         
+      		 PDF_Weights_CT10.push_back(pdf_weight);
+
+	     }
+
+
+			 for (int n = 1 ; n <= 40 ; n += 1){
+			 LHAPDF::initPDFSetM(set1_, "MSTW2008lo68cl");
+			 LHAPDF::initPDFM(set1_,n);
+
+
+			 double fx1Q0gen = LHAPDF::xfx(genset1_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton;
+             double fx2Q0gen = LHAPDF::xfx(genset1_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton;
+
+             double fx1Qi = LHAPDF::xfx(set1_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton; 
+             double fx2Qi = LHAPDF::xfx(set1_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton; 
+             pdf_weight = ((fx1Qi*fx2Qi)/(fx1Q0gen*fx2Q0gen));
+         
+      		 PDF_Weights_MSTW08.push_back(pdf_weight);
+
+	     }
+
+
+			 for (int n = 1 ; n <= 100 ; n += 1){
+			 LHAPDF::initPDFSetM(set2_, "NNPDF21_lo_as_0119_100");
+			 LHAPDF::initPDFM(set2_,n);
+
+
+			 double fx1Q0gen = LHAPDF::xfx(genset2_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton;
+             double fx2Q0gen = LHAPDF::xfx(genset2_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton;
+
+             double fx1Qi = LHAPDF::xfx(set2_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton; 
+             double fx2Qi = LHAPDF::xfx(set2_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton; 
+             pdf_weight = ((fx1Qi*fx2Qi)/(fx1Q0gen*fx2Q0gen));
+         
+      		 PDF_Weights_NNPDF21.push_back(pdf_weight);
+
+	     }
 
 
 
-	met = myEvent.MET;
-	mT = myEvent.MT;
-	mT2W = myEvent.MT2W;
-	HT = myEvent.HT;
-	HTfrac = myEvent.HTRatio;
-	b1_pt = myEvent.leadingBPt;
-	lepton_pT = myEvent.leadingLeptonPt;
-	dPhi_JetMet = myEvent.deltaPhiMETJets;
-	dR_LepB = myEvent.deltaRLeptonLeadingB;
+			met = myEvent.MET;
+			mT = myEvent.MT;
+			mT2W = myEvent.MT2W;
+			HT = myEvent.HT;
+			HTfrac = myEvent.HTRatio;
+			b1_pt = myEvent.leadingBPt;
+			lepton_pT = myEvent.leadingLeptonPt;
+			dPhi_JetMet = myEvent.deltaPhiMETJets;
+			dR_LepB = myEvent.deltaRLeptonLeadingB;
 
-	if (myEvent.nJets < 3 ) {m3b = 0. ; } 
-		else { m3b = myEvent.M3b;}
+			if (myEvent.nJets < 3 ) {m3b = 0. ; } 
+				else { m3b = myEvent.M3b;}
 
-	mlb_hemi = myEvent.Mlb_hemi;
-	jet1_pT = myEvent.leadingJetPt;
-	njets = myEvent.nJets;
-	METoverSqrtHT = myEvent.METoverSqrtHT;
-	HT_MET_lep_pt = myEvent.HTPlusLeptonPtPlusMET;
-	Chi2SNT = myEvent.hadronicChi2;
+			mlb_hemi = myEvent.Mlb_hemi;
+			jet1_pT = myEvent.leadingJetPt;
+			njets = myEvent.nJets;
+			METoverSqrtHT = myEvent.METoverSqrtHT;
+			HT_MET_lep_pt = myEvent.HTPlusLeptonPtPlusMET;
+			Chi2SNT = myEvent.hadronicChi2;
 
 
 

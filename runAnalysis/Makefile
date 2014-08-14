@@ -27,7 +27,7 @@ SOURCES       = $(wildcard src/*.cc)
 OBJECTS       = $(SOURCES:.$(SrcSuf)=.$(ObjSuf))
 #------------------------------------------------------------------------------
 
-all:	runAnalysis
+all:	runAnalysis runPDFSystematics
 
 %.o: %.c
 	$(CXX) $(CXXFLAGS) -c $<

@@ -101,7 +101,7 @@ double return_limit(TString dir, int x, int y, int SR, TString Exp){
   		  char shortfilename[500];
   		  char filename[500];
 
-                  sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsCNC_10_mT100/%s/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, SR_, x, y);
+                  sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsCNC_12/%s/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, SR_, x, y);
 
    
 	         
