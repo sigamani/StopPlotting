@@ -1551,167 +1551,167 @@ int main (int argc, char *argv[])
    Events_T2bw075_highDeltaMJESDown = new TH1D(name16JESDown,title16JESDown,100,0,10000);
 
 	
-   hist_BDT_output_t2bw025_R1_RAW = new TH1D(name17_RAW,title17_RAW,100,-2,2);
-   hist_BDT_output_t2bw025_R3_RAW = new TH1D(name18_RAW,title18_RAW,100,-2,2);
-   hist_BDT_output_t2bw025_R4_RAW = new TH1D(name19_RAW,title19_RAW,100,-2,2);
-   hist_BDT_output_t2bw025_R6_RAW = new TH1D(name20_RAW,title20_RAW,100,-2,2);
+   hist_BDT_output_t2bw025_R1_RAW = new TH1D(name17_RAW,title17_RAW,10000,-2,2);
+   hist_BDT_output_t2bw025_R3_RAW = new TH1D(name18_RAW,title18_RAW,10000,-2,2);
+   hist_BDT_output_t2bw025_R4_RAW = new TH1D(name19_RAW,title19_RAW,10000,-2,2);
+   hist_BDT_output_t2bw025_R6_RAW = new TH1D(name20_RAW,title20_RAW,10000,-2,2);
 
-   hist_BDT_output_t2bw050_R1_RAW = new TH1D(name21_RAW,title21_RAW,100,-2,2);
-   hist_BDT_output_t2bw050_R3_RAW = new TH1D(name22_RAW,title22_RAW,100,-2,2);
-   hist_BDT_output_t2bw050_R4_RAW = new TH1D(name23_RAW,title23_RAW,100,-2,2);
-   hist_BDT_output_t2bw050_R5_RAW = new TH1D(name24_RAW,title24_RAW,100,-2,2);
-   hist_BDT_output_t2bw050_R6_RAW = new TH1D(name25_RAW,title25_RAW,100,-2,2);
+   hist_BDT_output_t2bw050_R1_RAW = new TH1D(name21_RAW,title21_RAW,10000,-2,2);
+   hist_BDT_output_t2bw050_R3_RAW = new TH1D(name22_RAW,title22_RAW,10000,-2,2);
+   hist_BDT_output_t2bw050_R4_RAW = new TH1D(name23_RAW,title23_RAW,10000,-2,2);
+   hist_BDT_output_t2bw050_R5_RAW = new TH1D(name24_RAW,title24_RAW,10000,-2,2);
+   hist_BDT_output_t2bw050_R6_RAW = new TH1D(name25_RAW,title25_RAW,10000,-2,2);
 
-   hist_BDT_output_t2bw075_R1_RAW = new TH1D(name26_RAW,title26_RAW,100,-2,2);
-   hist_BDT_output_t2bw075_R2_RAW = new TH1D(name27_RAW,title27_RAW,100,-2,2);
-   hist_BDT_output_t2bw075_R3_RAW = new TH1D(name28_RAW,title28_RAW,100,-2,2);
-   hist_BDT_output_t2bw075_R5_RAW = new TH1D(name29_RAW,title29_RAW,100,-2,2);
+   hist_BDT_output_t2bw075_R1_RAW = new TH1D(name26_RAW,title26_RAW,10000,-2,2);
+   hist_BDT_output_t2bw075_R2_RAW = new TH1D(name27_RAW,title27_RAW,10000,-2,2);
+   hist_BDT_output_t2bw075_R3_RAW = new TH1D(name28_RAW,title28_RAW,10000,-2,2);
+   hist_BDT_output_t2bw075_R5_RAW = new TH1D(name29_RAW,title29_RAW,10000,-2,2);
 
-   hist_BDT_output_t2tt_R1_RAW = new TH1D(name30_RAW,title30_RAW,100,-2,2);
-   hist_BDT_output_t2tt_R2_RAW = new TH1D(name31_RAW,title31_RAW,100,-2,2);
-   hist_BDT_output_t2tt_R5_RAW = new TH1D(name32_RAW,title32_RAW,100,-2,2);
-
-
-   hist_BDT_output_t2bw025_R1 = new TH1D(name17,title17,100,-2,2);
-   hist_BDT_output_t2bw025_R3 = new TH1D(name18,title18,100,-2,2);
-   hist_BDT_output_t2bw025_R4 = new TH1D(name19,title19,100,-2,2);
-   hist_BDT_output_t2bw025_R6 = new TH1D(name20,title20,100,-2,2);
-
-   hist_BDT_output_t2bw050_R1 = new TH1D(name21,title21,100,-2,2);
-   hist_BDT_output_t2bw050_R3 = new TH1D(name22,title22,100,-2,2);
-   hist_BDT_output_t2bw050_R4 = new TH1D(name23,title23,100,-2,2);
-   hist_BDT_output_t2bw050_R5 = new TH1D(name24,title24,100,-2,2);
-   hist_BDT_output_t2bw050_R6 = new TH1D(name25,title25,100,-2,2);
-
-   hist_BDT_output_t2bw075_R1 = new TH1D(name26,title26,100,-2,2);
-   hist_BDT_output_t2bw075_R2 = new TH1D(name27,title27,100,-2,2);
-   hist_BDT_output_t2bw075_R3 = new TH1D(name28,title28,100,-2,2);
-   hist_BDT_output_t2bw075_R5 = new TH1D(name29,title29,100,-2,2);
+   hist_BDT_output_t2tt_R1_RAW = new TH1D(name30_RAW,title30_RAW,10000,-2,2);
+   hist_BDT_output_t2tt_R2_RAW = new TH1D(name31_RAW,title31_RAW,10000,-2,2);
+   hist_BDT_output_t2tt_R5_RAW = new TH1D(name32_RAW,title32_RAW,10000,-2,2);
 
 
-   hist_BDT_output_t2tt_R1 = new TH1D(name30,title30,100,-2,2);
-   hist_BDT_output_t2tt_R2 = new TH1D(name31,title31,100,-2,2);
-   hist_BDT_output_t2tt_R5 = new TH1D(name32,title32,100,-2,2);
+   hist_BDT_output_t2bw025_R1 = new TH1D(name17,title17,10000,-2,2);
+   hist_BDT_output_t2bw025_R3 = new TH1D(name18,title18,10000,-2,2);
+   hist_BDT_output_t2bw025_R4 = new TH1D(name19,title19,10000,-2,2);
+   hist_BDT_output_t2bw025_R6 = new TH1D(name20,title20,10000,-2,2);
+
+   hist_BDT_output_t2bw050_R1 = new TH1D(name21,title21,10000,-2,2);
+   hist_BDT_output_t2bw050_R3 = new TH1D(name22,title22,10000,-2,2);
+   hist_BDT_output_t2bw050_R4 = new TH1D(name23,title23,10000,-2,2);
+   hist_BDT_output_t2bw050_R5 = new TH1D(name24,title24,10000,-2,2);
+   hist_BDT_output_t2bw050_R6 = new TH1D(name25,title25,10000,-2,2);
+
+   hist_BDT_output_t2bw075_R1 = new TH1D(name26,title26,10000,-2,2);
+   hist_BDT_output_t2bw075_R2 = new TH1D(name27,title27,10000,-2,2);
+   hist_BDT_output_t2bw075_R3 = new TH1D(name28,title28,10000,-2,2);
+   hist_BDT_output_t2bw075_R5 = new TH1D(name29,title29,10000,-2,2);
+
+
+   hist_BDT_output_t2tt_R1 = new TH1D(name30,title30,10000,-2,2);
+   hist_BDT_output_t2tt_R2 = new TH1D(name31,title31,10000,-2,2);
+   hist_BDT_output_t2tt_R5 = new TH1D(name32,title32,10000,-2,2);
 
    // BVETO SYST
    
-   hist_BDT_output_t2bw025_R1BVetoBCUp = new TH1D(name17BVetoBCUp,title17BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw025_R1BVetoBCDown = new TH1D(name17BVetoBCDown,title17BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw025_R1BVetoLightUp = new TH1D(name17BVetoLightUp,title17BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw025_R1BVetoLightDown = new TH1D(name17BVetoLightDown,title17BVetoLightDown,100,-2,2);
+   hist_BDT_output_t2bw025_R1BVetoBCUp = new TH1D(name17BVetoBCUp,title17BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw025_R1BVetoBCDown = new TH1D(name17BVetoBCDown,title17BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw025_R1BVetoLightUp = new TH1D(name17BVetoLightUp,title17BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw025_R1BVetoLightDown = new TH1D(name17BVetoLightDown,title17BVetoLightDown,10000,-2,2);
 
-   hist_BDT_output_t2bw025_R3BVetoBCUp = new TH1D(name18BVetoBCUp,title18BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw025_R3BVetoBCDown = new TH1D(name18BVetoBCDown,title18BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw025_R3BVetoLightUp = new TH1D(name18BVetoLightUp,title18BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw025_R3BVetoLightDown = new TH1D(name18BVetoLightDown,title18BVetoLightDown,100,-2,2);
+   hist_BDT_output_t2bw025_R3BVetoBCUp = new TH1D(name18BVetoBCUp,title18BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw025_R3BVetoBCDown = new TH1D(name18BVetoBCDown,title18BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw025_R3BVetoLightUp = new TH1D(name18BVetoLightUp,title18BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw025_R3BVetoLightDown = new TH1D(name18BVetoLightDown,title18BVetoLightDown,10000,-2,2);
 
-   hist_BDT_output_t2bw025_R4BVetoBCUp = new TH1D(name19BVetoBCUp,title19BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw025_R4BVetoBCDown = new TH1D(name19BVetoBCDown,title19BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw025_R4BVetoLightUp = new TH1D(name19BVetoLightUp,title19BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw025_R4BVetoLightDown = new TH1D(name19BVetoLightDown,title19BVetoLightDown,100,-2,2);
+   hist_BDT_output_t2bw025_R4BVetoBCUp = new TH1D(name19BVetoBCUp,title19BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw025_R4BVetoBCDown = new TH1D(name19BVetoBCDown,title19BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw025_R4BVetoLightUp = new TH1D(name19BVetoLightUp,title19BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw025_R4BVetoLightDown = new TH1D(name19BVetoLightDown,title19BVetoLightDown,10000,-2,2);
 
-   hist_BDT_output_t2bw025_R6BVetoBCUp = new TH1D(name20BVetoBCUp,title20BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw025_R6BVetoBCDown = new TH1D(name20BVetoBCDown,title20BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw025_R6BVetoLightUp = new TH1D(name20BVetoLightUp,title20BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw025_R6BVetoLightDown = new TH1D(name20BVetoLightDown,title20BVetoLightDown,100,-2,2);
+   hist_BDT_output_t2bw025_R6BVetoBCUp = new TH1D(name20BVetoBCUp,title20BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw025_R6BVetoBCDown = new TH1D(name20BVetoBCDown,title20BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw025_R6BVetoLightUp = new TH1D(name20BVetoLightUp,title20BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw025_R6BVetoLightDown = new TH1D(name20BVetoLightDown,title20BVetoLightDown,10000,-2,2);
 
-   hist_BDT_output_t2bw050_R1BVetoBCUp = new TH1D(name21BVetoBCUp,title21BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw050_R1BVetoBCDown = new TH1D(name21BVetoBCDown,title21BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw050_R1BVetoLightUp = new TH1D(name21BVetoLightUp,title21BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw050_R1BVetoLightDown = new TH1D(name21BVetoLightDown,title21BVetoLightDown,100,-2,2);
-
-
-   hist_BDT_output_t2bw050_R3BVetoBCUp = new TH1D(name22BVetoBCUp,title22BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw050_R3BVetoBCDown = new TH1D(name22BVetoBCDown,title22BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw050_R3BVetoLightUp = new TH1D(name22BVetoLightUp,title22BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw050_R3BVetoLightDown = new TH1D(name22BVetoLightDown,title22BVetoLightDown,100,-2,2);
-
-   hist_BDT_output_t2bw050_R4BVetoBCUp = new TH1D(name23BVetoBCUp,title23BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw050_R4BVetoBCDown = new TH1D(name23BVetoBCDown,title23BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw050_R4BVetoLightUp = new TH1D(name23BVetoLightUp,title23BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw050_R4BVetoLightDown = new TH1D(name23BVetoLightDown,title23BVetoLightDown,100,-2,2);
-
-   hist_BDT_output_t2bw050_R5BVetoBCUp = new TH1D(name24BVetoBCUp,title24BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw050_R5BVetoBCDown = new TH1D(name24BVetoBCDown,title24BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw050_R5BVetoLightUp = new TH1D(name24BVetoLightUp,title24BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw050_R5BVetoLightDown = new TH1D(name24BVetoLightDown,title24BVetoLightDown,100,-2,2);
-
-   hist_BDT_output_t2bw050_R6BVetoBCUp = new TH1D(name25BVetoBCUp,title25BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw050_R6BVetoBCDown = new TH1D(name25BVetoBCDown,title25BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw050_R6BVetoLightUp = new TH1D(name25BVetoLightUp,title25BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw050_R6BVetoLightDown = new TH1D(name25BVetoLightDown,title25BVetoLightDown,100,-2,2);
+   hist_BDT_output_t2bw050_R1BVetoBCUp = new TH1D(name21BVetoBCUp,title21BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R1BVetoBCDown = new TH1D(name21BVetoBCDown,title21BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R1BVetoLightUp = new TH1D(name21BVetoLightUp,title21BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R1BVetoLightDown = new TH1D(name21BVetoLightDown,title21BVetoLightDown,10000,-2,2);
 
 
-   hist_BDT_output_t2bw075_R1BVetoBCUp = new TH1D(name26BVetoBCUp,title26BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw075_R1BVetoBCDown = new TH1D(name26BVetoBCDown,title26BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw075_R1BVetoLightUp = new TH1D(name26BVetoLightUp,title26BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw075_R1BVetoLightDown = new TH1D(name26BVetoLightDown,title26BVetoLightDown,100,-2,2);
+   hist_BDT_output_t2bw050_R3BVetoBCUp = new TH1D(name22BVetoBCUp,title22BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R3BVetoBCDown = new TH1D(name22BVetoBCDown,title22BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R3BVetoLightUp = new TH1D(name22BVetoLightUp,title22BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R3BVetoLightDown = new TH1D(name22BVetoLightDown,title22BVetoLightDown,10000,-2,2);
 
-   hist_BDT_output_t2bw075_R2BVetoBCUp = new TH1D(name27BVetoBCUp,title27BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw075_R2BVetoBCDown = new TH1D(name27BVetoBCDown,title27BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw075_R2BVetoLightUp = new TH1D(name27BVetoLightUp,title27BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw075_R2BVetoLightDown = new TH1D(name27BVetoLightDown,title27BVetoLightDown,100,-2,2);
+   hist_BDT_output_t2bw050_R4BVetoBCUp = new TH1D(name23BVetoBCUp,title23BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R4BVetoBCDown = new TH1D(name23BVetoBCDown,title23BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R4BVetoLightUp = new TH1D(name23BVetoLightUp,title23BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R4BVetoLightDown = new TH1D(name23BVetoLightDown,title23BVetoLightDown,10000,-2,2);
 
-   hist_BDT_output_t2bw075_R3BVetoBCUp = new TH1D(name28BVetoBCUp,title28BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw075_R3BVetoBCDown = new TH1D(name28BVetoBCDown,title28BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw075_R3BVetoLightUp = new TH1D(name28BVetoLightUp,title28BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw075_R3BVetoLightDown = new TH1D(name28BVetoLightDown,title28BVetoLightDown,100,-2,2);
+   hist_BDT_output_t2bw050_R5BVetoBCUp = new TH1D(name24BVetoBCUp,title24BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R5BVetoBCDown = new TH1D(name24BVetoBCDown,title24BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R5BVetoLightUp = new TH1D(name24BVetoLightUp,title24BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R5BVetoLightDown = new TH1D(name24BVetoLightDown,title24BVetoLightDown,10000,-2,2);
 
-   hist_BDT_output_t2bw075_R5BVetoBCUp = new TH1D(name29BVetoBCUp,title29BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2bw075_R5BVetoBCDown = new TH1D(name29BVetoBCDown,title29BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2bw075_R5BVetoLightUp = new TH1D(name29BVetoLightUp,title29BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2bw075_R5BVetoLightDown = new TH1D(name29BVetoLightDown,title29BVetoLightDown,100,-2,2);
-
-
-   hist_BDT_output_t2tt_R1BVetoBCUp = new TH1D(name30BVetoBCUp,title30BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2tt_R1BVetoBCDown = new TH1D(name30BVetoBCDown,title30BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2tt_R1BVetoLightUp = new TH1D(name30BVetoLightUp,title30BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2tt_R1BVetoLightDown = new TH1D(name30BVetoLightDown,title30BVetoLightDown,100,-2,2);
+   hist_BDT_output_t2bw050_R6BVetoBCUp = new TH1D(name25BVetoBCUp,title25BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R6BVetoBCDown = new TH1D(name25BVetoBCDown,title25BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R6BVetoLightUp = new TH1D(name25BVetoLightUp,title25BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R6BVetoLightDown = new TH1D(name25BVetoLightDown,title25BVetoLightDown,10000,-2,2);
 
 
-   hist_BDT_output_t2tt_R2BVetoBCUp = new TH1D(name31BVetoBCUp,title31BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2tt_R2BVetoBCDown = new TH1D(name31BVetoBCDown,title31BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2tt_R2BVetoLightUp = new TH1D(name31BVetoLightUp,title31BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2tt_R2BVetoLightDown = new TH1D(name31BVetoLightDown,title31BVetoLightDown,100,-2,2);
+   hist_BDT_output_t2bw075_R1BVetoBCUp = new TH1D(name26BVetoBCUp,title26BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw075_R1BVetoBCDown = new TH1D(name26BVetoBCDown,title26BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw075_R1BVetoLightUp = new TH1D(name26BVetoLightUp,title26BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw075_R1BVetoLightDown = new TH1D(name26BVetoLightDown,title26BVetoLightDown,10000,-2,2);
 
-   hist_BDT_output_t2tt_R5BVetoBCUp = new TH1D(name32BVetoBCUp,title32BVetoBCUp,100,-2,2);
-   hist_BDT_output_t2tt_R5BVetoBCDown = new TH1D(name32BVetoBCDown,title32BVetoBCDown,100,-2,2);
-   hist_BDT_output_t2tt_R5BVetoLightUp = new TH1D(name32BVetoLightUp,title32BVetoLightUp,100,-2,2);
-   hist_BDT_output_t2tt_R5BVetoLightDown = new TH1D(name32BVetoLightDown,title32BVetoLightDown,100,-2,2);
+   hist_BDT_output_t2bw075_R2BVetoBCUp = new TH1D(name27BVetoBCUp,title27BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw075_R2BVetoBCDown = new TH1D(name27BVetoBCDown,title27BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw075_R2BVetoLightUp = new TH1D(name27BVetoLightUp,title27BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw075_R2BVetoLightDown = new TH1D(name27BVetoLightDown,title27BVetoLightDown,10000,-2,2);
+
+   hist_BDT_output_t2bw075_R3BVetoBCUp = new TH1D(name28BVetoBCUp,title28BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw075_R3BVetoBCDown = new TH1D(name28BVetoBCDown,title28BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw075_R3BVetoLightUp = new TH1D(name28BVetoLightUp,title28BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw075_R3BVetoLightDown = new TH1D(name28BVetoLightDown,title28BVetoLightDown,10000,-2,2);
+
+   hist_BDT_output_t2bw075_R5BVetoBCUp = new TH1D(name29BVetoBCUp,title29BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2bw075_R5BVetoBCDown = new TH1D(name29BVetoBCDown,title29BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2bw075_R5BVetoLightUp = new TH1D(name29BVetoLightUp,title29BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2bw075_R5BVetoLightDown = new TH1D(name29BVetoLightDown,title29BVetoLightDown,10000,-2,2);
+
+
+   hist_BDT_output_t2tt_R1BVetoBCUp = new TH1D(name30BVetoBCUp,title30BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2tt_R1BVetoBCDown = new TH1D(name30BVetoBCDown,title30BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2tt_R1BVetoLightUp = new TH1D(name30BVetoLightUp,title30BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2tt_R1BVetoLightDown = new TH1D(name30BVetoLightDown,title30BVetoLightDown,10000,-2,2);
+
+
+   hist_BDT_output_t2tt_R2BVetoBCUp = new TH1D(name31BVetoBCUp,title31BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2tt_R2BVetoBCDown = new TH1D(name31BVetoBCDown,title31BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2tt_R2BVetoLightUp = new TH1D(name31BVetoLightUp,title31BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2tt_R2BVetoLightDown = new TH1D(name31BVetoLightDown,title31BVetoLightDown,10000,-2,2);
+
+   hist_BDT_output_t2tt_R5BVetoBCUp = new TH1D(name32BVetoBCUp,title32BVetoBCUp,10000,-2,2);
+   hist_BDT_output_t2tt_R5BVetoBCDown = new TH1D(name32BVetoBCDown,title32BVetoBCDown,10000,-2,2);
+   hist_BDT_output_t2tt_R5BVetoLightUp = new TH1D(name32BVetoLightUp,title32BVetoLightUp,10000,-2,2);
+   hist_BDT_output_t2tt_R5BVetoLightDown = new TH1D(name32BVetoLightDown,title32BVetoLightDown,10000,-2,2);
 
    // JES syst 
-   hist_BDT_output_t2bw025_R1JESUp = new TH1D(name17JESUp,title17JESUp,100,-2,2);
-   hist_BDT_output_t2bw025_R1JESDown = new TH1D(name17JESDown,title17JESDown,100,-2,2);
-   hist_BDT_output_t2bw025_R3JESUp = new TH1D(name18JESUp,title18JESUp,100,-2,2);
-   hist_BDT_output_t2bw025_R3JESDown = new TH1D(name18JESDown,title18JESDown,100,-2,2);
-   hist_BDT_output_t2bw025_R4JESUp = new TH1D(name19JESUp,title19JESUp,100,-2,2);
-   hist_BDT_output_t2bw025_R4JESDown = new TH1D(name19JESDown,title19JESDown,100,-2,2);
-   hist_BDT_output_t2bw025_R6JESUp = new TH1D(name20JESUp,title20JESUp,100,-2,2);
-   hist_BDT_output_t2bw025_R6JESDown = new TH1D(name20JESDown,title20JESDown,100,-2,2);
-   hist_BDT_output_t2bw050_R1JESUp = new TH1D(name21JESUp,title21JESUp,100,-2,2);
-   hist_BDT_output_t2bw050_R1JESDown = new TH1D(name21JESDown,title21JESDown,100,-2,2);
-   hist_BDT_output_t2bw050_R3JESUp = new TH1D(name22JESUp,title22JESUp,100,-2,2);
-   hist_BDT_output_t2bw050_R3JESDown = new TH1D(name22JESDown,title22JESDown,100,-2,2);
-   hist_BDT_output_t2bw050_R4JESUp = new TH1D(name23JESUp,title23JESUp,100,-2,2);
-   hist_BDT_output_t2bw050_R4JESDown = new TH1D(name23JESDown,title23JESDown,100,-2,2);
-   hist_BDT_output_t2bw050_R5JESUp = new TH1D(name24JESUp,title24JESUp,100,-2,2);
-   hist_BDT_output_t2bw050_R5JESDown = new TH1D(name24JESDown,title24JESDown,100,-2,2);
-   hist_BDT_output_t2bw050_R6JESUp = new TH1D(name25JESUp,title25JESUp,100,-2,2);
-   hist_BDT_output_t2bw050_R6JESDown = new TH1D(name25JESDown,title25JESDown,100,-2,2);
-   hist_BDT_output_t2bw075_R1JESUp = new TH1D(name26JESUp,title26JESUp,100,-2,2);
-   hist_BDT_output_t2bw075_R1JESDown = new TH1D(name26JESDown,title26JESDown,100,-2,2);
-   hist_BDT_output_t2bw075_R2JESUp = new TH1D(name27JESUp,title27JESUp,100,-2,2);
-   hist_BDT_output_t2bw075_R2JESDown = new TH1D(name27JESDown,title27JESDown,100,-2,2);
-   hist_BDT_output_t2bw075_R3JESUp = new TH1D(name28JESUp,title28JESUp,100,-2,2);
-   hist_BDT_output_t2bw075_R3JESDown = new TH1D(name28JESDown,title28JESDown,100,-2,2);
-   hist_BDT_output_t2bw075_R5JESUp = new TH1D(name29JESUp,title29JESUp,100,-2,2);
-   hist_BDT_output_t2bw075_R5JESDown = new TH1D(name29JESDown,title29JESDown,100,-2,2);
-   hist_BDT_output_t2tt_R1JESUp = new TH1D(name30JESUp,title30JESUp,100,-2,2);
-   hist_BDT_output_t2tt_R1JESDown = new TH1D(name30JESDown,title30JESDown,100,-2,2);
-   hist_BDT_output_t2tt_R2JESUp = new TH1D(name31JESUp,title31JESUp,100,-2,2);
-   hist_BDT_output_t2tt_R2JESDown = new TH1D(name31JESDown,title31JESDown,100,-2,2);
-   hist_BDT_output_t2tt_R5JESUp = new TH1D(name32JESUp,title32JESUp,100,-2,2);
-   hist_BDT_output_t2tt_R5JESDown = new TH1D(name32JESDown,title32JESDown,100,-2,2);
+   hist_BDT_output_t2bw025_R1JESUp = new TH1D(name17JESUp,title17JESUp,10000,-2,2);
+   hist_BDT_output_t2bw025_R1JESDown = new TH1D(name17JESDown,title17JESDown,10000,-2,2);
+   hist_BDT_output_t2bw025_R3JESUp = new TH1D(name18JESUp,title18JESUp,10000,-2,2);
+   hist_BDT_output_t2bw025_R3JESDown = new TH1D(name18JESDown,title18JESDown,10000,-2,2);
+   hist_BDT_output_t2bw025_R4JESUp = new TH1D(name19JESUp,title19JESUp,10000,-2,2);
+   hist_BDT_output_t2bw025_R4JESDown = new TH1D(name19JESDown,title19JESDown,10000,-2,2);
+   hist_BDT_output_t2bw025_R6JESUp = new TH1D(name20JESUp,title20JESUp,10000,-2,2);
+   hist_BDT_output_t2bw025_R6JESDown = new TH1D(name20JESDown,title20JESDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R1JESUp = new TH1D(name21JESUp,title21JESUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R1JESDown = new TH1D(name21JESDown,title21JESDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R3JESUp = new TH1D(name22JESUp,title22JESUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R3JESDown = new TH1D(name22JESDown,title22JESDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R4JESUp = new TH1D(name23JESUp,title23JESUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R4JESDown = new TH1D(name23JESDown,title23JESDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R5JESUp = new TH1D(name24JESUp,title24JESUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R5JESDown = new TH1D(name24JESDown,title24JESDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R6JESUp = new TH1D(name25JESUp,title25JESUp,10000,-2,2);
+   hist_BDT_output_t2bw050_R6JESDown = new TH1D(name25JESDown,title25JESDown,10000,-2,2);
+   hist_BDT_output_t2bw075_R1JESUp = new TH1D(name26JESUp,title26JESUp,10000,-2,2);
+   hist_BDT_output_t2bw075_R1JESDown = new TH1D(name26JESDown,title26JESDown,10000,-2,2);
+   hist_BDT_output_t2bw075_R2JESUp = new TH1D(name27JESUp,title27JESUp,10000,-2,2);
+   hist_BDT_output_t2bw075_R2JESDown = new TH1D(name27JESDown,title27JESDown,10000,-2,2);
+   hist_BDT_output_t2bw075_R3JESUp = new TH1D(name28JESUp,title28JESUp,10000,-2,2);
+   hist_BDT_output_t2bw075_R3JESDown = new TH1D(name28JESDown,title28JESDown,10000,-2,2);
+   hist_BDT_output_t2bw075_R5JESUp = new TH1D(name29JESUp,title29JESUp,10000,-2,2);
+   hist_BDT_output_t2bw075_R5JESDown = new TH1D(name29JESDown,title29JESDown,10000,-2,2);
+   hist_BDT_output_t2tt_R1JESUp = new TH1D(name30JESUp,title30JESUp,10000,-2,2);
+   hist_BDT_output_t2tt_R1JESDown = new TH1D(name30JESDown,title30JESDown,10000,-2,2);
+   hist_BDT_output_t2tt_R2JESUp = new TH1D(name31JESUp,title31JESUp,10000,-2,2);
+   hist_BDT_output_t2tt_R2JESDown = new TH1D(name31JESDown,title31JESDown,10000,-2,2);
+   hist_BDT_output_t2tt_R5JESUp = new TH1D(name32JESUp,title32JESUp,10000,-2,2);
+   hist_BDT_output_t2tt_R5JESDown = new TH1D(name32JESDown,title32JESDown,10000,-2,2);
 
 
 

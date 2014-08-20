@@ -179,23 +179,16 @@ double ReturnCleanedLimit( double x, double y, double limit, TString decay_mode,
 
 
 		if (decay_mode == "T2bw025") {
-		if ( (x == 400) && (y == 25) ) limit = 0.9;
-		if ( (x == 525) && (y == 25) ) limit = 0.9;
-		if ( (x == 550) && (y == 50) ) limit = 0.9;
-		if ( (x == 400) && (y == 125) ) limit = 0.9;
-		if ( (x == 500) && (y == 100) ) limit = 0.9;
-		if ( (x == 325) && (y == 75) ) limit = 0.9;
 		if ( (x == 300) && (y == 50) ) limit = 0.9;
-		if ( (x == 500) && (y == 125 )) limit = 0.9;
-		if ( (x == 525) && (y == 100 )) limit = 0.9;
+		if ( (x == 325) && (y == 75) ) limit = 0.9;
+		if ( (x == 450) && (y == 50) ) limit = 0.9;
+		if ( (x == 400) && (y == 25) ) limit = 0.9;
+		if ( (x == 400) && (y == 50) ) limit = 0.9;
+		if ( (x == 400) && (y == 75) ) limit = 0.9;
 
-		if ( (x == 150) && (y == 50)  ) limit = 1.1;
-		if ( (x == 150) && (y == 50)  ) limit = 1.1;
 		if ( (x == 125) && (y == 0)  ) limit = 1.1;
 		if ( (x == 125) && (y == 25)  ) limit = 1.1;
-		if ( (x == 300) && (y == 0)  ) limit = 1.1;
-		if ( (x == 550) && (y == 150)  ) limit = 1.1;
-		if ( (x == 525) && (y == 150)  ) limit = 1.1;
+		if ( (x == 150) && (y == 50)  ) limit = 1.1;
 		}
 
 

@@ -29,11 +29,10 @@ using namespace std;
 #include <TLorentzVector.h>
 #include "TMVA/Tools.h"
 #include "TMVA/Reader.h"
-#include "LHAPDF/LHAPDF.h"
 
 
 // Define format of input file
-#include "Reader.h" 
+#include "../Reader.h" 
 
 using namespace TMVA;
 
@@ -50,6 +49,8 @@ int main (int argc, char *argv[])
   TFile *fin = TFile::Open(argv[1]);
   TTree* theInputTree = (TTree*) fin->Get("babyTuple");
   TFile *fout = new TFile(argv[2],"recreate");
+
+//  TFile *file = TFile::Open("root://eoscms//eos/cms/store/caf/user/oglez/test/test.root");
 
 
   babyEvent myEvent;
@@ -109,6 +110,7 @@ int main (int argc, char *argv[])
    Float_t mlb_hemi;
    Float_t HTfrac;
    Float_t HTfrac_FNAL;
+   Float_t chargino_mixing;
    Float_t mT2;
    Float_t mT2bl;
    Float_t mT2W;
@@ -123,6 +125,8 @@ int main (int argc, char *argv[])
    Float_t b1_pt;
    Float_t m3b;
    Float_t njets;
+   Float_t stop_mass;
+   Float_t lsp_mass;
 
 
 
@@ -145,50 +149,6 @@ int main (int argc, char *argv[])
    double BDT_output_t2tt_R1;
    double BDT_output_t2tt_R2;
    double BDT_output_t2tt_R5;
-
-
-   double BDT_output_t2bw025_R1_JESup;
-   double BDT_output_t2bw025_R3_JESup;
-   double BDT_output_t2bw025_R4_JESup;
-   double BDT_output_t2bw025_R6_JESup;
-
-   double BDT_output_t2bw050_R1_JESup;
-   double BDT_output_t2bw050_R3_JESup;
-   double BDT_output_t2bw050_R4_JESup;
-   double BDT_output_t2bw050_R5_JESup;
-   double BDT_output_t2bw050_R6_JESup;
-
-   double BDT_output_t2bw075_R1_JESup;
-   double BDT_output_t2bw075_R2_JESup;
-   double BDT_output_t2bw075_R3_JESup;
-   double BDT_output_t2bw075_R5_JESup;
-
-   double BDT_output_t2tt_R1_JESup;
-   double BDT_output_t2tt_R2_JESup;
-   double BDT_output_t2tt_R5_JESup;
-
-
-
-   double BDT_output_t2bw025_R1_JESdown;
-   double BDT_output_t2bw025_R3_JESdown;
-   double BDT_output_t2bw025_R4_JESdown;
-   double BDT_output_t2bw025_R6_JESdown;
-
-   double BDT_output_t2bw050_R1_JESdown;
-   double BDT_output_t2bw050_R3_JESdown;
-   double BDT_output_t2bw050_R4_JESdown;
-   double BDT_output_t2bw050_R5_JESdown;
-   double BDT_output_t2bw050_R6_JESdown;
-
-   double BDT_output_t2bw075_R1_JESdown;
-   double BDT_output_t2bw075_R2_JESdown;
-   double BDT_output_t2bw075_R3_JESdown;
-   double BDT_output_t2bw075_R5_JESdown;
-
-   double BDT_output_t2tt_R1_JESdown;
-   double BDT_output_t2tt_R2_JESdown;
-   double BDT_output_t2tt_R5_JESdown;
-
 
 
    Reader* reader;
@@ -849,62 +809,11 @@ int main (int argc, char *argv[])
    reader_t2ttOnShell->BookMVA("BDT_output_t2tt_R2",  BDT_dir_t2tt + "/BDT_t2tt_Reg2.weights.xml");
    reader_t2ttOnShell->BookMVA("BDT_output_t2tt_R5",  BDT_dir_t2tt + "/BDT_t2tt_Reg5.weights.xml");
 
-
-
-   reader->BookMVA("BDT_output_t2bw025_R1_JESup",  BDT_dir + "/BDT_t2bw025_Reg1.weights.xml");
-   reader->BookMVA("BDT_output_t2bw025_R3_JESup",  BDT_dir + "/BDT_t2bw025_Reg3.weights.xml");
-   reader->BookMVA("BDT_output_t2bw025_R4_JESup",  BDT_dir + "/BDT_t2bw025_Reg4.weights.xml");
-   reader->BookMVA("BDT_output_t2bw025_R6_JESup",  BDT_dir + "/BDT_t2bw025_Reg6.weights.xml");
-
-   reader_t2bw050->BookMVA("BDT_output_t2bw050_R1_JESup",  BDT_dir + "/BDT_t2bw050_Reg1.weights.xml");
-   reader_t2bw050->BookMVA("BDT_output_t2bw050_R3_JESup",  BDT_dir + "/BDT_t2bw050_Reg3.weights.xml");
-   reader_t2bw050->BookMVA("BDT_output_t2bw050_R4_JESup",  BDT_dir + "/BDT_t2bw050_Reg4.weights.xml");
-   reader_t2bw050->BookMVA("BDT_output_t2bw050_R5_JESup",  BDT_dir + "/BDT_t2bw050_Reg5.weights.xml");
-   reader_t2bw050->BookMVA("BDT_output_t2bw050_R6_JESup",  BDT_dir + "/BDT_t2bw050_Reg6.weights.xml");
-
-   reader_t2bw075->BookMVA("BDT_output_t2bw075_R1_JESup",  BDT_dir + "/BDT_t2bw075_Reg1.weights.xml");
-   reader_t2bw075->BookMVA("BDT_output_t2bw075_R2_JESup",  BDT_dir + "/BDT_t2bw075_Reg2.weights.xml");
-   reader_t2bw075->BookMVA("BDT_output_t2bw075_R3_JESup",  BDT_dir + "/BDT_t2bw075_Reg3.weights.xml");
-   reader_t2bw075->BookMVA("BDT_output_t2bw075_R5_JESup",  BDT_dir + "/BDT_t2bw075_Reg5.weights.xml");
-
-   reader_t2ttOffShell->BookMVA("BDT_output_t2tt_R1_JESup",  BDT_dir_t2tt + "/BDT_t2tt_Reg1.weights.xml");
-   reader_t2ttOnShell->BookMVA("BDT_output_t2tt_R2_JESup",  BDT_dir_t2tt + "/BDT_t2tt_Reg2.weights.xml");
-   reader_t2ttOnShell->BookMVA("BDT_output_t2tt_R5_JESup",  BDT_dir_t2tt + "/BDT_t2tt_Reg5.weights.xml");
-
-
-
-   reader->BookMVA("BDT_output_t2bw025_R1_JESdown",  BDT_dir + "/BDT_t2bw025_Reg1.weights.xml");
-   reader->BookMVA("BDT_output_t2bw025_R3_JESdown",  BDT_dir + "/BDT_t2bw025_Reg3.weights.xml");
-   reader->BookMVA("BDT_output_t2bw025_R4_JESdown",  BDT_dir + "/BDT_t2bw025_Reg4.weights.xml");
-   reader->BookMVA("BDT_output_t2bw025_R6_JESdown",  BDT_dir + "/BDT_t2bw025_Reg6.weights.xml");
-
-   reader_t2bw050->BookMVA("BDT_output_t2bw050_R1_JESdown",  BDT_dir + "/BDT_t2bw050_Reg1.weights.xml");
-   reader_t2bw050->BookMVA("BDT_output_t2bw050_R3_JESdown",  BDT_dir + "/BDT_t2bw050_Reg3.weights.xml");
-   reader_t2bw050->BookMVA("BDT_output_t2bw050_R4_JESdown",  BDT_dir + "/BDT_t2bw050_Reg4.weights.xml");
-   reader_t2bw050->BookMVA("BDT_output_t2bw050_R5_JESdown",  BDT_dir + "/BDT_t2bw050_Reg5.weights.xml");
-   reader_t2bw050->BookMVA("BDT_output_t2bw050_R6_JESdown",  BDT_dir + "/BDT_t2bw050_Reg6.weights.xml");
-
-   reader_t2bw075->BookMVA("BDT_output_t2bw075_R1_JESdown",  BDT_dir + "/BDT_t2bw075_Reg1.weights.xml");
-   reader_t2bw075->BookMVA("BDT_output_t2bw075_R2_JESdown",  BDT_dir + "/BDT_t2bw075_Reg2.weights.xml");
-   reader_t2bw075->BookMVA("BDT_output_t2bw075_R3_JESdown",  BDT_dir + "/BDT_t2bw075_Reg3.weights.xml");
-   reader_t2bw075->BookMVA("BDT_output_t2bw075_R5_JESdown",  BDT_dir + "/BDT_t2bw075_Reg5.weights.xml");
-
-   reader_t2ttOffShell->BookMVA("BDT_output_t2tt_R1_JESdown",  BDT_dir_t2tt + "/BDT_t2tt_Reg1.weights.xml");
-   reader_t2ttOnShell->BookMVA("BDT_output_t2tt_R2_JESdown",  BDT_dir_t2tt + "/BDT_t2tt_Reg2.weights.xml");
-   reader_t2ttOnShell->BookMVA("BDT_output_t2tt_R5_JESdown",  BDT_dir_t2tt + "/BDT_t2tt_Reg5.weights.xml");
-
-
-
-   vector<Float_t> PDF_Weights_CT10, PDF_Weights_MSTW08, PDF_Weights_NNPDF21; 
-
+   vector<Float_t> BDToutputs_t2bw025, BDToutputs_t2bw050, BDToutputs_t2bw075, BDToutputs_t2tt;
    Int_t isUsedInBDT;
-   Float_t m3b_2; 
 
-   theOutputTree->Branch("PDF_Weights_CT10",     "std::vector<Float_t>",          &(PDF_Weights_CT10));
-   theOutputTree->Branch("PDF_Weights_MSTW08",   "std::vector<Float_t>",          &(PDF_Weights_MSTW08));
-   theOutputTree->Branch("PDF_Weights_NNPDF21",  "std::vector<Float_t>",         &(PDF_Weights_NNPDF21));
 
-   theOutputTree->Branch("isUsedInBDT",     	    &(isUsedInBDT));
+   theOutputTree->Branch("isUsedInBDT",     	    	    &(isUsedInBDT));
    theOutputTree->Branch("BDT_output_t2bw025_R1",     	    &(BDT_output_t2bw025_R1));
    theOutputTree->Branch("BDT_output_t2bw025_R3",     	    &(BDT_output_t2bw025_R3));
    theOutputTree->Branch("BDT_output_t2bw025_R4",     	    &(BDT_output_t2bw025_R4));
@@ -921,43 +830,6 @@ int main (int argc, char *argv[])
    theOutputTree->Branch("BDT_output_t2tt_R1",     	    &(BDT_output_t2tt_R1));
    theOutputTree->Branch("BDT_output_t2tt_R2",     	    &(BDT_output_t2tt_R2));
    theOutputTree->Branch("BDT_output_t2tt_R5",     	    &(BDT_output_t2tt_R5));
-   theOutputTree->Branch("m3b_2",   	  	    	    &(m3b_2)); 
-
-   theOutputTree->Branch("BDT_output_t2bw025_R1_JESup",     &(BDT_output_t2bw025_R1_JESup));
-   theOutputTree->Branch("BDT_output_t2bw025_R3_JESup",     &(BDT_output_t2bw025_R3_JESup));
-   theOutputTree->Branch("BDT_output_t2bw025_R4_JESup",     &(BDT_output_t2bw025_R4_JESup));
-   theOutputTree->Branch("BDT_output_t2bw025_R6_JESup",     &(BDT_output_t2bw025_R6_JESup));
-   theOutputTree->Branch("BDT_output_t2bw050_R1_JESup",     &(BDT_output_t2bw050_R1_JESup));
-   theOutputTree->Branch("BDT_output_t2bw050_R3_JESup",     &(BDT_output_t2bw050_R3_JESup));
-   theOutputTree->Branch("BDT_output_t2bw050_R4_JESup",     &(BDT_output_t2bw050_R4_JESup));
-   theOutputTree->Branch("BDT_output_t2bw050_R5_JESup",     &(BDT_output_t2bw050_R5_JESup));
-   theOutputTree->Branch("BDT_output_t2bw050_R6_JESup",     &(BDT_output_t2bw050_R6_JESup));
-   theOutputTree->Branch("BDT_output_t2bw075_R1_JESup",     &(BDT_output_t2bw075_R1_JESup));
-   theOutputTree->Branch("BDT_output_t2bw075_R2_JESup",     &(BDT_output_t2bw075_R2_JESup));
-   theOutputTree->Branch("BDT_output_t2bw075_R3_JESup",     &(BDT_output_t2bw075_R3_JESup));
-   theOutputTree->Branch("BDT_output_t2bw075_R5_JESup",     &(BDT_output_t2bw075_R5_JESup));
-   theOutputTree->Branch("BDT_output_t2tt_R1_JESup",        &(BDT_output_t2tt_R1_JESup));
-   theOutputTree->Branch("BDT_output_t2tt_R2_JESup",        &(BDT_output_t2tt_R2_JESup));
-   theOutputTree->Branch("BDT_output_t2tt_R5_JESup",        &(BDT_output_t2tt_R5_JESup));
-
-
-   theOutputTree->Branch("BDT_output_t2bw025_R1_JESdown",   &(BDT_output_t2bw025_R1_JESdown));
-   theOutputTree->Branch("BDT_output_t2bw025_R3_JESdown",   &(BDT_output_t2bw025_R3_JESdown));
-   theOutputTree->Branch("BDT_output_t2bw025_R4_JESdown",   &(BDT_output_t2bw025_R4_JESdown));
-   theOutputTree->Branch("BDT_output_t2bw025_R6_JESdown",   &(BDT_output_t2bw025_R6_JESdown));
-   theOutputTree->Branch("BDT_output_t2bw050_R1_JESdown",   &(BDT_output_t2bw050_R1_JESdown));
-   theOutputTree->Branch("BDT_output_t2bw050_R3_JESdown",   &(BDT_output_t2bw050_R3_JESdown));
-   theOutputTree->Branch("BDT_output_t2bw050_R4_JESdown",   &(BDT_output_t2bw050_R4_JESdown));
-   theOutputTree->Branch("BDT_output_t2bw050_R5_JESdown",   &(BDT_output_t2bw050_R5_JESdown));
-   theOutputTree->Branch("BDT_output_t2bw050_R6_JESdown",   &(BDT_output_t2bw050_R6_JESdown));
-   theOutputTree->Branch("BDT_output_t2bw075_R1_JESdown",   &(BDT_output_t2bw075_R1_JESdown));
-   theOutputTree->Branch("BDT_output_t2bw075_R2_JESdown",   &(BDT_output_t2bw075_R2_JESdown));
-   theOutputTree->Branch("BDT_output_t2bw075_R3_JESdown",   &(BDT_output_t2bw075_R3_JESdown));
-   theOutputTree->Branch("BDT_output_t2bw075_R5_JESdown",   &(BDT_output_t2bw075_R5_JESdown));
-   theOutputTree->Branch("BDT_output_t2tt_R1_JESdown",      &(BDT_output_t2tt_R1_JESdown));
-   theOutputTree->Branch("BDT_output_t2tt_R2_JESdown",      &(BDT_output_t2tt_R2_JESdown));
-   theOutputTree->Branch("BDT_output_t2tt_R5_JESdown",      &(BDT_output_t2tt_R5_JESdown));
-
 
 
   // ########################################
@@ -978,122 +850,41 @@ int main (int argc, char *argv[])
 
 
         bool isSignal = false;
-        bool isTTbarmadgraph = false;
+        bool isTTbar  = false;
 
         if (myEvent.mStop == -1) { isSignal = false;}
                 else isSignal = true;
 
-        if (string(argv[1]).find("madgraph") != std::string::npos) isTTbarmadgraph = true;
+        if (string(argv[1]).find("ttbar") != std::string::npos) isTTbar = true;
+
 
 
         if ( isSignal && ((myEvent.event%2)==1)) isUsedInBDT = 1;
-        //if ( isTTbarmadgraph )  	         isUsedInBDT = 1;
+//        else if ( isTTbar && ((myEvent.event%2)==1))  isUsedInBDT = 1;
+ 
 		else isUsedInBDT = 0;
 
-        if (myEvent.nJets < 4) continue;
+      
+        met = myEvent.MET;
+        mT = myEvent.MT;
+        mT2W = myEvent.MT2W;
+        HT = myEvent.HT;
+        HTfrac = myEvent.HTRatio;
+        b1_pt = myEvent.leadingBPt;
+        lepton_pT = myEvent.leadingLeptonPt;
+        dPhi_JetMet = myEvent.deltaPhiMETJets;
+        dR_LepB = myEvent.deltaRLeptonLeadingB;
+        m3b = myEvent.M3b;
+        mlb_hemi = myEvent.Mlb_hemi;
+        jet1_pT = myEvent.leadingJetPt;
+        njets = myEvent.nJets;
+        METoverSqrtHT = myEvent.METoverSqrtHT;
+        //dR_LepJet 
+        HT_MET_lep_pt = myEvent.HTPlusLeptonPtPlusMET;
+        Chi2SNT = myEvent.hadronicChi2;
 
-
-	         int genset_ = 1;
-	         int genset1_ = 2;
-	         int genset2_ = 3;
-	         int set_ = 4;
-	         int set1_ = 5;
-	         int set2_ = 6;
-
-
-	    	 LHAPDF::setVerbosity(0); 
-			 Float_t pdf_weight = 0;
-	     
-			 LHAPDF::initPDFSetM(genset_, "CT10");
-			 LHAPDF::initPDFM(genset_, 0); 
-
-			 LHAPDF::initPDFSetM(genset1_, "MSTW2008lo68cl");
-			 LHAPDF::initPDFM(genset1_, 0); 
-
-			 LHAPDF::initPDFSetM(genset2_, "NNPDF21_lo_as_0119_100");
-			 LHAPDF::initPDFM(genset1_, 0); 
-
-
-	         PDF_Weights_CT10.clear();           
-			 PDF_Weights_MSTW08.clear();
-			 PDF_Weights_NNPDF21.clear();
-
-			 for (int n = 1 ; n <= 52 ; n += 1){
-			 LHAPDF::initPDFSetM(set_, "CT10");
-			 LHAPDF::initPDFM(set_,n);
-
-
-			 double fx1Q0gen = LHAPDF::xfx(genset_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton;
-             double fx2Q0gen = LHAPDF::xfx(genset_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton;
-
-             double fx1Qi = LHAPDF::xfx(set_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton; 
-             double fx2Qi = LHAPDF::xfx(set_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton; 
-             pdf_weight = ((fx1Qi*fx2Qi)/(fx1Q0gen*fx2Q0gen));
-         
-      		 PDF_Weights_CT10.push_back(pdf_weight);
-
-	     }
-
-
-			 for (int n = 1 ; n <= 40 ; n += 1){
-			 LHAPDF::initPDFSetM(set1_, "MSTW2008lo68cl");
-			 LHAPDF::initPDFM(set1_,n);
-
-
-			 double fx1Q0gen = LHAPDF::xfx(genset1_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton;
-             double fx2Q0gen = LHAPDF::xfx(genset1_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton;
-
-             double fx1Qi = LHAPDF::xfx(set1_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton; 
-             double fx2Qi = LHAPDF::xfx(set1_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton; 
-             pdf_weight = ((fx1Qi*fx2Qi)/(fx1Q0gen*fx2Q0gen));
-         
-      		 PDF_Weights_MSTW08.push_back(pdf_weight);
-
-	     }
-
-
-			 for (int n = 1 ; n <= 100 ; n += 1){
-			 LHAPDF::initPDFSetM(set2_, "NNPDF21_lo_as_0119_100");
-			 LHAPDF::initPDFM(set2_,n);
-
-
-			 double fx1Q0gen = LHAPDF::xfx(genset2_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton;
-             double fx2Q0gen = LHAPDF::xfx(genset2_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton;
-
-             double fx1Qi = LHAPDF::xfx(set2_, myEvent.x_firstIncomingParton, myEvent.scalePDF, myEvent.flavor_firstIncomingParton) / myEvent.x_firstIncomingParton; 
-             double fx2Qi = LHAPDF::xfx(set2_, myEvent.x_secondIncomingParton, myEvent.scalePDF, myEvent.flavor_secondIncomingParton) / myEvent.x_secondIncomingParton; 
-             pdf_weight = ((fx1Qi*fx2Qi)/(fx1Q0gen*fx2Q0gen));
-         
-      		 PDF_Weights_NNPDF21.push_back(pdf_weight);
-
-	     }
-
-
-
-			met = myEvent.MET;
-			mT = myEvent.MT;
-			mT2W = myEvent.MT2W;
-			HT = myEvent.HT;
-			HTfrac = myEvent.HTRatio;
-			b1_pt = myEvent.leadingBPt;
-			lepton_pT = myEvent.leadingLeptonPt;
-			dPhi_JetMet = myEvent.deltaPhiMETJets;
-			dR_LepB = myEvent.deltaRLeptonLeadingB;
-
-			if (myEvent.nJets < 3 ) {m3b = 0. ; } 
-				else { m3b = myEvent.M3b;}
-
-			mlb_hemi = myEvent.Mlb_hemi;
-			jet1_pT = myEvent.leadingJetPt;
-			njets = myEvent.nJets;
-			METoverSqrtHT = myEvent.METoverSqrtHT;
-			HT_MET_lep_pt = myEvent.HTPlusLeptonPtPlusMET;
-			Chi2SNT = myEvent.hadronicChi2;
-
-
-
-
-
+        stop_mass = myEvent.mStop;
+        lsp_mass = myEvent.mNeutralino;
 
 
         BDT_output_t2bw025_R1 = reader->EvaluateMVA( "BDT_output_t2bw025_R1" );
@@ -1117,103 +908,6 @@ int main (int argc, char *argv[])
         BDT_output_t2tt_R1  = reader_t2ttOffShell->EvaluateMVA( "BDT_output_t2tt_R1" );
         BDT_output_t2tt_R2  = reader_t2ttOnShell->EvaluateMVA( "BDT_output_t2tt_R2" );
         BDT_output_t2tt_R5  = reader_t2ttOnShell->EvaluateMVA( "BDT_output_t2tt_R5" );
-
-
-        if (myEvent.nJets < 3 ) {m3b_2 = 0. ; }
-                else { m3b_2 = myEvent.M3b;}
-
-
-
-	// JES Up
-        met = myEvent.MET_JESup;
-        mT = myEvent.MT_JESup;
-        mT2W = myEvent.MT2W_JESup;
-        HT = myEvent.HT_JESup;
-        HTfrac = myEvent.HTRatio_JESup;
-        b1_pt = myEvent.leadingBPt_JESup;
-        lepton_pT = myEvent.leadingLeptonPt;
-        dPhi_JetMet = myEvent.deltaPhiMETJets_JESup;
-        dR_LepB = myEvent.deltaRLeptonLeadingB_JESup;
-
-	if (myEvent.nJets < 3 ) {m3b = 0. ; } 
-		else { m3b = myEvent.M3b_JESup;}
-
-        mlb_hemi = myEvent.Mlb_hemi_JESup;
-        jet1_pT = myEvent.leadingJetPt_JESup;
-        njets = myEvent.nJets_JESup;
-        METoverSqrtHT = myEvent.METoverSqrtHT_JESup;
-        HT_MET_lep_pt = myEvent.HTPlusLeptonPtPlusMET_JESup;
-        Chi2SNT = myEvent.hadronicChi2_JESup;
-
-        BDT_output_t2bw025_R1_JESup = reader->EvaluateMVA( "BDT_output_t2bw025_R1_JESup" );
-        BDT_output_t2bw025_R3_JESup = reader->EvaluateMVA( "BDT_output_t2bw025_R3_JESup" );
-        BDT_output_t2bw025_R4_JESup = reader->EvaluateMVA( "BDT_output_t2bw025_R4_JESup" );
-        BDT_output_t2bw025_R6_JESup = reader->EvaluateMVA( "BDT_output_t2bw025_R6_JESup" );
-
-
-        BDT_output_t2bw050_R1_JESup = reader_t2bw050->EvaluateMVA( "BDT_output_t2bw050_R1_JESup" );
-        BDT_output_t2bw050_R3_JESup = reader_t2bw050->EvaluateMVA( "BDT_output_t2bw050_R3_JESup" );
-        BDT_output_t2bw050_R4_JESup = reader_t2bw050->EvaluateMVA( "BDT_output_t2bw050_R4_JESup" );
-        BDT_output_t2bw050_R5_JESup = reader_t2bw050->EvaluateMVA( "BDT_output_t2bw050_R5_JESup" );
-        BDT_output_t2bw050_R6_JESup = reader_t2bw050->EvaluateMVA( "BDT_output_t2bw050_R6_JESup" );
-
-
-        BDT_output_t2bw075_R1_JESup = reader_t2bw075->EvaluateMVA( "BDT_output_t2bw075_R1_JESup" );
-        BDT_output_t2bw075_R2_JESup = reader_t2bw075->EvaluateMVA( "BDT_output_t2bw075_R2_JESup" );
-        BDT_output_t2bw075_R3_JESup = reader_t2bw075->EvaluateMVA( "BDT_output_t2bw075_R3_JESup" );
-        BDT_output_t2bw075_R5_JESup = reader_t2bw075->EvaluateMVA( "BDT_output_t2bw075_R5_JESup" );
-
-        BDT_output_t2tt_R1_JESup = reader_t2ttOffShell->EvaluateMVA( "BDT_output_t2tt_R1_JESup" );
-        BDT_output_t2tt_R2_JESup = reader_t2ttOnShell->EvaluateMVA( "BDT_output_t2tt_R2_JESup" );
-        BDT_output_t2tt_R5_JESup = reader_t2ttOnShell->EvaluateMVA( "BDT_output_t2tt_R5_JESup" );
-
-
-
-
-	// JES Down 
-        met = myEvent.MET_JESdown;
-        mT = myEvent.MT_JESdown;
-        mT2W = myEvent.MT2W_JESdown;
-        HT = myEvent.HT_JESdown;
-        HTfrac = myEvent.HTRatio_JESdown;
-        b1_pt = myEvent.leadingBPt_JESdown;
-        lepton_pT = myEvent.leadingLeptonPt;
-        dPhi_JetMet = myEvent.deltaPhiMETJets_JESdown;
-        dR_LepB = myEvent.deltaRLeptonLeadingB_JESdown;
-
-	if (myEvent.nJets < 3 ) {m3b = 0. ; } 
-		else { m3b = myEvent.M3b_JESdown;}
-
-        mlb_hemi = myEvent.Mlb_hemi_JESdown;
-        jet1_pT = myEvent.leadingJetPt_JESdown;
-        njets = myEvent.nJets_JESdown;
-        METoverSqrtHT = myEvent.METoverSqrtHT_JESdown;
-        HT_MET_lep_pt = myEvent.HTPlusLeptonPtPlusMET_JESdown;
-        Chi2SNT = myEvent.hadronicChi2_JESdown;
-
-        BDT_output_t2bw025_R1_JESdown = reader->EvaluateMVA( "BDT_output_t2bw025_R1_JESdown" );
-        BDT_output_t2bw025_R3_JESdown = reader->EvaluateMVA( "BDT_output_t2bw025_R3_JESdown" );
-        BDT_output_t2bw025_R4_JESdown = reader->EvaluateMVA( "BDT_output_t2bw025_R4_JESdown" );
-        BDT_output_t2bw025_R6_JESdown = reader->EvaluateMVA( "BDT_output_t2bw025_R6_JESdown" );
-
-
-        BDT_output_t2bw050_R1_JESdown = reader_t2bw050->EvaluateMVA( "BDT_output_t2bw050_R1_JESdown" );
-        BDT_output_t2bw050_R3_JESdown = reader_t2bw050->EvaluateMVA( "BDT_output_t2bw050_R3_JESdown" );
-        BDT_output_t2bw050_R4_JESdown = reader_t2bw050->EvaluateMVA( "BDT_output_t2bw050_R4_JESdown" );
-        BDT_output_t2bw050_R5_JESdown = reader_t2bw050->EvaluateMVA( "BDT_output_t2bw050_R5_JESdown" );
-        BDT_output_t2bw050_R6_JESdown = reader_t2bw050->EvaluateMVA( "BDT_output_t2bw050_R6_JESdown" );
-
-
-        BDT_output_t2bw075_R1_JESdown = reader_t2bw075->EvaluateMVA( "BDT_output_t2bw075_R1_JESdown" );
-        BDT_output_t2bw075_R2_JESdown = reader_t2bw075->EvaluateMVA( "BDT_output_t2bw075_R2_JESdown" );
-        BDT_output_t2bw075_R3_JESdown = reader_t2bw075->EvaluateMVA( "BDT_output_t2bw075_R3_JESdown" );
-        BDT_output_t2bw075_R5_JESdown = reader_t2bw075->EvaluateMVA( "BDT_output_t2bw075_R5_JESdown" );
-
-        BDT_output_t2tt_R1_JESdown = reader_t2ttOffShell->EvaluateMVA( "BDT_output_t2tt_R1_JESdown" );
-        BDT_output_t2tt_R2_JESdown = reader_t2ttOnShell->EvaluateMVA( "BDT_output_t2tt_R2_JESdown" );
-        BDT_output_t2tt_R5_JESdown = reader_t2ttOnShell->EvaluateMVA( "BDT_output_t2tt_R5_JESdown" );
-
-
 
         theOutputTree->Fill();
 

@@ -8,9 +8,9 @@ import time
 
 pwd = os.environ['PWD']
 
-#dataset_name 		= ['SingleElec', 'SingleMuon', 'DoubleElec', 'DoubleMuon', 'MuEl', 'W+jets', 'rare', 'singleTop_st', 'ttbar_powheg', 'ttbar_madgraph_1l', 'ttbar_madgraph_2l', 'T2bw-025', 'T2bw-050', 'T2bw-075', 'T2tt', 'ttbar_madgraph_mass166-5', 'ttbar_madgraph_mass178-5', 'ttbar_madgraph_matchingdown', 'ttbar_madgraph_matchingup', 'ttbar_madgraph_scaledown', 'ttbar_madgraph_scaleup'] 
-dataset_name 		= ['T2bw-025', 'T2bw-050', 'T2bw-075', 'T2tt'] 
-queue               	= "2nd" 
+dataset_name 		= ['SingleElec', 'SingleMuon', 'DoubleElec', 'DoubleMuon', 'MuEl', 'W+jets', 'rare', 'singleTop_st', 'ttbar_powheg', 'ttbar_madgraph_1l', 'ttbar_madgraph_2l', 'T2bw-025', 'T2bw-050', 'T2bw-075', 'T2tt', 'ttbar_madgraph_mass166-5', 'ttbar_madgraph_mass178-5', 'ttbar_madgraph_matchingdown', 'ttbar_madgraph_matchingup', 'ttbar_madgraph_scaledown', 'ttbar_madgraph_scaleup'] 
+#dataset_name 		= ['T2bw-025', 'T2bw-050', 'T2bw-075', 'T2tt'] 
+queue              	= "2nd" 
 outputEOSdir		= "/eos/cms/store/caf/user/sigamani/StopBabies/V00-06/"
 
 

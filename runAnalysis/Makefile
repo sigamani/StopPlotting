@@ -13,11 +13,11 @@ DEFINES       =
 
 CXX           = g++
 CXXFLAGS      = -O -Wall -fPIC $(DEFINES) -Wno-unused-result
-CXXFLAGS      += $(ROOTCFLAGS) -I./ -I./LHAPDF/include 
+CXXFLAGS      += $(ROOTCFLAGS) -I./ 
 
 LD            = g++ 
 LDFLAGS       = -g -O -Wall -fPIC -Wl,--no-undefined 
-LDFLAGS       += $(ROOTLIBS)  -lEG -l:`pwd`/../vectorDictionary_C.so -lTMVA -l:`pwd`/LHAPDF/lib/libLHAPDF.so 
+LDFLAGS       += $(ROOTLIBS)  -lEG -l:`pwd`/../vectorDictionary_C.so 
 
 SOFLAGS       = -shared
 
