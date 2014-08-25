@@ -26,6 +26,7 @@ using namespace std;
 #include <set>
 #include <string>
 #include <TLorentzVector.h>
+//#include "LHAPDF/LHAPDF.h" 
 #include <iterator>
 #include <cstdlib>
 
@@ -45,7 +46,6 @@ using namespace std;
 int main (int argc, char *argv[])
 {
 
-   //gSystem->Load("LHAPDF/lib/libLHAPDF.so");
 
   // ################################
   // ##       Open the tree        ##
@@ -57,10 +57,12 @@ int main (int argc, char *argv[])
    TTree* theInputTree = (TTree*) fin->Get("babyTuple"); 
    TFile *fout = new TFile(argv[2],"recreate");
 
+   int STOPMASS = atoi(argv[3]); 
+   int LSPMASS = atoi(argv[4]) ; 
 
    intermediatePointers pointers;
    InitializeBranchesForReading(theInputTree,&myEvent,&pointers);
-     
+    
 
    char name0[100], title0[100];
    char name00[100], title00[100];
@@ -621,7 +623,7 @@ int main (int argc, char *argv[])
 
 
    TH1D* hist_BDT_output_t2bw025_R1JESUp;
-   TH1D* hist_BDT_output_t2bw025_R3JESUp;
+/*   TH1D* hist_BDT_output_t2bw025_R3JESUp;
    TH1D* hist_BDT_output_t2bw025_R4JESUp;
    TH1D* hist_BDT_output_t2bw025_R6JESUp;
 
@@ -659,9 +661,7 @@ int main (int argc, char *argv[])
    TH1D* hist_BDT_output_t2tt_R1JESDown;
    TH1D* hist_BDT_output_t2tt_R2JESDown;
    TH1D* hist_BDT_output_t2tt_R5JESDown;
-
-   int STOPMASS = atoi(argv[3]);
-   int LSPMASS = atoi(argv[4]);
+*/
 
 //   if (LSPMASS == 1) LSPMASS = 0;
 
@@ -1328,7 +1328,7 @@ int main (int argc, char *argv[])
 
    sprintf(name17JESUp,"hist_BDT_output_t2bw025_R1JESUp_S%i_N%i", STOPMASS, LSPMASS);
    sprintf(title17JESUp,"hist_BDT_output_t2bw025_R1JESUp_S%i_N%i", STOPMASS, LSPMASS);
-   sprintf(name17JESDown,"hist_BDT_output_t2bw025_R1JESDown_S%i_N%i", STOPMASS, LSPMASS);
+/*   sprintf(name17JESDown,"hist_BDT_output_t2bw025_R1JESDown_S%i_N%i", STOPMASS, LSPMASS);
    sprintf(title17JESDown,"hist_BDT_output_t2bw025_R1JESDown_S%i_N%i", STOPMASS, LSPMASS);
 
    sprintf(name18JESUp,"hist_BDT_output_t2bw025_R3JESUp_S%i_N%i", STOPMASS, LSPMASS);
@@ -1405,7 +1405,7 @@ int main (int argc, char *argv[])
    sprintf(title32JESUp,"hist_BDT_output_t2tt_R5JESUp_S%i_N%i", STOPMASS, LSPMASS);
    sprintf(name32JESDown,"hist_BDT_output_t2tt_R5JESDown_S%i_N%i", STOPMASS, LSPMASS);
    sprintf(title32JESDown,"hist_BDT_output_t2tt_R5JESDown_S%i_N%i", STOPMASS, LSPMASS);
-
+*/
 
 
    Events_Preselection 	= new TH1D(name00,title00,100,0,10000) ;
@@ -1551,168 +1551,168 @@ int main (int argc, char *argv[])
    Events_T2bw075_highDeltaMJESDown = new TH1D(name16JESDown,title16JESDown,100,0,10000);
 
 	
-   hist_BDT_output_t2bw025_R1_RAW = new TH1D(name17_RAW,title17_RAW,10000,-2,2);
-   hist_BDT_output_t2bw025_R3_RAW = new TH1D(name18_RAW,title18_RAW,10000,-2,2);
-   hist_BDT_output_t2bw025_R4_RAW = new TH1D(name19_RAW,title19_RAW,10000,-2,2);
-   hist_BDT_output_t2bw025_R6_RAW = new TH1D(name20_RAW,title20_RAW,10000,-2,2);
+   hist_BDT_output_t2bw025_R1_RAW = new TH1D(name17_RAW,title17_RAW,100,-2,2);
+   hist_BDT_output_t2bw025_R3_RAW = new TH1D(name18_RAW,title18_RAW,100,-2,2);
+   hist_BDT_output_t2bw025_R4_RAW = new TH1D(name19_RAW,title19_RAW,100,-2,2);
+   hist_BDT_output_t2bw025_R6_RAW = new TH1D(name20_RAW,title20_RAW,100,-2,2);
 
-   hist_BDT_output_t2bw050_R1_RAW = new TH1D(name21_RAW,title21_RAW,10000,-2,2);
-   hist_BDT_output_t2bw050_R3_RAW = new TH1D(name22_RAW,title22_RAW,10000,-2,2);
-   hist_BDT_output_t2bw050_R4_RAW = new TH1D(name23_RAW,title23_RAW,10000,-2,2);
-   hist_BDT_output_t2bw050_R5_RAW = new TH1D(name24_RAW,title24_RAW,10000,-2,2);
-   hist_BDT_output_t2bw050_R6_RAW = new TH1D(name25_RAW,title25_RAW,10000,-2,2);
+   hist_BDT_output_t2bw050_R1_RAW = new TH1D(name21_RAW,title21_RAW,100,-2,2);
+   hist_BDT_output_t2bw050_R3_RAW = new TH1D(name22_RAW,title22_RAW,100,-2,2);
+   hist_BDT_output_t2bw050_R4_RAW = new TH1D(name23_RAW,title23_RAW,100,-2,2);
+   hist_BDT_output_t2bw050_R5_RAW = new TH1D(name24_RAW,title24_RAW,100,-2,2);
+   hist_BDT_output_t2bw050_R6_RAW = new TH1D(name25_RAW,title25_RAW,100,-2,2);
 
-   hist_BDT_output_t2bw075_R1_RAW = new TH1D(name26_RAW,title26_RAW,10000,-2,2);
-   hist_BDT_output_t2bw075_R2_RAW = new TH1D(name27_RAW,title27_RAW,10000,-2,2);
-   hist_BDT_output_t2bw075_R3_RAW = new TH1D(name28_RAW,title28_RAW,10000,-2,2);
-   hist_BDT_output_t2bw075_R5_RAW = new TH1D(name29_RAW,title29_RAW,10000,-2,2);
+   hist_BDT_output_t2bw075_R1_RAW = new TH1D(name26_RAW,title26_RAW,100,-2,2);
+   hist_BDT_output_t2bw075_R2_RAW = new TH1D(name27_RAW,title27_RAW,100,-2,2);
+   hist_BDT_output_t2bw075_R3_RAW = new TH1D(name28_RAW,title28_RAW,100,-2,2);
+   hist_BDT_output_t2bw075_R5_RAW = new TH1D(name29_RAW,title29_RAW,100,-2,2);
 
-   hist_BDT_output_t2tt_R1_RAW = new TH1D(name30_RAW,title30_RAW,10000,-2,2);
-   hist_BDT_output_t2tt_R2_RAW = new TH1D(name31_RAW,title31_RAW,10000,-2,2);
-   hist_BDT_output_t2tt_R5_RAW = new TH1D(name32_RAW,title32_RAW,10000,-2,2);
-
-
-   hist_BDT_output_t2bw025_R1 = new TH1D(name17,title17,10000,-2,2);
-   hist_BDT_output_t2bw025_R3 = new TH1D(name18,title18,10000,-2,2);
-   hist_BDT_output_t2bw025_R4 = new TH1D(name19,title19,10000,-2,2);
-   hist_BDT_output_t2bw025_R6 = new TH1D(name20,title20,10000,-2,2);
-
-   hist_BDT_output_t2bw050_R1 = new TH1D(name21,title21,10000,-2,2);
-   hist_BDT_output_t2bw050_R3 = new TH1D(name22,title22,10000,-2,2);
-   hist_BDT_output_t2bw050_R4 = new TH1D(name23,title23,10000,-2,2);
-   hist_BDT_output_t2bw050_R5 = new TH1D(name24,title24,10000,-2,2);
-   hist_BDT_output_t2bw050_R6 = new TH1D(name25,title25,10000,-2,2);
-
-   hist_BDT_output_t2bw075_R1 = new TH1D(name26,title26,10000,-2,2);
-   hist_BDT_output_t2bw075_R2 = new TH1D(name27,title27,10000,-2,2);
-   hist_BDT_output_t2bw075_R3 = new TH1D(name28,title28,10000,-2,2);
-   hist_BDT_output_t2bw075_R5 = new TH1D(name29,title29,10000,-2,2);
+   hist_BDT_output_t2tt_R1_RAW = new TH1D(name30_RAW,title30_RAW,100,-2,2);
+   hist_BDT_output_t2tt_R2_RAW = new TH1D(name31_RAW,title31_RAW,100,-2,2);
+   hist_BDT_output_t2tt_R5_RAW = new TH1D(name32_RAW,title32_RAW,100,-2,2);
 
 
-   hist_BDT_output_t2tt_R1 = new TH1D(name30,title30,10000,-2,2);
-   hist_BDT_output_t2tt_R2 = new TH1D(name31,title31,10000,-2,2);
-   hist_BDT_output_t2tt_R5 = new TH1D(name32,title32,10000,-2,2);
+   hist_BDT_output_t2bw025_R1 = new TH1D(name17,title17,100,-2,2);
+   hist_BDT_output_t2bw025_R3 = new TH1D(name18,title18,100,-2,2);
+   hist_BDT_output_t2bw025_R4 = new TH1D(name19,title19,100,-2,2);
+   hist_BDT_output_t2bw025_R6 = new TH1D(name20,title20,100,-2,2);
+
+   hist_BDT_output_t2bw050_R1 = new TH1D(name21,title21,100,-2,2);
+   hist_BDT_output_t2bw050_R3 = new TH1D(name22,title22,100,-2,2);
+   hist_BDT_output_t2bw050_R4 = new TH1D(name23,title23,100,-2,2);
+   hist_BDT_output_t2bw050_R5 = new TH1D(name24,title24,100,-2,2);
+   hist_BDT_output_t2bw050_R6 = new TH1D(name25,title25,100,-2,2);
+
+   hist_BDT_output_t2bw075_R1 = new TH1D(name26,title26,100,-2,2);
+   hist_BDT_output_t2bw075_R2 = new TH1D(name27,title27,100,-2,2);
+   hist_BDT_output_t2bw075_R3 = new TH1D(name28,title28,100,-2,2);
+   hist_BDT_output_t2bw075_R5 = new TH1D(name29,title29,100,-2,2);
+
+
+   hist_BDT_output_t2tt_R1 = new TH1D(name30,title30,100,-2,2);
+   hist_BDT_output_t2tt_R2 = new TH1D(name31,title31,100,-2,2);
+   hist_BDT_output_t2tt_R5 = new TH1D(name32,title32,100,-2,2);
 
    // BVETO SYST
    
-   hist_BDT_output_t2bw025_R1BVetoBCUp = new TH1D(name17BVetoBCUp,title17BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw025_R1BVetoBCDown = new TH1D(name17BVetoBCDown,title17BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw025_R1BVetoLightUp = new TH1D(name17BVetoLightUp,title17BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw025_R1BVetoLightDown = new TH1D(name17BVetoLightDown,title17BVetoLightDown,10000,-2,2);
+   hist_BDT_output_t2bw025_R1BVetoBCUp = new TH1D(name17BVetoBCUp,title17BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw025_R1BVetoBCDown = new TH1D(name17BVetoBCDown,title17BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw025_R1BVetoLightUp = new TH1D(name17BVetoLightUp,title17BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw025_R1BVetoLightDown = new TH1D(name17BVetoLightDown,title17BVetoLightDown,100,-2,2);
 
-   hist_BDT_output_t2bw025_R3BVetoBCUp = new TH1D(name18BVetoBCUp,title18BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw025_R3BVetoBCDown = new TH1D(name18BVetoBCDown,title18BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw025_R3BVetoLightUp = new TH1D(name18BVetoLightUp,title18BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw025_R3BVetoLightDown = new TH1D(name18BVetoLightDown,title18BVetoLightDown,10000,-2,2);
+   hist_BDT_output_t2bw025_R3BVetoBCUp = new TH1D(name18BVetoBCUp,title18BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw025_R3BVetoBCDown = new TH1D(name18BVetoBCDown,title18BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw025_R3BVetoLightUp = new TH1D(name18BVetoLightUp,title18BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw025_R3BVetoLightDown = new TH1D(name18BVetoLightDown,title18BVetoLightDown,100,-2,2);
 
-   hist_BDT_output_t2bw025_R4BVetoBCUp = new TH1D(name19BVetoBCUp,title19BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw025_R4BVetoBCDown = new TH1D(name19BVetoBCDown,title19BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw025_R4BVetoLightUp = new TH1D(name19BVetoLightUp,title19BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw025_R4BVetoLightDown = new TH1D(name19BVetoLightDown,title19BVetoLightDown,10000,-2,2);
+   hist_BDT_output_t2bw025_R4BVetoBCUp = new TH1D(name19BVetoBCUp,title19BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw025_R4BVetoBCDown = new TH1D(name19BVetoBCDown,title19BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw025_R4BVetoLightUp = new TH1D(name19BVetoLightUp,title19BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw025_R4BVetoLightDown = new TH1D(name19BVetoLightDown,title19BVetoLightDown,100,-2,2);
 
-   hist_BDT_output_t2bw025_R6BVetoBCUp = new TH1D(name20BVetoBCUp,title20BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw025_R6BVetoBCDown = new TH1D(name20BVetoBCDown,title20BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw025_R6BVetoLightUp = new TH1D(name20BVetoLightUp,title20BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw025_R6BVetoLightDown = new TH1D(name20BVetoLightDown,title20BVetoLightDown,10000,-2,2);
+   hist_BDT_output_t2bw025_R6BVetoBCUp = new TH1D(name20BVetoBCUp,title20BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw025_R6BVetoBCDown = new TH1D(name20BVetoBCDown,title20BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw025_R6BVetoLightUp = new TH1D(name20BVetoLightUp,title20BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw025_R6BVetoLightDown = new TH1D(name20BVetoLightDown,title20BVetoLightDown,100,-2,2);
 
-   hist_BDT_output_t2bw050_R1BVetoBCUp = new TH1D(name21BVetoBCUp,title21BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R1BVetoBCDown = new TH1D(name21BVetoBCDown,title21BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw050_R1BVetoLightUp = new TH1D(name21BVetoLightUp,title21BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R1BVetoLightDown = new TH1D(name21BVetoLightDown,title21BVetoLightDown,10000,-2,2);
-
-
-   hist_BDT_output_t2bw050_R3BVetoBCUp = new TH1D(name22BVetoBCUp,title22BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R3BVetoBCDown = new TH1D(name22BVetoBCDown,title22BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw050_R3BVetoLightUp = new TH1D(name22BVetoLightUp,title22BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R3BVetoLightDown = new TH1D(name22BVetoLightDown,title22BVetoLightDown,10000,-2,2);
-
-   hist_BDT_output_t2bw050_R4BVetoBCUp = new TH1D(name23BVetoBCUp,title23BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R4BVetoBCDown = new TH1D(name23BVetoBCDown,title23BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw050_R4BVetoLightUp = new TH1D(name23BVetoLightUp,title23BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R4BVetoLightDown = new TH1D(name23BVetoLightDown,title23BVetoLightDown,10000,-2,2);
-
-   hist_BDT_output_t2bw050_R5BVetoBCUp = new TH1D(name24BVetoBCUp,title24BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R5BVetoBCDown = new TH1D(name24BVetoBCDown,title24BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw050_R5BVetoLightUp = new TH1D(name24BVetoLightUp,title24BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R5BVetoLightDown = new TH1D(name24BVetoLightDown,title24BVetoLightDown,10000,-2,2);
-
-   hist_BDT_output_t2bw050_R6BVetoBCUp = new TH1D(name25BVetoBCUp,title25BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R6BVetoBCDown = new TH1D(name25BVetoBCDown,title25BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw050_R6BVetoLightUp = new TH1D(name25BVetoLightUp,title25BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R6BVetoLightDown = new TH1D(name25BVetoLightDown,title25BVetoLightDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R1BVetoBCUp = new TH1D(name21BVetoBCUp,title21BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw050_R1BVetoBCDown = new TH1D(name21BVetoBCDown,title21BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw050_R1BVetoLightUp = new TH1D(name21BVetoLightUp,title21BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw050_R1BVetoLightDown = new TH1D(name21BVetoLightDown,title21BVetoLightDown,100,-2,2);
 
 
-   hist_BDT_output_t2bw075_R1BVetoBCUp = new TH1D(name26BVetoBCUp,title26BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw075_R1BVetoBCDown = new TH1D(name26BVetoBCDown,title26BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw075_R1BVetoLightUp = new TH1D(name26BVetoLightUp,title26BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw075_R1BVetoLightDown = new TH1D(name26BVetoLightDown,title26BVetoLightDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R3BVetoBCUp = new TH1D(name22BVetoBCUp,title22BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw050_R3BVetoBCDown = new TH1D(name22BVetoBCDown,title22BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw050_R3BVetoLightUp = new TH1D(name22BVetoLightUp,title22BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw050_R3BVetoLightDown = new TH1D(name22BVetoLightDown,title22BVetoLightDown,100,-2,2);
 
-   hist_BDT_output_t2bw075_R2BVetoBCUp = new TH1D(name27BVetoBCUp,title27BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw075_R2BVetoBCDown = new TH1D(name27BVetoBCDown,title27BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw075_R2BVetoLightUp = new TH1D(name27BVetoLightUp,title27BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw075_R2BVetoLightDown = new TH1D(name27BVetoLightDown,title27BVetoLightDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R4BVetoBCUp = new TH1D(name23BVetoBCUp,title23BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw050_R4BVetoBCDown = new TH1D(name23BVetoBCDown,title23BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw050_R4BVetoLightUp = new TH1D(name23BVetoLightUp,title23BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw050_R4BVetoLightDown = new TH1D(name23BVetoLightDown,title23BVetoLightDown,100,-2,2);
 
-   hist_BDT_output_t2bw075_R3BVetoBCUp = new TH1D(name28BVetoBCUp,title28BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw075_R3BVetoBCDown = new TH1D(name28BVetoBCDown,title28BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw075_R3BVetoLightUp = new TH1D(name28BVetoLightUp,title28BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw075_R3BVetoLightDown = new TH1D(name28BVetoLightDown,title28BVetoLightDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R5BVetoBCUp = new TH1D(name24BVetoBCUp,title24BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw050_R5BVetoBCDown = new TH1D(name24BVetoBCDown,title24BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw050_R5BVetoLightUp = new TH1D(name24BVetoLightUp,title24BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw050_R5BVetoLightDown = new TH1D(name24BVetoLightDown,title24BVetoLightDown,100,-2,2);
 
-   hist_BDT_output_t2bw075_R5BVetoBCUp = new TH1D(name29BVetoBCUp,title29BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2bw075_R5BVetoBCDown = new TH1D(name29BVetoBCDown,title29BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2bw075_R5BVetoLightUp = new TH1D(name29BVetoLightUp,title29BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2bw075_R5BVetoLightDown = new TH1D(name29BVetoLightDown,title29BVetoLightDown,10000,-2,2);
-
-
-   hist_BDT_output_t2tt_R1BVetoBCUp = new TH1D(name30BVetoBCUp,title30BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2tt_R1BVetoBCDown = new TH1D(name30BVetoBCDown,title30BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2tt_R1BVetoLightUp = new TH1D(name30BVetoLightUp,title30BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2tt_R1BVetoLightDown = new TH1D(name30BVetoLightDown,title30BVetoLightDown,10000,-2,2);
+   hist_BDT_output_t2bw050_R6BVetoBCUp = new TH1D(name25BVetoBCUp,title25BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw050_R6BVetoBCDown = new TH1D(name25BVetoBCDown,title25BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw050_R6BVetoLightUp = new TH1D(name25BVetoLightUp,title25BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw050_R6BVetoLightDown = new TH1D(name25BVetoLightDown,title25BVetoLightDown,100,-2,2);
 
 
-   hist_BDT_output_t2tt_R2BVetoBCUp = new TH1D(name31BVetoBCUp,title31BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2tt_R2BVetoBCDown = new TH1D(name31BVetoBCDown,title31BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2tt_R2BVetoLightUp = new TH1D(name31BVetoLightUp,title31BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2tt_R2BVetoLightDown = new TH1D(name31BVetoLightDown,title31BVetoLightDown,10000,-2,2);
+   hist_BDT_output_t2bw075_R1BVetoBCUp = new TH1D(name26BVetoBCUp,title26BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw075_R1BVetoBCDown = new TH1D(name26BVetoBCDown,title26BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw075_R1BVetoLightUp = new TH1D(name26BVetoLightUp,title26BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw075_R1BVetoLightDown = new TH1D(name26BVetoLightDown,title26BVetoLightDown,100,-2,2);
 
-   hist_BDT_output_t2tt_R5BVetoBCUp = new TH1D(name32BVetoBCUp,title32BVetoBCUp,10000,-2,2);
-   hist_BDT_output_t2tt_R5BVetoBCDown = new TH1D(name32BVetoBCDown,title32BVetoBCDown,10000,-2,2);
-   hist_BDT_output_t2tt_R5BVetoLightUp = new TH1D(name32BVetoLightUp,title32BVetoLightUp,10000,-2,2);
-   hist_BDT_output_t2tt_R5BVetoLightDown = new TH1D(name32BVetoLightDown,title32BVetoLightDown,10000,-2,2);
+   hist_BDT_output_t2bw075_R2BVetoBCUp = new TH1D(name27BVetoBCUp,title27BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw075_R2BVetoBCDown = new TH1D(name27BVetoBCDown,title27BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw075_R2BVetoLightUp = new TH1D(name27BVetoLightUp,title27BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw075_R2BVetoLightDown = new TH1D(name27BVetoLightDown,title27BVetoLightDown,100,-2,2);
+
+   hist_BDT_output_t2bw075_R3BVetoBCUp = new TH1D(name28BVetoBCUp,title28BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw075_R3BVetoBCDown = new TH1D(name28BVetoBCDown,title28BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw075_R3BVetoLightUp = new TH1D(name28BVetoLightUp,title28BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw075_R3BVetoLightDown = new TH1D(name28BVetoLightDown,title28BVetoLightDown,100,-2,2);
+
+   hist_BDT_output_t2bw075_R5BVetoBCUp = new TH1D(name29BVetoBCUp,title29BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2bw075_R5BVetoBCDown = new TH1D(name29BVetoBCDown,title29BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2bw075_R5BVetoLightUp = new TH1D(name29BVetoLightUp,title29BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2bw075_R5BVetoLightDown = new TH1D(name29BVetoLightDown,title29BVetoLightDown,100,-2,2);
+
+
+   hist_BDT_output_t2tt_R1BVetoBCUp = new TH1D(name30BVetoBCUp,title30BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2tt_R1BVetoBCDown = new TH1D(name30BVetoBCDown,title30BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2tt_R1BVetoLightUp = new TH1D(name30BVetoLightUp,title30BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2tt_R1BVetoLightDown = new TH1D(name30BVetoLightDown,title30BVetoLightDown,100,-2,2);
+
+
+   hist_BDT_output_t2tt_R2BVetoBCUp = new TH1D(name31BVetoBCUp,title31BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2tt_R2BVetoBCDown = new TH1D(name31BVetoBCDown,title31BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2tt_R2BVetoLightUp = new TH1D(name31BVetoLightUp,title31BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2tt_R2BVetoLightDown = new TH1D(name31BVetoLightDown,title31BVetoLightDown,100,-2,2);
+
+   hist_BDT_output_t2tt_R5BVetoBCUp = new TH1D(name32BVetoBCUp,title32BVetoBCUp,100,-2,2);
+   hist_BDT_output_t2tt_R5BVetoBCDown = new TH1D(name32BVetoBCDown,title32BVetoBCDown,100,-2,2);
+   hist_BDT_output_t2tt_R5BVetoLightUp = new TH1D(name32BVetoLightUp,title32BVetoLightUp,100,-2,2);
+   hist_BDT_output_t2tt_R5BVetoLightDown = new TH1D(name32BVetoLightDown,title32BVetoLightDown,100,-2,2);
 
    // JES syst 
-   hist_BDT_output_t2bw025_R1JESUp = new TH1D(name17JESUp,title17JESUp,10000,-2,2);
-   hist_BDT_output_t2bw025_R1JESDown = new TH1D(name17JESDown,title17JESDown,10000,-2,2);
-   hist_BDT_output_t2bw025_R3JESUp = new TH1D(name18JESUp,title18JESUp,10000,-2,2);
-   hist_BDT_output_t2bw025_R3JESDown = new TH1D(name18JESDown,title18JESDown,10000,-2,2);
-   hist_BDT_output_t2bw025_R4JESUp = new TH1D(name19JESUp,title19JESUp,10000,-2,2);
-   hist_BDT_output_t2bw025_R4JESDown = new TH1D(name19JESDown,title19JESDown,10000,-2,2);
-   hist_BDT_output_t2bw025_R6JESUp = new TH1D(name20JESUp,title20JESUp,10000,-2,2);
-   hist_BDT_output_t2bw025_R6JESDown = new TH1D(name20JESDown,title20JESDown,10000,-2,2);
-   hist_BDT_output_t2bw050_R1JESUp = new TH1D(name21JESUp,title21JESUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R1JESDown = new TH1D(name21JESDown,title21JESDown,10000,-2,2);
-   hist_BDT_output_t2bw050_R3JESUp = new TH1D(name22JESUp,title22JESUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R3JESDown = new TH1D(name22JESDown,title22JESDown,10000,-2,2);
-   hist_BDT_output_t2bw050_R4JESUp = new TH1D(name23JESUp,title23JESUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R4JESDown = new TH1D(name23JESDown,title23JESDown,10000,-2,2);
-   hist_BDT_output_t2bw050_R5JESUp = new TH1D(name24JESUp,title24JESUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R5JESDown = new TH1D(name24JESDown,title24JESDown,10000,-2,2);
-   hist_BDT_output_t2bw050_R6JESUp = new TH1D(name25JESUp,title25JESUp,10000,-2,2);
-   hist_BDT_output_t2bw050_R6JESDown = new TH1D(name25JESDown,title25JESDown,10000,-2,2);
-   hist_BDT_output_t2bw075_R1JESUp = new TH1D(name26JESUp,title26JESUp,10000,-2,2);
-   hist_BDT_output_t2bw075_R1JESDown = new TH1D(name26JESDown,title26JESDown,10000,-2,2);
-   hist_BDT_output_t2bw075_R2JESUp = new TH1D(name27JESUp,title27JESUp,10000,-2,2);
-   hist_BDT_output_t2bw075_R2JESDown = new TH1D(name27JESDown,title27JESDown,10000,-2,2);
-   hist_BDT_output_t2bw075_R3JESUp = new TH1D(name28JESUp,title28JESUp,10000,-2,2);
-   hist_BDT_output_t2bw075_R3JESDown = new TH1D(name28JESDown,title28JESDown,10000,-2,2);
-   hist_BDT_output_t2bw075_R5JESUp = new TH1D(name29JESUp,title29JESUp,10000,-2,2);
-   hist_BDT_output_t2bw075_R5JESDown = new TH1D(name29JESDown,title29JESDown,10000,-2,2);
-   hist_BDT_output_t2tt_R1JESUp = new TH1D(name30JESUp,title30JESUp,10000,-2,2);
-   hist_BDT_output_t2tt_R1JESDown = new TH1D(name30JESDown,title30JESDown,10000,-2,2);
-   hist_BDT_output_t2tt_R2JESUp = new TH1D(name31JESUp,title31JESUp,10000,-2,2);
-   hist_BDT_output_t2tt_R2JESDown = new TH1D(name31JESDown,title31JESDown,10000,-2,2);
-   hist_BDT_output_t2tt_R5JESUp = new TH1D(name32JESUp,title32JESUp,10000,-2,2);
-   hist_BDT_output_t2tt_R5JESDown = new TH1D(name32JESDown,title32JESDown,10000,-2,2);
-
+   hist_BDT_output_t2bw025_R1JESUp = new TH1D(name17JESUp,title17JESUp,100,-2,2);
+/*   hist_BDT_output_t2bw025_R1JESDown = new TH1D(name17JESDown,title17JESDown,100,-2,2);
+   hist_BDT_output_t2bw025_R3JESUp = new TH1D(name18JESUp,title18JESUp,100,-2,2);
+   hist_BDT_output_t2bw025_R3JESDown = new TH1D(name18JESDown,title18JESDown,100,-2,2);
+   hist_BDT_output_t2bw025_R4JESUp = new TH1D(name19JESUp,title19JESUp,100,-2,2);
+   hist_BDT_output_t2bw025_R4JESDown = new TH1D(name19JESDown,title19JESDown,100,-2,2);
+   hist_BDT_output_t2bw025_R6JESUp = new TH1D(name20JESUp,title20JESUp,100,-2,2);
+   hist_BDT_output_t2bw025_R6JESDown = new TH1D(name20JESDown,title20JESDown,100,-2,2);
+   hist_BDT_output_t2bw050_R1JESUp = new TH1D(name21JESUp,title21JESUp,100,-2,2);
+   hist_BDT_output_t2bw050_R1JESDown = new TH1D(name21JESDown,title21JESDown,100,-2,2);
+   hist_BDT_output_t2bw050_R3JESUp = new TH1D(name22JESUp,title22JESUp,100,-2,2);
+   hist_BDT_output_t2bw050_R3JESDown = new TH1D(name22JESDown,title22JESDown,100,-2,2);
+   hist_BDT_output_t2bw050_R4JESUp = new TH1D(name23JESUp,title23JESUp,100,-2,2);
+   hist_BDT_output_t2bw050_R4JESDown = new TH1D(name23JESDown,title23JESDown,100,-2,2);
+   hist_BDT_output_t2bw050_R5JESUp = new TH1D(name24JESUp,title24JESUp,100,-2,2);
+   hist_BDT_output_t2bw050_R5JESDown = new TH1D(name24JESDown,title24JESDown,100,-2,2);
+   hist_BDT_output_t2bw050_R6JESUp = new TH1D(name25JESUp,title25JESUp,100,-2,2);
+   hist_BDT_output_t2bw050_R6JESDown = new TH1D(name25JESDown,title25JESDown,100,-2,2);
+   hist_BDT_output_t2bw075_R1JESUp = new TH1D(name26JESUp,title26JESUp,100,-2,2);
+   hist_BDT_output_t2bw075_R1JESDown = new TH1D(name26JESDown,title26JESDown,100,-2,2);
+   hist_BDT_output_t2bw075_R2JESUp = new TH1D(name27JESUp,title27JESUp,100,-2,2);
+   hist_BDT_output_t2bw075_R2JESDown = new TH1D(name27JESDown,title27JESDown,100,-2,2);
+   hist_BDT_output_t2bw075_R3JESUp = new TH1D(name28JESUp,title28JESUp,100,-2,2);
+   hist_BDT_output_t2bw075_R3JESDown = new TH1D(name28JESDown,title28JESDown,100,-2,2);
+   hist_BDT_output_t2bw075_R5JESUp = new TH1D(name29JESUp,title29JESUp,100,-2,2);
+   hist_BDT_output_t2bw075_R5JESDown = new TH1D(name29JESDown,title29JESDown,100,-2,2);
+   hist_BDT_output_t2tt_R1JESUp = new TH1D(name30JESUp,title30JESUp,100,-2,2);
+   hist_BDT_output_t2tt_R1JESDown = new TH1D(name30JESDown,title30JESDown,100,-2,2);
+   hist_BDT_output_t2tt_R2JESUp = new TH1D(name31JESUp,title31JESUp,100,-2,2);
+   hist_BDT_output_t2tt_R2JESDown = new TH1D(name31JESDown,title31JESDown,100,-2,2);
+   hist_BDT_output_t2tt_R5JESUp = new TH1D(name32JESUp,title32JESUp,100,-2,2);
+   hist_BDT_output_t2tt_R5JESDown = new TH1D(name32JESDown,title32JESDown,100,-2,2);
+*/
 
 
    // ########################################
@@ -1847,6 +1847,7 @@ int main (int argc, char *argv[])
 
 
 
+
    for (int i = 0 ; i < theInputTree->GetEntries() ; i++){
 
 
@@ -1866,18 +1867,25 @@ int main (int argc, char *argv[])
 
 
 
+
 			double width = fabs(myEvent.mNeutralino - 1);
 		        if (width < 0.1) myEvent.mNeutralino = 0; // For the MLSP=0 plane	
 
 
-			if ( (sampleType == "signal")  &&  !((myEvent.mStop ==  atoi(argv[3]) ) && (myEvent.mNeutralino ==  atoi(argv[4]) )) )continue;
-				
+
+			//if ( (sampleType == "signal")  &&  !((myEvent.mStop ==  atoi(argv[3]) ) && (myEvent.mNeutralino ==  atoi(argv[4]) )) )continue;
+
+
+
 			if (goesInPreselectionMTtail() == true) {
 			
-				Events_NGenSignal->Fill( myEvent.numberOfInitialEvents);
+				TDirectory *dir = fin->mkdir("DIR");
+   				dir->cd();   
+
+ 				Events_NGenSignal->Fill( myEvent.numberOfInitialEvents);
 
 				counter ++;
-				Events_NSignal->Fill(  counter);
+				Events_NSignal->Fill( counter);
 				Events_Preselection->Fill(  counter , getWeight());
 
 				if ( cutAndCount_T2tt_offShellLoose(true) == true){ 
@@ -1963,27 +1971,6 @@ int main (int argc, char *argv[])
 					if (myEvent.isUsedInBDTTraining == 0) {
 					double weight = getWeight() * 2.; 
 
-
-					hist_BDT_output_t2bw025_R1_RAW->Fill(myEvent.BDT_output_t2bw025_R1);		
-					hist_BDT_output_t2bw025_R3_RAW->Fill(myEvent.BDT_output_t2bw025_R3);		
-					hist_BDT_output_t2bw025_R4_RAW->Fill(myEvent.BDT_output_t2bw025_R4);		
-					hist_BDT_output_t2bw025_R6_RAW->Fill(myEvent.BDT_output_t2bw025_R6);		
-
-					hist_BDT_output_t2bw050_R1_RAW->Fill(myEvent.BDT_output_t2bw050_R1);		
-					hist_BDT_output_t2bw050_R3_RAW->Fill(myEvent.BDT_output_t2bw050_R3);		
-					hist_BDT_output_t2bw050_R4_RAW->Fill(myEvent.BDT_output_t2bw050_R4);		
-					hist_BDT_output_t2bw050_R5_RAW->Fill(myEvent.BDT_output_t2bw050_R5);		
-					hist_BDT_output_t2bw050_R6_RAW->Fill(myEvent.BDT_output_t2bw050_R6);		
-
-					hist_BDT_output_t2bw075_R1_RAW->Fill(myEvent.BDT_output_t2bw075_R1);		
-					hist_BDT_output_t2bw075_R2_RAW->Fill(myEvent.BDT_output_t2bw075_R2);		
-					hist_BDT_output_t2bw075_R3_RAW->Fill(myEvent.BDT_output_t2bw075_R3);		
-					hist_BDT_output_t2bw075_R5_RAW->Fill(myEvent.BDT_output_t2bw075_R5);		
-
-					hist_BDT_output_t2tt_R1_RAW->Fill(myEvent.BDT_output_t2tt_R1);		
-					hist_BDT_output_t2tt_R2_RAW->Fill(myEvent.BDT_output_t2tt_R2);		
-					hist_BDT_output_t2tt_R5_RAW->Fill(myEvent.BDT_output_t2tt_R5);		
-
 					hist_BDT_output_t2bw025_R1->Fill(myEvent.BDT_output_t2bw025_R1, weight);		
 					hist_BDT_output_t2bw025_R3->Fill(myEvent.BDT_output_t2bw025_R3, weight);		
 					hist_BDT_output_t2bw025_R4->Fill(myEvent.BDT_output_t2bw025_R4, weight);		
@@ -2004,822 +1991,30 @@ int main (int argc, char *argv[])
 					hist_BDT_output_t2tt_R2->Fill(myEvent.BDT_output_t2tt_R2, weight);		
 					hist_BDT_output_t2tt_R5->Fill(myEvent.BDT_output_t2tt_R5, weight);		
 
-					hist_BDT_output_t2bw025_R1JESUp->Fill(myEvent.BDT_output_t2bw025_R1_JESup, weight);
-					hist_BDT_output_t2bw025_R3JESUp->Fill(myEvent.BDT_output_t2bw025_R3_JESup, weight);		
-					hist_BDT_output_t2bw025_R4JESUp->Fill(myEvent.BDT_output_t2bw025_R4_JESup, weight);		
-					hist_BDT_output_t2bw025_R6JESUp->Fill(myEvent.BDT_output_t2bw025_R6_JESup, weight);		
+					                    
+						for ( int i = 0; i < myEvent.PDF_Weights_CT10.size(); i ++){
 
-					hist_BDT_output_t2bw050_R1JESUp->Fill(myEvent.BDT_output_t2bw050_R1_JESup, weight);		
-					hist_BDT_output_t2bw050_R3JESUp->Fill(myEvent.BDT_output_t2bw050_R3_JESup, weight);		
-					hist_BDT_output_t2bw050_R4JESUp->Fill(myEvent.BDT_output_t2bw050_R4_JESup, weight);		
-					hist_BDT_output_t2bw050_R5JESUp->Fill(myEvent.BDT_output_t2bw050_R5_JESup, weight);		
-					hist_BDT_output_t2bw050_R6JESUp->Fill(myEvent.BDT_output_t2bw050_R6_JESup, weight);		
+					    double weight_PDF = weight * myEvent.PDF_Weights_CT10.at(i);
+					    cout << weight_PDF << endl;
 
-					hist_BDT_output_t2bw075_R1JESUp->Fill(myEvent.BDT_output_t2bw075_R1_JESup, weight);		
-					hist_BDT_output_t2bw075_R2JESUp->Fill(myEvent.BDT_output_t2bw075_R2_JESup, weight);		
-					hist_BDT_output_t2bw075_R3JESUp->Fill(myEvent.BDT_output_t2bw075_R3_JESup, weight);		
-					hist_BDT_output_t2bw075_R5JESUp->Fill(myEvent.BDT_output_t2bw075_R5_JESup, weight);		
+//						hist_BDT_output_t2bw025_R1JESUp->Fill(myEvent.BDT_output_t2bw025_R1, weight_PDF);
+						cout << myEvent.PDF_Weights_CT10.at(i) << endl;	
+	 // dir->Write();    
+	 // delete dir;    
 
-					hist_BDT_output_t2tt_R1JESUp->Fill(myEvent.BDT_output_t2tt_R1_JESup, weight);		
-					hist_BDT_output_t2tt_R2JESUp->Fill(myEvent.BDT_output_t2tt_R2_JESup, weight);		
-					hist_BDT_output_t2tt_R5JESUp->Fill(myEvent.BDT_output_t2tt_R5_JESup, weight);		
+						}
 
-					hist_BDT_output_t2bw025_R1JESDown->Fill(myEvent.BDT_output_t2bw025_R1_JESdown, weight);
-					hist_BDT_output_t2bw025_R3JESDown->Fill(myEvent.BDT_output_t2bw025_R3_JESdown, weight);		
-					hist_BDT_output_t2bw025_R4JESDown->Fill(myEvent.BDT_output_t2bw025_R4_JESdown, weight);		
-					hist_BDT_output_t2bw025_R6JESDown->Fill(myEvent.BDT_output_t2bw025_R6_JESdown, weight);		
 
-					hist_BDT_output_t2bw050_R1JESDown->Fill(myEvent.BDT_output_t2bw050_R1_JESdown, weight);		
-					hist_BDT_output_t2bw050_R3JESDown->Fill(myEvent.BDT_output_t2bw050_R3_JESdown, weight);		
-					hist_BDT_output_t2bw050_R4JESDown->Fill(myEvent.BDT_output_t2bw050_R4_JESdown, weight);		
-					hist_BDT_output_t2bw050_R5JESDown->Fill(myEvent.BDT_output_t2bw050_R5_JESdown, weight);		
-					hist_BDT_output_t2bw050_R6JESDown->Fill(myEvent.BDT_output_t2bw050_R6_JESdown, weight);		
-
-					hist_BDT_output_t2bw075_R1JESDown->Fill(myEvent.BDT_output_t2bw075_R1_JESdown, weight);		
-					hist_BDT_output_t2bw075_R2JESDown->Fill(myEvent.BDT_output_t2bw075_R2_JESdown, weight);		
-					hist_BDT_output_t2bw075_R3JESDown->Fill(myEvent.BDT_output_t2bw075_R3_JESdown, weight);		
-					hist_BDT_output_t2bw075_R5JESDown->Fill(myEvent.BDT_output_t2bw075_R5_JESdown, weight);		
-
-					hist_BDT_output_t2tt_R1JESDown->Fill(myEvent.BDT_output_t2tt_R1_JESdown, weight);		
-					hist_BDT_output_t2tt_R2JESDown->Fill(myEvent.BDT_output_t2tt_R2_JESdown, weight);		
-					hist_BDT_output_t2tt_R5JESDown->Fill(myEvent.BDT_output_t2tt_R5_JESdown, weight);		
 					}
 				} 
 
-
-
-				int nBJetsUpBC = 0;
-				int nBJetsDownBC = 0;
-				int nBJetsUpLight = 0;
-				int nBJetsDownLight = 0;
-	
-				for (unsigned i=0; i < myEvent.jets_CSV_reshapedUpBC.size(); i++) {
-					     if (myEvent.jets_CSV_reshapedUpBC[i] > 0.679 ) 
-
-						nBJetsUpBC++;			 
-				}	
-
-				for (unsigned i=0; i < myEvent.jets_CSV_reshapedDownBC.size(); i++) {
-					     if (myEvent.jets_CSV_reshapedDownBC[i] > 0.679 ) 
-
-						nBJetsDownBC++;			 
-				}	
-
-
-				for (unsigned i=0; i < myEvent.jets_CSV_reshapedUpLight.size(); i++) {
-					     if (myEvent.jets_CSV_reshapedUpLight[i] > 0.679 ) 
-
-						nBJetsUpLight++;			 
-				}	
-
-
-				for (unsigned i=0; i < myEvent.jets_CSV_reshapedDownLight.size(); i++) {
-					     if (myEvent.jets_CSV_reshapedDownLight[i] > 0.679 ) 
-
-						nBJetsDownLight++;			 
-				}
-	
-				/*
-				cout <<  "nBTag: " << myEvent.nBTag << endl;
-				cout <<  "nBJetsUpBC: " << nBJetsUpBC << endl;
-				cout <<  "nBJetsDownBC: " << nBJetsDownBC << endl;
-				cout <<  "nBJetsUpLight: " << nBJetsUpLight << endl;
-				cout <<  "nBJetsDownLight: " << nBJetsDownLight << endl;
-				*/
-
-				if (goesInPreselectionMTtailNoBeto() == true){
-
-				if ( cutAndCount_T2tt_offShellLoose(true) == true){ 
-
-					if (nBJetsUpBC > 0 ){ 
-						counter1BVetoBCUp ++;
-						Events_T2tt_offShellLooseBVetoBCUp->Fill(counter1BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter1BVetoBCDown ++;
-						Events_T2tt_offShellLooseBVetoBCDown->Fill(counter1BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter1BVetoLightUp ++;
-						Events_T2tt_offShellLooseBVetoLightUp->Fill(counter1BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter1BVetoLightDown ++;
-						Events_T2tt_offShellLooseBVetoLightDown->Fill(counter1BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-
-
-				if ( cutAndCount_T2tt_offShellTight(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter2BVetoBCUp ++;
-						Events_T2tt_offShellTightBVetoBCUp->Fill(counter2BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter2BVetoBCDown ++;
-						Events_T2tt_offShellTightBVetoBCDown->Fill(counter2BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter2BVetoLightUp ++;
-						Events_T2tt_offShellTightBVetoLightUp->Fill(counter2BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter2BVetoLightDown ++;
-						Events_T2tt_offShellTightBVetoLightDown->Fill(counter2BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-
-				if ( cutAndCount_T2tt_lowDeltaM(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter3BVetoBCUp ++;
-						Events_T2tt_lowDeltaMBVetoBCUp->Fill(counter3BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter3BVetoBCDown ++;
-						Events_T2tt_lowDeltaMBVetoBCDown->Fill(counter3BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter3BVetoLightUp ++;
-						Events_T2tt_lowDeltaMBVetoLightUp->Fill(counter3BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter3BVetoLightDown ++;
-						Events_T2tt_lowDeltaMBVetoLightDown->Fill(counter3BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-
-
-				if ( cutAndCount_T2tt_mediumDeltaM(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter4BVetoBCUp ++;
-						Events_T2tt_mediumDeltaMBVetoBCUp->Fill(counter4BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter4BVetoBCDown ++;
-						Events_T2tt_mediumDeltaMBVetoBCDown->Fill(counter4BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter4BVetoLightUp ++;
-						Events_T2tt_mediumDeltaMBVetoLightUp->Fill(counter4BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter4BVetoLightDown ++;
-						Events_T2tt_mediumDeltaMBVetoLightDown->Fill(counter4BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-
-				if ( cutAndCount_T2tt_highDeltaM(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter5BVetoBCUp ++;
-						Events_T2tt_highDeltaMBVetoBCUp->Fill(counter5BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter5BVetoBCDown ++;
-						Events_T2tt_highDeltaMBVetoBCDown->Fill(counter5BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter5BVetoLightUp ++;
-						Events_T2tt_highDeltaMBVetoLightUp->Fill(counter5BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter5BVetoLightDown ++;
-						Events_T2tt_highDeltaMBVetoLightDown->Fill(counter5BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-
-
-
-				if ( cutAndCount_T2bw025_offShell(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter7BVetoBCUp ++;
-						Events_T2bw025_offShellBVetoBCUp->Fill(counter7BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter7BVetoBCDown ++;
-						Events_T2bw025_offShellBVetoBCDown->Fill(counter7BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter7BVetoLightUp ++;
-						Events_T2bw025_offShellBVetoLightUp->Fill(counter7BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter7BVetoLightDown ++;
-						Events_T2bw025_offShellBVetoLightDown->Fill(counter7BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-				if ( cutAndCount_T2bw025_lowMasses(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter8BVetoBCUp ++;
-						Events_T2bw025_lowMassesBVetoBCUp->Fill(counter8BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter8BVetoBCDown ++;
-						Events_T2bw025_lowMassesBVetoBCDown->Fill(counter8BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter8BVetoLightUp ++;
-						Events_T2bw025_lowMassesBVetoLightUp->Fill(counter8BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter8BVetoLightDown ++;
-						Events_T2bw025_lowMassesBVetoLightDown->Fill(counter8BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-
-				if ( cutAndCount_T2bw025_highMasses(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter9BVetoBCUp ++;
-						Events_T2bw025_highMassesBVetoBCUp->Fill(counter9BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter9BVetoBCDown ++;
-						Events_T2bw025_highMassesBVetoBCDown->Fill(counter9BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter9BVetoLightUp ++;
-						Events_T2bw025_highMassesBVetoLightUp->Fill(counter9BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter9BVetoLightDown ++;
-						Events_T2bw025_highMassesBVetoLightDown->Fill(counter9BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-
-				if ( cutAndCount_T2bw050_offShell(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter10BVetoBCUp ++;
-						Events_T2bw050_offShellBVetoBCUp->Fill(counter10BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter10BVetoBCDown ++;
-						Events_T2bw050_offShellBVetoBCDown->Fill(counter10BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter10BVetoLightUp ++;
-						Events_T2bw050_offShellBVetoLightUp->Fill(counter10BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter10BVetoLightDown ++;
-						Events_T2bw050_offShellBVetoLightDown->Fill(counter10BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-				if ( cutAndCount_T2bw050_lowMasses(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter11BVetoBCUp ++;
-						Events_T2bw050_lowMassesBVetoBCUp->Fill(counter11BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter11BVetoBCDown ++;
-						Events_T2bw050_lowMassesBVetoBCDown->Fill(counter11BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter11BVetoLightUp ++;
-						Events_T2bw050_lowMassesBVetoLightUp->Fill(counter11BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter11BVetoLightDown ++;
-						Events_T2bw050_lowMassesBVetoLightDown->Fill(counter11BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-
-				if ( cutAndCount_T2bw050_mediumDeltaM(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter12BVetoBCUp ++;
-						Events_T2bw050_mediumDeltaMBVetoBCUp->Fill(counter12BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter12BVetoBCDown ++;
-						Events_T2bw050_mediumDeltaMBVetoBCDown->Fill(counter12BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter12BVetoLightUp ++;
-						Events_T2bw050_mediumDeltaMBVetoLightUp->Fill(counter12BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter12BVetoLightDown ++;
-						Events_T2bw050_mediumDeltaMBVetoLightDown->Fill(counter12BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-
-				if ( cutAndCount_T2bw050_highDeltaM(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter13BVetoBCUp ++;
-						Events_T2bw050_highDeltaMBVetoBCUp->Fill(counter13BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter13BVetoBCDown ++;
-						Events_T2bw050_highDeltaMBVetoBCDown->Fill(counter13BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter13BVetoLightUp ++;
-						Events_T2bw050_highDeltaMBVetoLightUp->Fill(counter13BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter13BVetoLightDown ++;
-						Events_T2bw050_highDeltaMBVetoLightDown->Fill(counter13BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-				if ( cutAndCount_T2bw075_lowDeltaM(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter14BVetoBCUp ++;
-						Events_T2bw075_lowDeltaMBVetoBCUp->Fill(counter14BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter14BVetoBCDown ++;
-						Events_T2bw075_lowDeltaMBVetoBCDown->Fill(counter14BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter14BVetoLightUp ++;
-						Events_T2bw075_lowDeltaMBVetoLightUp->Fill(counter14BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter14BVetoLightDown ++;
-						Events_T2bw075_lowDeltaMBVetoLightDown->Fill(counter14BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-
-				if ( cutAndCount_T2bw075_mediumDeltaM(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter15BVetoBCUp ++;
-						Events_T2bw075_mediumDeltaMBVetoBCUp->Fill(counter15BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter15BVetoBCDown ++;
-						Events_T2bw075_mediumDeltaMBVetoBCDown->Fill(counter15BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter15BVetoLightUp ++;
-						Events_T2bw075_mediumDeltaMBVetoLightUp->Fill(counter15BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter15BVetoLightDown ++;
-						Events_T2bw075_mediumDeltaMBVetoLightDown->Fill(counter15BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-
-				if ( cutAndCount_T2bw075_highDeltaM(true) == true){ 
-
-					if (nBJetsUpBC > 0 ) {
-						counter16BVetoBCUp ++;
-						Events_T2bw075_highDeltaMBVetoBCUp->Fill(counter16BVetoBCUp, getWeight());
-					}
-
-
-					if (nBJetsDownBC > 0 ) {
-						counter16BVetoBCDown ++;
-						Events_T2bw075_highDeltaMBVetoBCDown->Fill(counter16BVetoBCDown, getWeight());
-					}
-
-
-					if (nBJetsUpLight > 0 ) {
-						counter16BVetoLightUp ++;
-						Events_T2bw075_highDeltaMBVetoLightUp->Fill(counter16BVetoLightUp, getWeight());
-					}
-
-
-					if (nBJetsDownLight > 0 ) {
-						counter16BVetoLightDown ++;
-						Events_T2bw075_highDeltaMBVetoLightDown->Fill(counter16BVetoLightDown, getWeight());
-					}
-
-			  	}
-
-
-
-
-
-                                        if (myEvent.isUsedInBDTTraining == 0) {
-
-	//                                if ( (myEvent.event%2)==1 ) continue;
-
-					double weight = getWeight() * 2.; 
-
-
-					if (nBJetsUpBC > 0 ) {
-					hist_BDT_output_t2bw025_R1BVetoBCUp->Fill(myEvent.BDT_output_t2bw025_R1, weight);
-					hist_BDT_output_t2bw025_R3BVetoBCUp->Fill(myEvent.BDT_output_t2bw025_R3, weight);		
-					hist_BDT_output_t2bw025_R4BVetoBCUp->Fill(myEvent.BDT_output_t2bw025_R4, weight);		
-					hist_BDT_output_t2bw025_R6BVetoBCUp->Fill(myEvent.BDT_output_t2bw025_R6, weight);		
-
-
-					hist_BDT_output_t2bw050_R1BVetoBCUp->Fill(myEvent.BDT_output_t2bw050_R1, weight);		
-					hist_BDT_output_t2bw050_R3BVetoBCUp->Fill(myEvent.BDT_output_t2bw050_R3, weight);		
-					hist_BDT_output_t2bw050_R4BVetoBCUp->Fill(myEvent.BDT_output_t2bw050_R4, weight);		
-					hist_BDT_output_t2bw050_R5BVetoBCUp->Fill(myEvent.BDT_output_t2bw050_R5, weight);		
-					hist_BDT_output_t2bw050_R6BVetoBCUp->Fill(myEvent.BDT_output_t2bw050_R6, weight);		
-
-					hist_BDT_output_t2bw075_R1BVetoBCUp->Fill(myEvent.BDT_output_t2bw075_R1, weight);		
-					hist_BDT_output_t2bw075_R2BVetoBCUp->Fill(myEvent.BDT_output_t2bw075_R2, weight);		
-					hist_BDT_output_t2bw075_R3BVetoBCUp->Fill(myEvent.BDT_output_t2bw075_R3, weight);		
-					hist_BDT_output_t2bw075_R5BVetoBCUp->Fill(myEvent.BDT_output_t2bw075_R5, weight);		
-
-					hist_BDT_output_t2tt_R1BVetoBCUp->Fill(myEvent.BDT_output_t2tt_R1, weight);		
-					hist_BDT_output_t2tt_R2BVetoBCUp->Fill(myEvent.BDT_output_t2tt_R2, weight);		
-					hist_BDT_output_t2tt_R5BVetoBCUp->Fill(myEvent.BDT_output_t2tt_R5, weight);		
-
-					}
-
-					if (nBJetsDownBC > 0 ) {
-					hist_BDT_output_t2bw025_R1BVetoBCDown->Fill(myEvent.BDT_output_t2bw025_R1, weight);
-					hist_BDT_output_t2bw025_R3BVetoBCDown->Fill(myEvent.BDT_output_t2bw025_R3, weight);		
-					hist_BDT_output_t2bw025_R4BVetoBCDown->Fill(myEvent.BDT_output_t2bw025_R4, weight);		
-					hist_BDT_output_t2bw025_R6BVetoBCDown->Fill(myEvent.BDT_output_t2bw025_R6, weight);		
-
-					hist_BDT_output_t2bw050_R1BVetoBCDown->Fill(myEvent.BDT_output_t2bw050_R1, weight);		
-					hist_BDT_output_t2bw050_R3BVetoBCDown->Fill(myEvent.BDT_output_t2bw050_R3, weight);		
-					hist_BDT_output_t2bw050_R4BVetoBCDown->Fill(myEvent.BDT_output_t2bw050_R4, weight);		
-					hist_BDT_output_t2bw050_R5BVetoBCDown->Fill(myEvent.BDT_output_t2bw050_R5, weight);		
-					hist_BDT_output_t2bw050_R6BVetoBCDown->Fill(myEvent.BDT_output_t2bw050_R6, weight);		
-
-					hist_BDT_output_t2bw075_R1BVetoBCDown->Fill(myEvent.BDT_output_t2bw075_R1, weight);		
-					hist_BDT_output_t2bw075_R2BVetoBCDown->Fill(myEvent.BDT_output_t2bw075_R2, weight);		
-					hist_BDT_output_t2bw075_R3BVetoBCDown->Fill(myEvent.BDT_output_t2bw075_R3, weight);		
-					hist_BDT_output_t2bw075_R5BVetoBCDown->Fill(myEvent.BDT_output_t2bw075_R5, weight);		
-
-					hist_BDT_output_t2tt_R1BVetoBCDown->Fill(myEvent.BDT_output_t2tt_R1, weight);		
-					hist_BDT_output_t2tt_R2BVetoBCDown->Fill(myEvent.BDT_output_t2tt_R2, weight);		
-					hist_BDT_output_t2tt_R5BVetoBCDown->Fill(myEvent.BDT_output_t2tt_R5, weight);		
-
-					}
-
-					if (nBJetsUpLight > 0 ) {
-					hist_BDT_output_t2bw025_R1BVetoLightUp->Fill(myEvent.BDT_output_t2bw025_R1, weight);
-					hist_BDT_output_t2bw025_R3BVetoLightUp->Fill(myEvent.BDT_output_t2bw025_R3, weight);		
-					hist_BDT_output_t2bw025_R4BVetoLightUp->Fill(myEvent.BDT_output_t2bw025_R4, weight);		
-					hist_BDT_output_t2bw025_R6BVetoLightUp->Fill(myEvent.BDT_output_t2bw025_R6, weight);		
-
-
-					hist_BDT_output_t2bw050_R1BVetoLightUp->Fill(myEvent.BDT_output_t2bw050_R1, weight);		
-					hist_BDT_output_t2bw050_R3BVetoLightUp->Fill(myEvent.BDT_output_t2bw050_R3, weight);		
-					hist_BDT_output_t2bw050_R4BVetoLightUp->Fill(myEvent.BDT_output_t2bw050_R4, weight);		
-					hist_BDT_output_t2bw050_R5BVetoLightUp->Fill(myEvent.BDT_output_t2bw050_R5, weight);		
-					hist_BDT_output_t2bw050_R6BVetoLightUp->Fill(myEvent.BDT_output_t2bw050_R6, weight);		
-
-					hist_BDT_output_t2bw075_R1BVetoLightUp->Fill(myEvent.BDT_output_t2bw075_R1, weight);		
-					hist_BDT_output_t2bw075_R2BVetoLightUp->Fill(myEvent.BDT_output_t2bw075_R2, weight);		
-					hist_BDT_output_t2bw075_R3BVetoLightUp->Fill(myEvent.BDT_output_t2bw075_R3, weight);		
-					hist_BDT_output_t2bw075_R5BVetoLightUp->Fill(myEvent.BDT_output_t2bw075_R5, weight);		
-
-					hist_BDT_output_t2tt_R1BVetoLightUp->Fill(myEvent.BDT_output_t2tt_R1, weight);		
-					hist_BDT_output_t2tt_R2BVetoLightUp->Fill(myEvent.BDT_output_t2tt_R2, weight);		
-					hist_BDT_output_t2tt_R5BVetoLightUp->Fill(myEvent.BDT_output_t2tt_R5, weight);		
-					}
-
-					if (nBJetsDownLight > 0 ) {
-					hist_BDT_output_t2bw025_R1BVetoLightDown->Fill(myEvent.BDT_output_t2bw025_R1, weight);
-					hist_BDT_output_t2bw025_R3BVetoLightDown->Fill(myEvent.BDT_output_t2bw025_R3, weight);		
-					hist_BDT_output_t2bw025_R4BVetoLightDown->Fill(myEvent.BDT_output_t2bw025_R4, weight);		
-					hist_BDT_output_t2bw025_R6BVetoLightDown->Fill(myEvent.BDT_output_t2bw025_R6, weight);		
-
-
-					hist_BDT_output_t2bw050_R1BVetoLightDown->Fill(myEvent.BDT_output_t2bw050_R1, weight);		
-					hist_BDT_output_t2bw050_R3BVetoLightDown->Fill(myEvent.BDT_output_t2bw050_R3, weight);		
-					hist_BDT_output_t2bw050_R4BVetoLightDown->Fill(myEvent.BDT_output_t2bw050_R4, weight);		
-					hist_BDT_output_t2bw050_R5BVetoLightDown->Fill(myEvent.BDT_output_t2bw050_R5, weight);		
-					hist_BDT_output_t2bw050_R6BVetoLightDown->Fill(myEvent.BDT_output_t2bw050_R6, weight);		
-
-					hist_BDT_output_t2bw075_R1BVetoLightDown->Fill(myEvent.BDT_output_t2bw075_R1, weight);		
-					hist_BDT_output_t2bw075_R2BVetoLightDown->Fill(myEvent.BDT_output_t2bw075_R2, weight);		
-					hist_BDT_output_t2bw075_R3BVetoLightDown->Fill(myEvent.BDT_output_t2bw075_R3, weight);		
-					hist_BDT_output_t2bw075_R5BVetoLightDown->Fill(myEvent.BDT_output_t2bw075_R5, weight);		
-
-					hist_BDT_output_t2tt_R1BVetoLightDown->Fill(myEvent.BDT_output_t2tt_R1, weight);		
-					hist_BDT_output_t2tt_R2BVetoLightDown->Fill(myEvent.BDT_output_t2tt_R2, weight);		
-					hist_BDT_output_t2tt_R5BVetoLightDown->Fill(myEvent.BDT_output_t2tt_R5, weight);		
-
-					}
-
-				}
-			}			
-
-
-
-			if (goesInPreselectionMTtail() == true) {
-		
-				    myEvent.MET = myEvent.MET_JESup;                          
-				    myEvent.MT = myEvent.MT_JESup;                         
-				    myEvent.deltaPhiMETJets= myEvent.deltaPhiMETJets_JESup;            
-				    myEvent.hadronicChi2 = myEvent.hadronicChi2_JESup;               
-				    myEvent.MT2W = myEvent.MT2W_JESup;                       
-				    myEvent.HT = myEvent.HT_JESup;                         
-				    myEvent.HTRatio = myEvent.HTRatio_JESup;                    
-				    myEvent.leadingBPt= myEvent.leadingBPt_JESup;                 
-				    myEvent.leadingJetPt= myEvent.leadingJetPt_JESup;               
-				    myEvent.Mlb = myEvent.Mlb_JESup;                        
-				    myEvent.Mlb_hemi = myEvent.Mlb_hemi_JESup;                   
-				    myEvent.M3b = myEvent.M3b_JESup;                        
-				    myEvent.deltaRLeptonLeadingB= myEvent.deltaRLeptonLeadingB_JESup;       
-				    myEvent.METoverSqrtHT= myEvent.METoverSqrtHT_JESup;              
-				    myEvent.HTPlusLeptonPtPlusMET = myEvent.HTPlusLeptonPtPlusMET_JESup;      
-				    myEvent.nJets = myEvent.nJets_JESup;  	
-
-				if ( cutAndCount_T2tt_offShellLoose(true) == true){ 
-				counter1JESUp ++;
-				Events_T2tt_offShellLooseJESUp->Fill(counter1JESUp, getWeight());
-				}
-
-				if ( cutAndCount_T2tt_offShellTight(true) == true){
-				counter2JESUp ++;
-				Events_T2tt_offShellTightJESUp->Fill(counter2JESUp, getWeight());
-				}	
-				
-				if ( cutAndCount_T2tt_lowDeltaM(true) == true){
-				counter3JESUp ++;
-				Events_T2tt_lowDeltaMJESUp->Fill(counter3JESUp, getWeight());
-				}	
-
-				if ( cutAndCount_T2tt_mediumDeltaM(true) == true){
-				counter4JESUp ++;
-				Events_T2tt_mediumDeltaMJESUp->Fill(counter4JESUp, getWeight());
-				}	
-
-				if ( cutAndCount_T2tt_highDeltaM(true) == true){
-				counter5JESUp ++;
-				Events_T2tt_highDeltaMJESUp->Fill(counter5JESUp, getWeight());
-				}	
-
-				if ( cutAndCount_T2bw025_offShell(true) == true){
-				counter7JESUp ++;
-				Events_T2bw025_offShellJESUp->Fill(counter7JESUp, getWeight());
-				}
-
-				if ( cutAndCount_T2bw025_lowMasses(true) == true){
-				counter8JESUp ++;
-				Events_T2bw025_lowMassesJESUp->Fill(counter8JESUp, getWeight());
-				}
-
-				if ( cutAndCount_T2bw025_highMasses(true) == true){
-				counter9JESUp ++;
-				Events_T2bw025_highMassesJESUp->Fill(counter9JESUp, getWeight());
-				}
-
-		
-				if ( cutAndCount_T2bw050_offShell(true) == true){
-				counter10JESUp ++;
-				Events_T2bw050_offShellJESUp->Fill(counter10JESUp, getWeight());
-				}
-
-				if ( cutAndCount_T2bw050_lowMasses(true) == true){
-				counter11JESUp ++;
-				Events_T2bw050_lowMassesJESUp->Fill(counter11JESUp, getWeight());
-				}
-
-				if ( cutAndCount_T2bw050_mediumDeltaM(true) == true){
-				counter12JESUp ++;
-				Events_T2bw050_mediumDeltaMJESUp->Fill(counter12JESUp, getWeight());
-				}
-
-				if ( cutAndCount_T2bw050_highDeltaM(true) == true){
-				counter13JESUp ++;
-				Events_T2bw050_highDeltaMJESUp->Fill(counter13JESUp, getWeight());
-				}
-
-
-				if ( cutAndCount_T2bw075_lowDeltaM(true) == true){
-				counter14JESUp ++;
-				Events_T2bw075_lowDeltaMJESUp->Fill(counter14JESUp, getWeight());
-				}
-
-				if ( cutAndCount_T2bw075_mediumDeltaM(true) == true){
-				counter15JESUp ++;
-				Events_T2bw075_mediumDeltaMJESUp->Fill(counter15JESUp, getWeight());
-				}
-
-				if ( cutAndCount_T2bw075_highDeltaM(true) == true){
-				counter16JESUp ++;
-				Events_T2bw075_highDeltaMJESUp->Fill(counter16JESUp, getWeight());
-				}
-
-
-				    myEvent.MET = myEvent.MET_JESdown;                          
-				    myEvent.MT = myEvent.MT_JESdown;                         
-				    myEvent.deltaPhiMETJets= myEvent.deltaPhiMETJets_JESdown;            
-				    myEvent.hadronicChi2 = myEvent.hadronicChi2_JESdown;               
-				    myEvent.MT2W = myEvent.MT2W_JESdown;                       
-				    myEvent.HT = myEvent.HT_JESdown;                         
-				    myEvent.HTRatio = myEvent.HTRatio_JESdown;                    
-				    myEvent.leadingBPt= myEvent.leadingBPt_JESdown;                 
-				    myEvent.leadingJetPt= myEvent.leadingJetPt_JESdown;               
-				    myEvent.Mlb = myEvent.Mlb_JESdown;                        
-				    myEvent.Mlb_hemi = myEvent.Mlb_hemi_JESdown;                   
-				    myEvent.M3b = myEvent.M3b_JESdown;                        
-				    myEvent.deltaRLeptonLeadingB= myEvent.deltaRLeptonLeadingB_JESdown;       
-				    myEvent.METoverSqrtHT= myEvent.METoverSqrtHT_JESdown;              
-				    myEvent.HTPlusLeptonPtPlusMET = myEvent.HTPlusLeptonPtPlusMET_JESdown;      
-				    myEvent.nJets = myEvent.nJets_JESdown;  	
-
-				if ( cutAndCount_T2tt_offShellLoose(true) == true){ 
-				counter1JESDown ++;
-				Events_T2tt_offShellLooseJESDown->Fill(counter1JESDown, getWeight());
-				}
-
-				if ( cutAndCount_T2tt_offShellTight(true) == true){
-				counter2JESDown ++;
-				Events_T2tt_offShellTightJESDown->Fill(counter2JESDown, getWeight());
-				}	
-				
-				if ( cutAndCount_T2tt_lowDeltaM(true) == true){
-				counter3JESDown ++;
-				Events_T2tt_lowDeltaMJESDown->Fill(counter3JESDown, getWeight());
-				}	
-
-				if ( cutAndCount_T2tt_mediumDeltaM(true) == true){
-				counter4JESDown ++;
-				Events_T2tt_mediumDeltaMJESDown->Fill(counter4JESDown, getWeight());
-				}	
-
-				if ( cutAndCount_T2tt_highDeltaM(true) == true){
-				counter5JESDown ++;
-				Events_T2tt_highDeltaMJESDown->Fill(counter5JESDown, getWeight());
-				}	
-
-				if ( cutAndCount_T2bw025_offShell(true) == true){
-				counter7JESDown ++;
-				Events_T2bw025_offShellJESDown->Fill(counter7JESDown, getWeight());
-				}
-
-				if ( cutAndCount_T2bw025_lowMasses(true) == true){
-				counter8JESDown ++;
-				Events_T2bw025_lowMassesJESDown->Fill(counter8JESDown, getWeight());
-				}
-
-				if ( cutAndCount_T2bw025_highMasses(true) == true){
-				counter9JESDown ++;
-				Events_T2bw025_highMassesJESDown->Fill(counter9JESDown, getWeight());
-				}
-
-		
-				if ( cutAndCount_T2bw050_offShell(true) == true){
-				counter10JESDown ++;
-				Events_T2bw050_offShellJESDown->Fill(counter10JESDown, getWeight());
-				}
-
-				if ( cutAndCount_T2bw050_lowMasses(true) == true){
-				counter11JESDown ++;
-				Events_T2bw050_lowMassesJESDown->Fill(counter11JESDown, getWeight());
-				}
-
-				if ( cutAndCount_T2bw050_mediumDeltaM(true) == true){
-				counter12JESDown ++;
-				Events_T2bw050_mediumDeltaMJESDown->Fill(counter12JESDown, getWeight());
-				}
-
-				if ( cutAndCount_T2bw050_highDeltaM(true) == true){
-				counter13JESDown ++;
-				Events_T2bw050_highDeltaMJESDown->Fill(counter13JESDown, getWeight());
-				}
-
-
-				if ( cutAndCount_T2bw075_lowDeltaM(true) == true){
-				counter14JESDown ++;
-				Events_T2bw075_lowDeltaMJESDown->Fill(counter14JESDown, getWeight());
-				}
-
-				if ( cutAndCount_T2bw075_mediumDeltaM(true) == true){
-				counter15JESDown ++;
-				Events_T2bw075_mediumDeltaMJESDown->Fill(counter15JESDown, getWeight());
-				}
-
-				if ( cutAndCount_T2bw075_highDeltaM(true) == true){
-				counter16JESDown ++;
-				Events_T2bw075_highDeltaMJESDown->Fill(counter16JESDown, getWeight());
-				}
-				
-			} 
-
-
+					
 
  } 
 
-    
-      fout->cd();
-      fout->Write();
-      fout->Close();
+      //fout->cd();
+     // fout->Write();
+     // fout->Close();
 
 
 

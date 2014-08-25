@@ -83,10 +83,10 @@ void plot_limit(TString dir){
    TH2D *hist_limitM = new TH2D(TString(dataset_name)+"_expM","",29,87.5, 812.5, 17, -12.5,412.5); 
 
 
-              for(int x=100; x<=800; x+=25){
+              for(int x=100; x<=200; x+=25){
 
 
-                      for(int y=0; y<=400; y+=25){
+                      for(int y=0; y<=200; y+=25){
 
 
   		  char shortfilename[500];
@@ -122,11 +122,11 @@ void plot_limit(TString dir){
 		double limit = exp->GetMean();
 
 
-		        if (limit < 1.0){
+//		        if (limit < 1.0){
 		        hist_limit->Fill(x,y,limit);
 			    file->Close();
 
-		 }
+//		 }
 	  }
 
 	}
@@ -150,22 +150,22 @@ void plot_limit(TString dir){
       c1.Range(-289.7381,-191.8196,1334.643,1074.487);
 
 
-   /*       double level = 1.0;
+          double level = 1.0;
           double contours[1];
           contours[0] = level;
           hist_limit->SetContour(1,contours);
           hist_limit->Draw("cont3c");
-          hist_limit->SetLineColor(kRed);
+          hist_limit->SetLineColor(4);
           hist_limit->SetLineWidth(2);
-  */
+  
 
 	  TLegendEntry *legge;
 	  TLegend *leg;
 	  leg = new TLegend(0.4,0.55,0.7,0.85);
 	  leg->SetFillStyle(0); leg->SetBorderSize(0); leg->SetTextSize(0.043);
-	  legge = leg->AddEntry(hist_limit,   "#color[2]{Expected U.L. @95\% CL}", "");
+	  legge = leg->AddEntry(hist_limit,   "#color[4]{Expected U.L. @95\% CL}", "");
 	  leg->SetFillColor(0);
-	  hist_limit->Draw("colz");
+//	  hist_limit->Draw("colz");
 	  leg->Draw();
 
 

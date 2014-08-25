@@ -120,7 +120,7 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
       double nsignalBVetoBCDown = signalBVetoBCDown->Integral(max_bin,nbins+1);
       double nsignalBVetoLightUp = signalBVetoLightUp->Integral(max_bin,nbins+1);
       double nsignalBVetoLightDown = signalBVetoLightDown->Integral(max_bin,nbins+1);
-      double totalsignal = signalGEN->GetMean();	   
+      double totalsignal = signalGEN->GetMean()/2/;	   
       double nsignalpreselection = signalPRESEL->Integral();
       double nsignalpreselection2 = signal->Integral();
 
@@ -270,7 +270,7 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 	  if ( decay_mode == "T2bw025" )  ISR_err = 8.;
 	  if ( decay_mode == "T2bw050" )  ISR_err = 10.;
 	  if ( decay_mode == "T2bw075" )  ISR_err = 8.;
-	  if ( decay_mode == "T2tt" )  ISR_err = 8.;
+	  if ( decay_mode == "T2tt" )     ISR_err = 8.;
 
       if (JEStot > 20.) JEStot = 20.;	// put upper bound on JES uncertainty
       if (BVetotot > 10.) BVetotot = 10.;	// put upper bound on JES uncertainty
@@ -280,7 +280,13 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 	  double sig_err_percentage = tot_err/100. + 1.;
 
       createTableCLsBDT(decay_mode, BDTdefCutOffset, SignalRegion, MSTOP, MLSP, ndata, nsignal, sig_err_percentage, bkg, bkg_err_percentage);
-	  
+	 
+    	cout << stat_err << endl; 
+    //	cout << BVetotot << endl; 
+    //	cout << JEStot  << endl; 
+   // 	cout << PDF_err << endl; 
+   // 	cout << ISR_err << endl; 
+   // 	cout << tot_err << endl; 
 }
 
 
@@ -290,8 +296,8 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 void makeCards(TString decay_mode ){
 
       cout << decay_mode << endl;  
-      int start = 4;
-      int end = 6;
+      int start = 0;
+      int end = 0;
 
       for(int z= start; z<= end; z+=1){
 
@@ -299,9 +305,9 @@ void makeCards(TString decay_mode ){
 
             //cout << BDTdefCutOffset << endl;
 	
-              for(int x=100; x<=800; x+=25){
+              for(int x=400; x<=400; x+=25){
 	
-    	              for(int y=0; y<=400; y+=25){
+    	              for(int y=50; y<=50; y+=25){
 
 				 if (x - y > 99){  
 					 cout << "S"<<x << "N"<<y<<endl;	
@@ -353,7 +359,7 @@ void createTableCLsBDT(TString decay_mode, double BDTdefCutOffset, TString Signa
   tablesFile.close();
 
 
-  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_16/"+TString(decay_mode)+"_CUT"+TString(CUT)+"/";
+  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_16_PUBTEST/"+TString(decay_mode)+"_CUT"+TString(CUT)+"/";
   gSystem->Exec("mkdir -p "+savedir); 
   gSystem->Exec("mv "+TString(datacardname)+" "+savedir); 
 
