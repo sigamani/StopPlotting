@@ -42,6 +42,22 @@ using namespace std;
 // #  Main function  #
 // ###################
 
+double signal_RW(int stopmass, int lspmass){
+
+   TFile* file = TFile::Open("/afs/cern.ch/work/s/sigamani/public/CMSSW_5_3_14_STOPS/src/Stops-AN-14-067/runAnalysis/scale_t2bw025.root");
+   TH2D* hist = (TH2D*)file->Get("t2bw025"); 
+  
+   int X = hist->GetXaxis()->FindBin(stopmass);
+   int Y = hist->GetYaxis()->FindBin(lspmass);
+   double weight = hist->GetBinContent(X,Y);
+
+    file->Close();
+
+    if (fabs(weight > 1.1)) return weight;
+      else return 1.;
+}
+
+
 int main (int argc, char *argv[])
 {
 
@@ -1846,6 +1862,8 @@ int main (int argc, char *argv[])
    int counter16BVetoLightDown = 0; 
 
 
+   double signalWeight = signal_RW(STOPMASS, LSPMASS);
+
 
    for (int i = 0 ; i < theInputTree->GetEntries() ; i++){
 
@@ -1961,7 +1979,7 @@ int main (int argc, char *argv[])
 				// BDT STUFF
 				
 					if (myEvent.isUsedInBDTTraining == 0) {
-					double weight = getWeight() * 2.; 
+					double weight = getWeight() * 2. * signalWeight; 
 
 
 					hist_BDT_output_t2bw025_R1_RAW->Fill(myEvent.BDT_output_t2bw025_R1);		
@@ -2513,11 +2531,10 @@ int main (int argc, char *argv[])
 
 
 
-                                        if (myEvent.isUsedInBDTTraining == 0) {
+                    if (myEvent.isUsedInBDTTraining == 0) {
 
-	//                                if ( (myEvent.event%2)==1 ) continue;
 
-					double weight = getWeight() * 2.; 
+					double weight = getWeight() * 2. * signalWeight; 
 
 
 					if (nBJetsUpBC > 0 ) {

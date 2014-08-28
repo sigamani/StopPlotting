@@ -40,7 +40,7 @@ void rootlogon();
 TString savedir = "~/www/";
 
 
-void plot_limit(TString dir){
+void plot_limit(TString dir, TString Exp){
 
  
   gStyle->SetCanvasColor(0);
@@ -83,18 +83,16 @@ void plot_limit(TString dir){
    TH2D *hist_limitM = new TH2D(TString(dataset_name)+"_expM","",29,87.5, 812.5, 17, -12.5,412.5); 
 
 
-              for(int x=100; x<=200; x+=25){
+              for(int x=100; x<=800; x+=25){
 
 
-                      for(int y=0; y<=200; y+=25){
+                      for(int y=0; y<=400; y+=25){
 
 
   		  char shortfilename[500];
   		  char filename[500];
-//  		  char filenameFULL[500];
 
-
-                  sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_16_UB/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);
+                  sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_17_UB/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);
 
    
                  ifstream ifile(filename);
@@ -117,16 +115,19 @@ void plot_limit(TString dir){
 		TH1F* expP = new TH1F("expP","",100,0,high_val);
         limittree->Draw("limit>>expP", "quantileExpected>0.83 && quantileExpected<0.84");
 
+		double limit;
 
 //		double limit = ReturnCleanedLimit( x, y, exp->GetMean(), dir, true, "Exp");
-		double limit = exp->GetMean();
+        if ( Exp == "Obs" )  limit =  obs->GetMean();
+        if ( Exp == "Exp" )  limit =  exp->GetMean();
+        if ( Exp == "ExpM" ) limit =  expM->GetMean();
+        if ( Exp == "ExpP" ) limit =  expP->GetMean();
 
-
-//		        if (limit < 1.0){
+		        if (limit < 1.0){
 		        hist_limit->Fill(x,y,limit);
 			    file->Close();
 
-//		 }
+		 }
 	  }
 
 	}
@@ -150,6 +151,7 @@ void plot_limit(TString dir){
       c1.Range(-289.7381,-191.8196,1334.643,1074.487);
 
 
+/*
           double level = 1.0;
           double contours[1];
           contours[0] = level;
@@ -157,15 +159,15 @@ void plot_limit(TString dir){
           hist_limit->Draw("cont3c");
           hist_limit->SetLineColor(4);
           hist_limit->SetLineWidth(2);
-  
+ */ 
 
 	  TLegendEntry *legge;
 	  TLegend *leg;
 	  leg = new TLegend(0.4,0.55,0.7,0.85);
 	  leg->SetFillStyle(0); leg->SetBorderSize(0); leg->SetTextSize(0.043);
-	  legge = leg->AddEntry(hist_limit,   "#color[4]{Expected U.L. @95\% CL}", "");
+//	  legge = leg->AddEntry(hist_limit,   "#color[4]{Expected U.L. @95\% CL}", "");
 	  leg->SetFillColor(0);
-//	  hist_limit->Draw("colz");
+	  hist_limit->Draw("colz");
 	  leg->Draw();
 
 
@@ -176,7 +178,8 @@ void plot_limit(TString dir){
       l1.DrawLatex(0.155, 0.98, "CMS Preliminary");
       l1.DrawLatex(0.7, 0.98, "20 fb^{-1} (8 TeV)");
 
-	  c1.SaveAs("~/www/test.png");
+//	  c1.SaveAs("~/www/test.png");
+      c1.SaveAs("~/www/STOP/Limits/V12_BDT2/"+dir+"_"+Exp+".png");
 
       fout->cd();
       fout->Write();

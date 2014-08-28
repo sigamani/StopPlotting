@@ -105,7 +105,7 @@ double return_limit(TString dir, int x, int y, double BDTcutoffset){
   		  char shortfilename[500];
   		  char filename[500];
 
-                  sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_16_UB/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name,x, y);
+                  sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_16/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name,x, y);
 
 
 			  ifstream ifile(filename);
@@ -144,9 +144,9 @@ void plot_limit(TString decay_mode){
    TH2D *SMS = new TH2D(decay_mode,"",29,87.5, 812.5, 17, -12.5,412.5);
    TH2D *SMS2 = new TH2D(decay_mode,"SRs",29,87.5, 812.5, 17, -12.5,412.5);
 	
-            for(int x=100; x<=800; x+=25){
+            for(int x=225; x<=225; x+=25){
 
-                      for(int y=0; y<=400; y+=25){
+                      for(int y=125; y<=125; y+=25){
 
                                if (x - y > 99){
 
@@ -181,11 +181,26 @@ void plot_limit(TString decay_mode){
 						}
 					}
 							
+                        double offset;
 
-						SMS2->Fill(x,y,mvaval+1);
-						//SMS3->Fill(x,y,optimcut);
-						SMS->Fill(x,y,1./temp);
-					 
+                        if (mvaval == 1) offset = -0.2;
+                        if (mvaval == 2) offset = -0.15;
+                        if (mvaval == 3) offset = -0.1;
+                        if (mvaval == 4) offset = -0.05;
+                        if (mvaval == 5) offset = 0.0;
+                        if (mvaval == 6) offset = 0.05;
+                        if (mvaval == 7) offset = 0.1;
+                        if (mvaval == 8) offset = 0.15;
+                        if (mvaval == 9) offset = 0.2;
+
+                        TString SignalRegion = signalregionName(decay_mode, x, y);
+                        double optimcut = BDTcut(SignalRegion) + offset;
+						
+						//SMS2->Fill(x,y,mvaval+1);
+						SMS2->Fill(x,y,optimcut);
+						//SMS->Fill(x,y,1./temp);
+	
+					cout << optimcut << endl;				 
 			}
 		}
 	  }
@@ -222,7 +237,8 @@ void plot_limit(TString decay_mode){
        	    data_xaxis->SetTitle("m_{#tilde{t}} (GeV)");
             data_yaxis->SetTitle("m_{#tilde{#chi}^{0}_{1}} (GeV)");
 	 	    data_zaxis->SetTitle("Optimal BDT cut off-set"); 
-            data_zaxis->SetRangeUser(1,9);
+            //data_zaxis->SetRangeUser(1,9);
+            data_zaxis->SetRangeUser(0.1,0.5);
 
 
 			TPaveText* key = new TPaveText( 0.2, 0.65, 0.4, 0.92, "brNDC" );
@@ -269,7 +285,7 @@ void plot_limit(TString decay_mode){
 
   	       key->Draw("same");
            c1.RedrawAxis();
-           c1.SaveAs("~/www/LimitTest3/"+TString(decay_mode)+"_EXP.png");
+           c1.SaveAs("~/www/"+TString(decay_mode)+"_CUT.png");
 
       fout->cd();
       fout->Write();
