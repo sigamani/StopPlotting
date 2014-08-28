@@ -2,7 +2,9 @@
 #define _SignalRegionDefinitions_h
 
 
-TString signalregionName(TString decaymode, int stopmass, int lspmass)  // This function maps the SRs to the signal plane in the BDT analysis
+// This function maps the SRs to the signal plane in the BDT analysis
+
+TString signalregionName(TString decaymode, int stopmass, int lspmass)  
 {
 
     TString SR = "nan";
@@ -84,88 +86,6 @@ TString signalregionName(TString decaymode, int stopmass, int lspmass)  // This 
     return SR;
 }
 
-
-
-int returnIntBDTOffsetValue(TString decaymode, int stopmass, int lspmass)
-{
-
-    int intoffset = -999;
-
-
-    if (decaymode == "T2bw075") 
-    {
-        if (lspmass > stopmass - 200)
-            intoffset = 5;
-        if (lspmass <= stopmass - 200 && lspmass > stopmass - 325)
-            intoffset = 5;
-        if (lspmass <= stopmass - 325 && lspmass > stopmass - 475)
-            intoffset = 4;
-        if (lspmass <= stopmass - 475)
-            intoffset = 5;
-        if (lspmass <= stopmass - 575)
-            intoffset = 5;
-    }
-
-    if (decaymode == "T2bw050") 
-    {
-        if (lspmass > stopmass - 150)
-		    intoffset = 6;
-        if (lspmass <= stopmass - 150 && lspmass > stopmass - 250)
-            intoffset = 4;
-        if (lspmass <= stopmass - 250 && lspmass > stopmass - 400)
-            intoffset = 5;
-        if (lspmass <= stopmass - 400 && lspmass > stopmass - 550)
-            intoffset = 5;
-        if (lspmass <= stopmass - 550 && lspmass > stopmass - 625)
-            intoffset = 5;
-        if (lspmass <= stopmass - 625)
-            intoffset = 5;
-    }    
-
-    if (decaymode == "T2bw025") 
-    {
-
-          if (lspmass > stopmass - 225)
-            intoffset = 6;
-          if (lspmass <= stopmass - 225 && lspmass > stopmass - 275)
-            intoffset = 6;
-          if (lspmass <= stopmass - 275 && lspmass > stopmass - 375){ 
-			intoffset = 3;
-			if (lspmass <= 50) intoffset = 6;          
-			}
-          if (lspmass <= stopmass - 375 && lspmass > stopmass - 600){
-            intoffset = 6; 
-				if (lspmass <= 100) intoffset = 5;
-			}
-          if (lspmass <= stopmass - 600)
-            intoffset = 6;
-
-    }
-
-    if (decaymode == "T2tt") 
-    {
-
-        if (lspmass > stopmass - 225 ) { 
-		    intoffset = 4; 
-			 if (lspmass <= 100 && lspmass > 50)
-             intoffset = 6;
-			 if (lspmass <= 50)  
-             intoffset = 3;
-		} 
-        if (lspmass <= stopmass - 225 && lspmass > stopmass - 325)
-            intoffset = 4; 
-        if (lspmass <= stopmass - 325 && lspmass > stopmass - 400)
-            intoffset = 4;
-        if (lspmass <= stopmass - 400 && lspmass > stopmass - 500)
-            intoffset = 5;
-        if (lspmass <= stopmass - 500)
-            intoffset = 4;
-
-    }
-
-
-    return intoffset;
-}
 
 
 
