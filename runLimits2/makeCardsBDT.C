@@ -44,7 +44,6 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
       ostr2 << MLSP;
       std::string neut = ostr2.str();
 
-
 	  TString decay_mode_; 
 	  TString SignalRegion_; 
  	  TString SignalRegion = signalregionName(decay_mode, MSTOP, MLSP); 
@@ -59,7 +58,6 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 	  if (SignalRegion == "T2bw025_4_lowLSP")  {SignalRegion_ = "R4";   }
 	  if (SignalRegion == "T2bw025_4_highLSP")  {SignalRegion_ = "R4";   }
    	  if (SignalRegion == "T2bw025_6")  {SignalRegion_ = "R6";   }
-
 
 	  if (SignalRegion == "T2bw050_1_lowDM_lowLSP") {SignalRegion_ = "R1"; }
 	  if (SignalRegion == "T2bw050_1_highDM") {SignalRegion_ = "R1"; }
@@ -359,7 +357,7 @@ void createTableCLsBDT(TString decay_mode, double BDTdefCutOffset, TString Signa
   tablesFile.close();
 
 
-  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_17_T2bw050/"+TString(decay_mode)+"_CUT"+TString(CUT)+"/";
+  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_18/"+TString(decay_mode)+"_CUT"+TString(CUT)+"/";
   gSystem->Exec("mkdir -p "+savedir); 
   gSystem->Exec("mv "+TString(datacardname)+" "+savedir); 
 
