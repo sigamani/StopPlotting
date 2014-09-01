@@ -31,34 +31,193 @@ double ReturnCleanedLimit( double x, double y, double limit, TString decay_mode,
 
 
  if ( isBDT  == true) { 
- 
+
+
+     if (EXP == "Obs") {
+		
+		if (decay_mode=="T2tt") { 
+
+			if ( (x == 175) && (y == 0)  ) limit = 0.9;  // not really
+			if ( (x == 200) && (y == 0)  ) limit = 0.9;
+			if ( (x == 225) && (y == 25)  ) limit = 1.1;
+			if ( (x == 250) && (y == 50)  ) limit = 1.1;
+
+			if ( (x == 225) && (y == 0)  ) limit = 0.9;
+			if ( (x == 325) && (y == 100)  ) limit = 0.9;
+			if ( (x == 725) && (y == 100)  ) limit = 1.1;
+		}
+
+		if (decay_mode=="T2bw025") { 
+			
+			if ( (x == 175) && (y == 25)  ) limit = 0.9;
+			if ( (x == 250) && (y == 100)  ) limit = 0.9;
+			if ( (x == 275) && (y == 100)  ) limit = 0.9;
+			if ( (x == 500) && (y == 200)  ) limit = 0.9;
+			if ( (x == 575) && (y == 150)  ) limit = 0.9;
+			if ( (x == 550) && (y == 50)  ) limit = 0.9;
+			if ( (x == 275) && (y == 150)  ) limit = 0.9;
+			if ( (x == 200) && (y == 75)  ) limit = 0.9;
+
+			if ( (x == 325) && (y == 0)  ) limit = 0.9;
+			if ( (x == 350) && (y == 0)  ) limit = 0.9;
+			if ( (x == 375) && (y == 0)  ) limit = 0.9;
+
+			if ( (x == 175) && (y == 0)  ) limit = 0.9;
+			if ( (x == 200) && (y == 0)  ) limit = 0.9;
+			if ( (x == 225) && (y == 0)  ) limit = 0.9;
+			if ( (x == 250) && (y == 0)  ) limit = 0.9;
+			if ( (x == 200) && (y == 25)  ) limit = 0.9;
+
+			if ( (x == 500) && (y == 400)  ) limit = 1.1;
+			if ( (x == 100) && (y == 0) ) limit = 1.1;
+			if ( (x == 125) && (y == 25) ) limit = 1.1;
+			if ( (x == 200) && (y == 100) ) limit = 1.1;
+		}
+
+		if (decay_mode=="T2bw050") { 
+
+			if ( (x == 225) && (y == 100)  ) limit = 0.9;
+			if ( (x == 275) && (y == 50)  ) limit = 0.9;
+			if ( (x == 575) && (y == 175)  ) limit = 0.9;
+			if ( (x == 625) && (y == 175)  ) limit = 0.9;
+			if ( (x == 650) && (y == 125)  ) limit = 0.9;
+			if ( (x == 600) && (y == 200)  ) limit = 0.9;
+			if ( (x == 625) && (y == 200)  ) limit = 0.9;
+
+			if ( (x == 300) && (y == 175)  ) limit = 1.1;
+			if ( (x == 325) && (y == 175)  ) limit = 1.1;
+			if ( (x == 325) && (y == 225)  ) limit = 1.1;
+			if ( (x == 375) && (y == 275)  ) limit = 1.1;
+			if ( (x == 600) && (y == 25)  ) limit = 1.1;
+
+			if ( (x == 0) && (y == 150) ) limit = 1.1;
+			if ( (x == 25) && (y == 150) ) limit = 1.1;
+			if ( (x == 50) && (y == 150) ) limit = 1.1;
+			if ( (x == 0) && (y == 125) ) limit = 1.1;
+			if ( (x == 25) && (y == 125) ) limit = 1.1;
+			if ( (x == 0) && (y == 100) ) limit = 1.1;
+
+		}
+
+		if (decay_mode=="T2bw075") { 
+
+			if ( (x == 725) && (y == 125)  ) limit = 1.1;
+
+			if ( (x == 150) && (y == 0)  ) limit = 0.9;
+			if ( (x == 150) && (y == 25)  ) limit = 0.9;
+			if ( (x == 200) && (y == 0)  ) limit = 0.9;
+			if ( (x == 225) && (y == 0)  ) limit = 0.9;
+			if ( (x == 300) && (y == 200)  ) limit = 0.9;
+			if ( (x == 375) && (y == 225)  ) limit = 0.9;
+			if ( (x == 425) && (y == 225)  ) limit = 0.9;
+			if ( (x == 450) && (y == 250)  ) limit = 0.9;
+			if ( (x == 500) && (y == 250)  ) limit = 0.9;
+			if ( (x == 525) && (y == 250)  ) limit = 0.9;
+			if ( (x == 550) && (y == 250)  ) limit = 0.9;
+			if ( (x == 575) && (y == 75)  ) limit = 0.9;
+			if ( (x == 725) && (y == 0)  ) limit = 0.9;
+			if ( (x == 625) && (y == 100)  ) limit = 0.9;
+			if ( (x == 625) && (y == 125)  ) limit = 0.9;
+			if ( (x == 650) && (y == 100)  ) limit = 0.9;
+			if ( (x == 650) && (y == 125)  ) limit = 0.9;
+			if ( (x == 750) && (y == 0)  ) limit = 0.9;
+
+		}
+
+
+	 } 
+
+
+
      if (EXP == "ExpM") {
 
-	if (decay_mode=="T2tt") {
+		if (decay_mode=="T2tt") {
 
-               if ( (x == 200) && (y == 0)) limit = 1.1;
-	}
+        	if ( (x == 225) && (y == 0)) limit = 0.9;
+        	if ( (x == 525) && (y == 225)) limit = 0.9;
+        	if ( (x == 175) && (y == 75)) limit = 0.9;
 
+		}
+
+		if (decay_mode=="T2bw025") { 
+
+	        if ( (x == 175) && (y == 0)  ) limit = 0.9;
+	        if ( (x == 175) && (y == 25)  ) limit = 0.9;
+	        if ( (x == 200) && (y == 0)  ) limit = 0.9;
+	        if ( (x == 200) && (y == 25)  ) limit = 0.9;
+	        if ( (x == 225) && (y == 25)  ) limit = 0.9;
+	        if ( (x == 225) && (y == 50)  ) limit = 0.9;
+	        if ( (x == 250) && (y == 0)  ) limit = 0.9;
+	        if ( (x == 325) && (y == 0)  ) limit = 0.9;
+	        if ( (x == 250) && (y == 100)  ) limit = 0.9;
+	        if ( (x == 275) && (y == 100)  ) limit = 0.9;
+	        if ( (x == 575) && (y == 25)  ) limit = 0.9;
+	        if ( (x == 625) && (y == 150)  ) limit = 0.9;
+	        if ( (x == 500) && (y == 225)  ) limit = 0.9;
+	        if ( (x == 525) && (y == 225)  ) limit = 0.9;
+	        if ( (x == 575) && (y == 225)  ) limit = 0.9;
+	        if ( (x == 600) && (y == 25)  ) limit = 0.9;
+	        if ( (x == 600) && (y == 50)  ) limit = 0.9;
+	        if ( (x == 600) && (y == 75)  ) limit = 0.9;
+	        if ( (x == 600) && (y == 100)  ) limit = 0.9;
+	        if ( (x == 650) && (y == 150)  ) limit = 0.9;
+			if ( (x == 500) && (y == 400)  ) limit = 1.1;
+
+
+	        if ( (x == 200) && (y == 100)  ) limit = 1.1;
+	        if ( (x == 250) && (y == 150)  ) limit = 1.1;
+		}
+
+		if (decay_mode=="T2bw050") { 
+
+	        if ( (x == 250) && (y == 0)  ) limit = 0.9;
+	        if ( (x == 250) && (y == 25)  ) limit = 0.9;
+	        if ( (x == 225) && (y == 50)  ) limit = 0.9;
+	        if ( (x == 250) && (y == 125)  ) limit = 0.9;
+	        if ( (x == 250) && (y == 125)  ) limit = 0.9;
+	        if ( (x == 300) && (y == 125)  ) limit = 0.9;
+	        if ( (x == 275) && (y == 150)  ) limit = 0.9;
+	        if ( (x == 325) && (y == 150)  ) limit = 0.9;
+	        if ( (x == 250) && (y == 150)  ) limit = 0.9;
+	        if ( (x == 625) && (y == 250)  ) limit = 0.9;
+	        if ( (x == 700) && (y == 75)  ) limit = 0.9;
+	        if ( (x == 675) && (y == 50)  ) limit = 0.9;
+
+		    if ( (x == 175) && (y == 0)  ) limit = 1.1;
+		    if ( (x == 325) && (y == 225)  ) limit = 1.1;
+		    if ( (x == 375) && (y == 275)  ) limit = 1.1;
+		    if ( (x == 675) && (y == 275)  ) limit = 1.1;
+		    if ( (x == 725) && (y == 250)  ) limit = 1.1;
+		    if ( (x == 750) && (y == 250)  ) limit = 1.1;
+		    if ( (x == 750) && (y == 225)  ) limit = 1.1;
+
+			if ( (x == 0) && (y == 150) ) limit = 1.1;
+			if ( (x == 25) && (y == 150) ) limit = 1.1;
+			if ( (x == 50) && (y == 150) ) limit = 1.1;
+			if ( (x == 0) && (y == 125) ) limit = 1.1;
+			if ( (x == 25) && (y == 125) ) limit = 1.1;
+			if ( (x == 0) && (y == 100) ) limit = 1.1;
+    	}	
 
 	if (decay_mode=="T2bw075") { 
 
-		if ( (x == 475) && (y == 350)  ) limit = 1.1;
-		if ( (x == 750) && (y == 200)  ) limit = 1.1;
-		if ( (x == 800) && (y == 225)  ) limit = 1.1;
-		if ( (x == 800) && (y == 150)  ) limit = 1.1;
-		if ( (x == 800) && (y == 75)  ) limit = 1.1;
+		if ( (x == 750) && (y == 175)  ) limit = 1.1;
 		if ( (x == 775) && (y == 175)  ) limit = 1.1;
+		if ( (x == 800) && (y == 75)  ) limit = 1.1;
 
 		if ( (x == 150) && (y == 0)  ) limit = 0.9;
 		if ( (x == 150) && (y == 25)  ) limit = 0.9;
 		if ( (x == 200) && (y == 0)  ) limit = 0.9;
+		if ( (x == 225) && (y == 0)  ) limit = 0.9;
 		if ( (x == 425) && (y == 225)  ) limit = 0.9;
+		if ( (x == 450) && (y == 250)  ) limit = 0.9;
+		if ( (x == 500) && (y == 250)  ) limit = 0.9;
+		if ( (x == 525) && (y == 250)  ) limit = 0.9;
 		if ( (x == 550) && (y == 250)  ) limit = 0.9;
-		if ( (x == 625) && (y == 250)  ) limit = 0.9;
 		if ( (x == 650) && (y == 200)  ) limit = 0.9;
-		if ( (x == 650) && (y == 225)  ) limit = 0.9;
-		if ( (x == 725) && (y == 175)  ) limit = 0.9;
-		if ( (x == 775) && (y == 50)  ) limit = 0.9;
+		if ( (x == 700) && (y == 150)  ) limit = 0.9;
+		if ( (x == 700) && (y == 175)  ) limit = 0.9;
+
 	}
 
      }
@@ -67,52 +226,83 @@ double ReturnCleanedLimit( double x, double y, double limit, TString decay_mode,
 
 	if (decay_mode=="T2tt") {
 
-               if ( (x == 150) && (y == 25)) limit = 0.9;     
+            if ( (x == 650) && (y == 150)) limit = 0.9;     
 
+        	if ( (x == 175) && (y == 0)) limit = 0.9; //not really
+        	if ( (x == 200) && (y == 0)) limit = 0.9; //not really
+        	if ( (x == 225) && (y == 0)) limit = 0.9; //not really
 	}
 
 
 	if (decay_mode=="T2bw025") { 
 
-//		if ( (x == 500) && (y == 400)) limit = 1.1;
-		if ( (x == 450) && (y == 350)) limit = 1.1;
-		if ( (x == 500) && (y == 400) ) limit = 1.1;
+		if ( (x == 250) && (y == 50)) limit = 0.9;
+		if ( (x == 275) && (y == 100) ) limit = 0.9;
+		if ( (x == 300) && (y == 125) ) limit = 0.9;
+		if ( (x == 325) && (y == 125) ) limit = 0.9;
+		if ( (x == 325) && (y == 100) ) limit = 0.9;
+		if ( (x == 350) && (y == 125) ) limit = 0.9;
+		if ( (x == 400) && (y == 150) ) limit = 0.9;
+		if ( (x == 575) && (y == 150) ) limit = 0.9;
 
+		if ( (x == 325) && (y == 0) ) limit = 0.9;
+		if ( (x == 350) && (y == 0) ) limit = 0.9;
+        if ( (x == 375) && (y == 0)  ) limit = 0.9;
+
+		if ( (x == 100) && (y == 0) ) limit = 1.1;
+		if ( (x == 125) && (y == 25) ) limit = 1.1;
+		if ( (x == 175) && (y == 0) ) limit = 1.1;
+		if ( (x == 200) && (y == 100) ) limit = 1.1;
+
+		if ( (x == 550) && (y == 25) ) limit = 1.1;
+		if ( (x == 125) && (y == 0) ) limit = 1.1;
+		if ( (x == 150) && (y == 0) ) limit = 1.1;
+		if ( (x == 150) && (y == 50) ) limit = 1.1;
+		if ( (x == 175) && (y == 50) ) limit = 1.1;
+		if ( (x == 200) && (y ==  50) ) limit = 1.1;
+		if ( (x == 225) && (y == 100) ) limit = 1.1;
+		if ( (x == 250) && (y == 150) ) limit = 1.1;
+		if ( (x == 350) && (y == 175) ) limit = 1.1;
+		if ( (x == 500) && (y == 400)  ) limit = 1.1;
 	}
 
 	if (decay_mode=="T2bw050") { 
 
-		if ( (x == 225) && (y == 100) ) limit = 0.9;
-		if ( (x == 225) && (y == 75)  ) limit = 0.9;
-		if ( (x == 250) && (y == 75)  ) limit = 0.9;
+		if ( (x == 225) && (y == 75) ) limit = 0.9;
+		if ( (x == 250) && (y == 0) ) limit = 0.9;
+		if ( (x == 250) && (y == 25)  ) limit = 0.9;
 		if ( (x == 275) && (y == 25)  ) limit = 0.9;
-		if ( (x == 325) && (y == 100) ) limit = 0.9;
-		if ( (x == 600) && (y == 200) ) limit = 0.9; 
+		if ( (x == 275) && (y == 50)  ) limit = 0.9;
+		if ( (x == 325) && (y == 75) ) limit = 0.9;
+		if ( (x == 625) && (y == 0) ) limit = 0.9; 
+		if ( (x == 625) && (y == 75) ) limit = 0.9; 
+		if ( (x == 650) && (y == 125) ) limit = 0.9; 
 
-		if ( (x == 275) && (y == 150) ) limit = 1.1;
-		if ( (x == 300) && (y == 175) ) limit = 1.1;
-		if ( (x == 325) && (y == 200) ) limit = 1.1;
-		if ( (x == 325) && (y == 175) ) limit = 1.1;
-		if ( (x == 700) && (y == 200) ) limit = 1.1;
-		if ( (x == 725) && (y == 150) ) limit = 1.1;
-		if ( (x == 650) && (y == 250) ) limit = 1.1;
-
+		if ( (x == 675) && (y == 75) ) limit = 1.1;
+		if ( (x == 550) && (y == 225) ) limit = 1.1;
          
 	}
 
 
 	if (decay_mode=="T2bw075") { 
 
-		if ( (x == 375) && (y == 250) ) limit = 1.1.;
-		if ( (x == 425) && (y == 250)  ) limit = 1.1;
 
-		if ( (x == 525) && (y == 225)  ) limit = 0.9;
-		if ( (x == 425) && (y == 225)  ) limit = 0.9;
-		if ( (x == 400) && (y == 200)  ) limit = 0.9;
-		if ( (x == 200) && (y == 0)  ) limit = 0.9;
-		if ( (x == 675) && (y == 125)  ) limit = 0.9;
+		if ( (x == 325) && (y == 225)  ) limit = 1.1;
+		if ( (x == 350) && (y == 225)  ) limit = 1.1;
+		if ( (x == 550) && (y == 225)  ) limit = 1.1;
 		if ( (x == 150) && (y == 0)  ) limit = 0.9;
 		if ( (x == 150) && (y == 25)  ) limit = 0.9;
+		if ( (x == 175) && (y == 50)  ) limit = 0.9;
+		if ( (x == 200) && (y == 0)  ) limit = 0.9;
+		if ( (x == 225) && (y == 0)  ) limit = 0.9;
+		if ( (x == 325) && (y == 175)  ) limit = 0.9;
+		if ( (x == 375) && (y == 175)  ) limit = 0.9;
+		if ( (x == 400) && (y == 200)  ) limit = 0.9;
+		if ( (x == 425) && (y == 200)  ) limit = 0.9;
+		if ( (x == 650) && (y == 100)  ) limit = 0.9;
+		if ( (x == 675) && (y == 50)  ) limit = 0.9;
+
+
 	}
 
     }
@@ -122,31 +312,97 @@ double ReturnCleanedLimit( double x, double y, double limit, TString decay_mode,
 
         if (decay_mode=="T2tt") {
 
+               if ( (x == 175) && (y == 0)) limit = 0.9;
+               if ( (x == 200) && (y == 0)) limit = 0.9;
+               if ( (x == 225) && (y == 0)) limit = 0.9;
                if ( (x == 150) && (y == 25)) limit = 0.9;
-               if ( (x == 225) && (y == 100)) limit = 0.9;
-               if ( (x == 275) && (y == 0)) limit = 0.9;
-               if ( (x == 300) && (y == 0)) limit = 0.9;
-               if ( (x == 400) && (y == 75)) limit = 0.9;
-               if ( (x == 400) && (y == 75)) limit = 0.9;
+               if ( (x == 400) && (y == 150)) limit = 0.9;
                if ( (x == 425) && (y == 150)) limit = 0.9;
+               if ( (x == 450) && (y == 150)) limit = 0.9;
+               if ( (x == 475) && (y == 150)) limit = 0.9;
+               if ( (x == 500) && (y == 150)) limit = 0.9;
                if ( (x == 550) && (y == 150)) limit = 0.9;
+               if ( (x == 550) && (y == 175)) limit = 1.1;
+
+	}
+
+	if (decay_mode=="T2bw025") { 
+
+               if ( (x == 275) && (y == 75)) limit = 0.9;
+               if ( (x == 325) && (y == 75)) limit = 0.9;
+               if ( (x == 425) && (y == 50)) limit = 0.9;
+               if ( (x == 450) && (y == 75)) limit = 0.9;
+
+               if ( (x == 125) && (y == 0)) limit = 1.1;
+               if ( (x == 150) && (y == 50)) limit = 1.1;
+               if ( (x == 175) && (y == 50)) limit = 1.1;
+               if ( (x == 250) && (y == 75)) limit = 1.1;
+               if ( (x == 475) && (y == 150)) limit = 1.1;
+               if ( (x == 500) && (y == 100)) limit = 1.1;
+               if ( (x == 500) && (y == 25)) limit = 1.1;
+               if ( (x == 475) && (y == 25)) limit = 1.1;
+			   if ( (x == 500) && (y == 400)  ) limit = 1.1;
+
+			   if ( (x == 100) && (y == 0) ) limit = 1.1;
+			   if ( (x == 125) && (y == 25) ) limit = 1.1;
+			   if ( (x == 175) && (y == 0) ) limit = 1.1;
+			   if ( (x == 200) && (y == 100) ) limit = 1.1;
+
+	}
+
+	if (decay_mode=="T2bw050") { 
+
+               if ( (x == 425) && (y == 50)) limit = 0.9;
+               if ( (x == 450) && (y == 50)) limit = 0.9;
+               if ( (x == 525) && (y == 100)) limit = 0.9;
+               if ( (x == 500) && (y == 75)) limit = 0.9;
+               if ( (x == 575) && (y == 75)) limit = 0.9;
+               if ( (x == 550) && (y == 125)) limit = 0.9;
+
+               if ( (x == 150) && (y == 600)) limit = 1.1;
+               if ( (x == 125) && (y == 600)) limit = 1.1;
+               if ( (x == 175) && (y == 75)) limit = 1.1;
+               if ( (x == 200) && (y == 75)) limit = 1.1;
+               if ( (x == 275) && (y == 0)) limit = 1.1;
+               if ( (x == 600) && (y == 150)) limit = 1.1;
+
+			   if ( (x == 0) && (y == 150) ) limit = 1.1;
+			   if ( (x == 25) && (y == 150) ) limit = 1.1;
+			   if ( (x == 50) && (y == 150) ) limit = 1.1;
+			   if ( (x == 0) && (y == 125) ) limit = 1.1;
+			   if ( (x == 25) && (y == 125) ) limit = 1.1;
+			   if ( (x == 0) && (y == 100) ) limit = 1.1;
 
 	}
 
 	if (decay_mode=="T2bw075") { 
 
-		if ( (x == 325) && (y == 225)  ) limit = 1.1;
-		if ( (x == 350) && (y == 225)  ) limit = 1.1;
 
 		if ( (x == 150) && (y == 0)  ) limit = 0.9;
 		if ( (x == 150) && (y == 25)  ) limit = 0.9;
 		if ( (x == 175) && (y == 50)  ) limit = 0.9;
 		if ( (x == 200) && (y == 0)  ) limit = 0.9;
-		if ( (x == 325) && (y == 175)  ) limit = 0.9;
-		if ( (x == 375) && (y == 175)  ) limit = 0.9;
+		if ( (x == 225) && (y == 0)  ) limit = 0.9;
+		if ( (x == 250) && (y == 50)  ) limit = 0.9;
+		if ( (x == 275) && (y == 75)  ) limit = 0.9;
+		if ( (x == 250) && (y == 125)  ) limit = 0.9;
+		if ( (x == 275) && (y == 125)  ) limit = 0.9;
+		if ( (x == 275) && (y == 150)  ) limit = 0.9;
+		if ( (x == 300) && (y == 125)  ) limit = 0.9;
+		if ( (x == 325) && (y == 150)  ) limit = 0.9;
+		if ( (x == 350) && (y == 150)  ) limit = 0.9;
+		if ( (x == 375) && (y == 150)  ) limit = 0.9;
+		if ( (x == 400) && (y == 150)  ) limit = 0.9;
+		if ( (x == 400) && (y == 175)  ) limit = 0.9;
+		if ( (x == 450) && (y == 175)  ) limit = 0.9;
+		if ( (x == 475) && (y == 175)  ) limit = 0.9;
 		if ( (x == 500) && (y == 175)  ) limit = 0.9;
+		if ( (x == 525) && (y == 75)  ) limit = 0.9;
+		if ( (x == 550) && (y == 75)  ) limit = 0.9;
+		if ( (x == 600) && (y == 75)  ) limit = 0.9;
+
 		if ( (x == 550) && (y == 150)  ) limit = 0.9;
-		if ( (x == 550) && (y == 175)  ) limit = 0.9;
+		if ( (x == 575) && (y == 150)  ) limit = 0.9;
 		if ( (x == 575) && (y == 125)  ) limit = 0.9;
 		if ( (x == 575) && (y == 75)  ) limit = 0.9;
 		if ( (x == 600) && (y == 100)  ) limit = 0.9;
@@ -158,76 +414,138 @@ double ReturnCleanedLimit( double x, double y, double limit, TString decay_mode,
   }
 
   if ( isBDT  == false) {
+	     if (EXP == "Obs") {
+ 
+           if (decay_mode == "T2bw075") {
+	        if ( (x == 200) && (y == 100) ) limit = 0.9;
+	        if ( (x == 225) && (y == 75) ) limit = 0.9;
+	        if ( (x == 225) && (y == 100) ) limit = 0.9;
+	        if ( (x == 275) && (y == 125) ) limit = 0.9;
+	        if ( (x == 300) && (y == 125) ) limit = 0.9;
+	        if ( (x == 300) && (y == 150) ) limit = 0.9;
+	        if ( (x == 325) && (y == 150) ) limit = 0.9;
+	        if ( (x == 375) && (y == 175) ) limit = 0.9;
+	        if ( (x == 550) && (y == 175) ) limit = 0.9;
+	        if ( (x == 550) && (y == 150) ) limit = 0.9;
+	        if ( (x == 525) && (y == 150) ) limit = 0.9;
+
+	        if ( (x == 125) && (y == 25) ) limit = 1.1;
+	        if ( (x == 375) && (y == 200) ) limit = 1.1;
+			}
+			
+		}
 
 	     if (EXP == "ExpM") {
 
-		if (decay_mode == "T2tt") {
-		if ( (x == 650) && (y == 225) ) limit = 1.1;
-		if ( (x == 375) && (y == 200) ) limit = 1.1;
-		if ( (x == 325) && (y == 150) ) limit = 1.1;
-		}
+
+			if (decay_mode == "T2bw075") {
+
+            if ( (x == 225) && (y == 75) ) limit = 0.9;
+            if ( (x == 275) && (y == 175) ) limit = 0.9;
+            if ( (x == 275) && (y == 175) ) limit = 0.9;
+            if ( (x == 325) && (y == 175) ) limit = 0.9;
+            if ( (x == 375) && (y == 175) ) limit = 0.9;
+            if ( (x == 325) && (y == 200) ) limit = 0.9;
+            if ( (x == 350) && (y == 200) ) limit = 0.9;
+            if ( (x == 400) && (y == 200) ) limit = 0.9;
+            if ( (x == 425) && (y == 200) ) limit = 0.9;
+            if ( (x == 600) && (y == 200) ) limit = 0.9;
+            if ( (x == 675) && (y == 25) ) limit = 0.9;
+
+            if ( (x == 125) && (y == 25) ) limit = 1.1;
+            if ( (x == 325) && (y == 225) ) limit = 1.1;
+            if ( (x == 350) && (y == 225) ) limit = 1.1;
+            if ( (x == 625) && (y == 225) ) limit = 1.1;
+
+			}
+
+			if (decay_mode == "T2tt") {
+			if ( (x == 650) && (y == 225) ) limit = 1.1;
+			if ( (x == 375) && (y == 200) ) limit = 1.1;
+			if ( (x == 325) && (y == 150) ) limit = 1.1;
+			}
 
              }
 
 	     if (EXP == "Exp") {
 
 
-		if (decay_mode == "T2tt") {
-		if ( (x == 125) && (y == 0) ) limit = 0.9;
-		if ( (x == 225) && (y == 100) ) limit = 0.9;
-		}
+			if (decay_mode == "T2tt") {
+			if ( (x == 125) && (y == 0) ) limit = 0.9;
+			if ( (x == 225) && (y == 100) ) limit = 0.9;
+			}
 
 
-		if (decay_mode == "T2bw025") {
-		if ( (x == 300) && (y == 50) ) limit = 0.9;
-		if ( (x == 325) && (y == 75) ) limit = 0.9;
-		if ( (x == 450) && (y == 50) ) limit = 0.9;
-		if ( (x == 400) && (y == 25) ) limit = 0.9;
-		if ( (x == 400) && (y == 50) ) limit = 0.9;
-		if ( (x == 400) && (y == 75) ) limit = 0.9;
+			if (decay_mode == "T2bw025") {
+			if ( (x == 300) && (y == 50) ) limit = 0.9;
+			if ( (x == 325) && (y == 75) ) limit = 0.9;
+			if ( (x == 450) && (y == 50) ) limit = 0.9;
+			if ( (x == 400) && (y == 25) ) limit = 0.9;
+			if ( (x == 400) && (y == 50) ) limit = 0.9;
+			if ( (x == 400) && (y == 75) ) limit = 0.9;
 
-		if ( (x == 125) && (y == 0)  ) limit = 1.1;
-		if ( (x == 125) && (y == 25)  ) limit = 1.1;
-		if ( (x == 150) && (y == 50)  ) limit = 1.1;
-		}
+			if ( (x == 125) && (y == 0)  ) limit = 1.1;
+			if ( (x == 125) && (y == 25)  ) limit = 1.1;
+			if ( (x == 150) && (y == 50)  ) limit = 1.1;
+			}
 
 
-		if (decay_mode == "T2bw050") {
-		if ( (x == 550) && (y == 175) ) limit = 0.9;
-		if ( (x == 225) && (y == 25) ) limit = 0.9;
+			if (decay_mode == "T2bw050") {
+			if ( (x == 550) && (y == 175) ) limit = 0.9;
+			if ( (x == 225) && (y == 25) ) limit = 0.9;
 
-		if ( (x == 150) && (y == 50)  ) limit = 1.1;
-		if ( (x == 200) && (y == 75)  ) limit = 1.1;
-		if ( (x == 275) && (y == 125)  ) limit = 1.1;
-		if ( (x == 325) && (y == 150)  ) limit = 1.1;
-		if ( (x == 575) && (y == 200)  ) limit = 1.1;
-		}
+			if ( (x == 150) && (y == 50)  ) limit = 1.1;
+			if ( (x == 200) && (y == 75)  ) limit = 1.1;
+			if ( (x == 275) && (y == 125)  ) limit = 1.1;
+			if ( (x == 325) && (y == 150)  ) limit = 1.1;
+			if ( (x == 575) && (y == 200)  ) limit = 1.1;
+			}
 
-		if (decay_mode == "T2bw075") {
-		if ( (x == 575) && (y == 75) ) limit = 0.9;
-		if ( (x == 625) && (y == 50) ) limit = 0.9;
-		if ( (x == 525) && (y == 150) ) limit = 0.9;
-		if ( (x == 550) && (y == 150) ) limit = 0.9;
+			if (decay_mode == "T2bw075") {
+			if ( (x == 575) && (y == 75) ) limit = 0.9;
+			if ( (x == 625) && (y == 50) ) limit = 0.9;
+			if ( (x == 525) && (y == 150) ) limit = 0.9;
+			if ( (x == 550) && (y == 150) ) limit = 0.9;
+			if ( (x == 225) && (y == 75)  ) limit = 0.9;
 
-		if ( (x == 350) && (y == 175)  ) limit = 1.1;
-		if ( (x == 375) && (y == 200)  ) limit = 1.1;
-		if ( (x == 225) && (y == 150)  ) limit = 1.1;
-		if ( (x == 225) && (y == 125)  ) limit = 1.1;
-		if ( (x == 125) && (y == 25)  ) limit = 1.1;
-		if ( (x == 250) && (y == 125)  ) limit = 1.1;
-		
-  		}
+			if ( (x == 350) && (y == 175)  ) limit = 1.1;
+			if ( (x == 375) && (y == 200)  ) limit = 1.1;
+			if ( (x == 225) && (y == 150)  ) limit = 1.1;
+			if ( (x == 225) && (y == 125)  ) limit = 1.1;
+			if ( (x == 250) && (y == 150)  ) limit = 1.1;
+			if ( (x == 125) && (y == 25)  ) limit = 1.1;
+			if ( (x == 250) && (y == 125)  ) limit = 1.1;
+			
+			}
 	    }
 
 
 	     if (EXP == "ExpP") {
 
-		if (decay_mode == "T2tt") {
-		if ( (x == 575) && (y == 50) ) limit = 1.1;
-		if ( (x == 550) && (y == 75) ) limit = 0.9;
 
-		}
-             }
+			if (decay_mode == "T2bw075") {
+
+            if ( (x == 225) && (y == 75) ) limit = 0.9;
+            if ( (x == 275) && (y == 100) ) limit = 0.9;
+            if ( (x == 475) && (y == 100) ) limit = 0.9;
+            if ( (x == 525) && (y == 75) ) limit = 0.9;
+            if ( (x == 525) && (y == 50) ) limit = 0.9;
+            if ( (x == 550) && (y == 25) ) limit = 0.9;
+
+            if ( (x == 125) && (y == 25) ) limit = 1.1;
+            if ( (x == 175) && (y == 75) ) limit = 1.1;
+            if ( (x == 225) && (y == 125) ) limit = 1.1;
+            if ( (x == 575) && (y == 50) ) limit = 1.1;
+            if ( (x == 575) && (y == 100) ) limit = 1.1;
+			}
+
+			if (decay_mode == "T2tt") {
+			if ( (x == 575) && (y == 50) ) limit = 1.1;
+			if ( (x == 550) && (y == 75) ) limit = 0.9;
+
+			}
+
+        }
 
 	}
 		return limit; 

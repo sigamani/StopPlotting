@@ -142,7 +142,7 @@ void plot_limit(TString decay_mode, TString Exp){
    TH2D *SMS = new TH2D(decay_mode+"_"+Exp,"",29,87.5, 812.5, 17, -12.5,412.5);
    TH2D *SMS2 = new TH2D(decay_mode+"_"+Exp,"",29,87.5, 812.5, 17, -12.5,412.5);
 	
-              for(int x=125; x<800; x+=25){
+              for(int x=100; x<800; x+=25){
 
                       for(int y=0; y<=400; y+=25){
 
@@ -226,10 +226,10 @@ void plot_limit(TString decay_mode, TString Exp){
 						  if (mvaval+1 > 0) double limit = return_limit(decay_mode,x,y, mvaval+1, Exp);
 			      		  //double limit_smooth = ReturnCleanedLimit( x, y, limit, decay_mode, false, exp);
 
-						  if (limit < 1.0) {
+						  //if (limit < 1.0) {
 							SMS->Fill(x,y, limit);
 							//SMS2->Fill(x,y,mvaval+1);
-						  }
+						  //}
 				}
 		   }
 	  }
@@ -302,7 +302,7 @@ void plot_limit(TString decay_mode, TString Exp){
 	   l1.DrawLatex(0.155, 0.98, "CMS Preliminary");
 	   l1.DrawLatex(0.7, 0.98, "20 fb^{-1} (8 TeV)");
 	  
-       c1.SaveAs("~/www/STOP/Limits/V12_CNC/"+decay_mode+"_"+Exp+".png");
+//       c1.SaveAs("~/www/STOP/Limits/V12_CNC/"+decay_mode+"_"+Exp+".png");
 
       fout->cd();
       SMS->Write();

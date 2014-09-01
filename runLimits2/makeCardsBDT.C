@@ -167,11 +167,6 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 		bkg_err = backgroundPrediction_BDT_T2bw050_1_highDM(BDTdefCutOffset).second ; 
 		}
 
-		if (SignalRegion == "T2bw050_1_highDM_lowLSP") {
-		bkg = backgroundPrediction_BDT_T2bw050_1_highDM_lowLSP(BDTdefCutOffset).first  ; 
-		bkg_err = backgroundPrediction_BDT_T2bw050_1_highDM_lowLSP(BDTdefCutOffset).second ; 
-		}
-
 		if (SignalRegion == "T2bw050_3") {
 		bkg = backgroundPrediction_BDT_T2bw050_3(BDTdefCutOffset).first  ; 
 		bkg_err = backgroundPrediction_BDT_T2bw050_3(BDTdefCutOffset).second ; 

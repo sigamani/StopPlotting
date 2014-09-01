@@ -76,7 +76,7 @@ void plot_limit(TString dir, TString Exp){
    if (dir == "T2tt")    {dataset_name = "T2tt_CUT0";    shell = 173.;}
 
 
-   TFile *fout = new TFile(TString(dataset_name)+"_BDT.root","recreate");
+   TFile *fout = new TFile(TString(dataset_name)+"_"+Exp+"_BDT.root","recreate");
 
    TH2D *hist_limit =  new TH2D(TString(dataset_name)+"_exp" ,"",29,87.5, 812.5, 17, -12.5,412.5); 
    TH2D *hist_limitP = new TH2D(TString(dataset_name)+"_expP","",29,87.5, 812.5, 17, -12.5,412.5); 
@@ -92,13 +92,12 @@ void plot_limit(TString dir, TString Exp){
   		  char shortfilename[500];
   		  char filename[500];
 
-                  sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_17_UB/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);
-
+                  sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_18/%s/FULL_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);
    
                  ifstream ifile(filename);
 				 if (!ifile.good()) continue; 
+				 //if (!ifile.good())  sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_18/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, x, y); 
 	         
-
 	    TFile* file  = new TFile(filename, "READ");  
 	    char* name = (char*)file->GetName();
 
@@ -117,12 +116,15 @@ void plot_limit(TString dir, TString Exp){
 
 		double limit;
 
-//		double limit = ReturnCleanedLimit( x, y, exp->GetMean(), dir, true, "Exp");
         if ( Exp == "Obs" )  limit =  obs->GetMean();
         if ( Exp == "Exp" )  limit =  exp->GetMean();
         if ( Exp == "ExpM" ) limit =  expM->GetMean();
         if ( Exp == "ExpP" ) limit =  expP->GetMean();
 
+//		double limit_cleaned = ReturnCleanedLimit( x, y, limit, dir, true, Exp);
+
+		        //if (limit_cleaned < 1.0){
+		        //hist_limit->Fill(x,y,limit_cleaned);
 		        if (limit < 1.0){
 		        hist_limit->Fill(x,y,limit);
 			    file->Close();
@@ -178,8 +180,8 @@ void plot_limit(TString dir, TString Exp){
       l1.DrawLatex(0.155, 0.98, "CMS Preliminary");
       l1.DrawLatex(0.7, 0.98, "20 fb^{-1} (8 TeV)");
 
-//	  c1.SaveAs("~/www/test.png");
-      c1.SaveAs("~/www/STOP/Limits/V12_BDT2/"+dir+"_"+Exp+".png");
+	  c1.SaveAs("~/www/test.png");
+//      c1.SaveAs("~/www/STOP/Limits/V12_BDT2/"+dir+"_"+Exp+".png");
 
       fout->cd();
       fout->Write();

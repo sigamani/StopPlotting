@@ -142,7 +142,6 @@ double BDTcut(TString BDTregion)
     else if (BDTregion == "T2bw075_5_lowDM" )	return 0.25 ;
     else if (BDTregion == "T2bw075_5_highDM")	return 0.3 ;
 
-
     else if (BDTregion == "T2bw050_1_lowDM_lowLSP")	return 0.275;
     else if (BDTregion == "T2bw050_1_highDM")	return 0.175;
     else if (BDTregion == "T2bw050_1_lowDM_highLSP")	return 0.375;
@@ -165,41 +164,5 @@ double BDTcut(TString BDTregion)
     }
 }
 
-
-bool goesInBDTRegion(TString BDTregion) { return (BDToutput(BDTregion) > BDTcut(BDTregion)); }
-
-// FIXME : these hardcoded functions shouldn't be needed because it introduces tight coupling w.r.t. the signal region definitions.
-
-bool BDT_T2tt_1_lowLSP           (bool applyMTCut) { return goesInBDTRegion("T2tt_1_lowLSP"    ); }
-bool BDT_T2tt_1_highLSP          (bool applyMTCut) { return goesInBDTRegion("T2tt_1_highLSP"   ); }
-bool BDT_T2tt_2_lowDM            (bool applyMTCut) { return goesInBDTRegion("T2tt_2_lowDM"     ); }
-bool BDT_T2tt_2           (bool applyMTCut) { return goesInBDTRegion("T2tt_2"    ); }
-bool BDT_T2tt_5_lowDM            (bool applyMTCut) { return goesInBDTRegion("T2tt_5_lowDM"     ); }
-bool BDT_T2tt_5_mediumDM         (bool applyMTCut) { return goesInBDTRegion("T2tt_5_mediumDM"  ); }
-bool BDT_T2tt_5_highDM           (bool applyMTCut) { return goesInBDTRegion("T2tt_5_highDM"    ); }
-bool BDT_T2bw075_1               (bool applyMTCut) { return goesInBDTRegion("T2bw075_1"        ); }
-bool BDT_T2bw075_2               (bool applyMTCut) { return goesInBDTRegion("T2bw075_2"        ); }
-bool BDT_T2bw075_3               (bool applyMTCut) { return goesInBDTRegion("T2bw075_3"        ); }
-bool BDT_T2bw075_5_lowDM         (bool applyMTCut) { return goesInBDTRegion("T2bw075_5_lowDM"  ); }
-bool BDT_T2bw075_5_highDM        (bool applyMTCut) { return goesInBDTRegion("T2bw075_5_highDM" ); }
-bool BDT_T2bw050_1_lowLSP        (bool applyMTCut) { return goesInBDTRegion("T2bw050_1_lowLSP" ); }
-bool BDT_T2bw050_1_highLSP       (bool applyMTCut) { return goesInBDTRegion("T2bw050_1_highLSP"); }
-bool BDT_T2bw050_3               (bool applyMTCut) { return goesInBDTRegion("T2bw050_3"        ); }
-bool BDT_T2bw050_4               (bool applyMTCut) { return goesInBDTRegion("T2bw050_4"        ); }
-bool BDT_T2bw050_5               (bool applyMTCut) { return goesInBDTRegion("T2bw050_5"        ); }
-bool BDT_T2bw050_6               (bool applyMTCut) { return goesInBDTRegion("T2bw050_6"        ); }
-bool BDT_T2bw025_1               (bool applyMTCut) { return goesInBDTRegion("T2bw025_1"        ); }
-bool BDT_T2bw025_3         (bool applyMTCut) { return goesInBDTRegion("T2bw025_3"  ); }
-bool BDT_T2bw025_3_highDM        (bool applyMTCut) { return goesInBDTRegion("T2bw025_3_highDM" ); }
-bool BDT_T2bw025_4               (bool applyMTCut) { return goesInBDTRegion("T2bw025_4"        ); }
-bool BDT_T2bw025_6               (bool applyMTCut) { return goesInBDTRegion("T2bw025_6"        ); }
-
-// Aliases to loosest BDT signal regions in case of different cuts that apply to same BDT output
-bool BDT_T2tt_1                  (bool applyMTCut) { return BDT_T2tt_1_lowLSP   (applyMTCut); }
-bool BDT_T2tt_2                  (bool applyMTCut) { return BDT_T2tt_2_lowDM    (applyMTCut); }
-bool BDT_T2tt_5                  (bool applyMTCut) { return BDT_T2tt_5_mediumDM (applyMTCut); }
-bool BDT_T2bw075_5               (bool applyMTCut) { return BDT_T2bw075_5_lowDM (applyMTCut); }
-bool BDT_T2bw050_1               (bool applyMTCut) { return BDT_T2bw050_1_lowLSP(applyMTCut); }
-bool BDT_T2bw025_3               (bool applyMTCut) { return BDT_T2bw025_3 (applyMTCut); }
 
 #endif
