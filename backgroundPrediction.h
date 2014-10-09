@@ -1,0 +1,42 @@
+// BDT
+pair<double,double>  backgroundPrediction_BDT_T2bw025_1                     (double BDTcutOffset = 0.0)  {  return  pair<double,double>(41.5614,    11.2238);    }
+pair<double,double>  backgroundPrediction_BDT_T2bw025_3               		(double BDTcutOffset = 0.0)  {  return  pair<double,double>(28.5183,    7.1988);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw025_4_highLSP             (double BDTcutOffset = 0.0)  {  return  pair<double,double>(4.9523,     1.8546);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw025_4_lowLSP              (double BDTcutOffset = 0.0)  {  return  pair<double,double>(19.9128,    5.3756);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw025_6                     (double BDTcutOffset = 0.0)  {  return  pair<double,double>(5.8308,     2.4564);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw050_1_lowDM_lowLSP        (double BDTcutOffset = 0.0)  {  return  pair<double,double>(14.0226,    4.8449);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw050_1_lowDM_highLSP       (double BDTcutOffset = 0.0)  {  return  pair<double,double>(2.7401,     1.4806);     }  
+pair<double,double>  backgroundPrediction_BDT_T2bw050_1_highDM      		(double BDTcutOffset = 0.0)  {  return  pair<double,double>(91.0372,    25.3764);    }
+pair<double,double>  backgroundPrediction_BDT_T2bw050_3                     (double BDTcutOffset = 0.0)  {  return  pair<double,double>(7.0476,     2.3608);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw050_4                     (double BDTcutOffset = 0.0)  {  return  pair<double,double>(0.7821,     0.3201);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw050_5              		(double BDTcutOffset = 0.0)  {  return  pair<double,double>(0.6466,     0.3480);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw050_6                     (double BDTcutOffset = 0.0)  {  return  pair<double,double>(2.7262,     1.2979);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw075_1                     (double BDTcutOffset = 0.0)  {  return  pair<double,double>(13.2412,    3.8494);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw075_2                     (double BDTcutOffset = 0.0)  {  return  pair<double,double>(23.0828,    7.0946);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw075_3                     (double BDTcutOffset = 0.0)  {  return  pair<double,double>(10.4577,    3.1331);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw075_5_highDM              (double BDTcutOffset = 0.0)  {  return  pair<double,double>(0.3632,     0.2117);     }
+pair<double,double>  backgroundPrediction_BDT_T2bw075_5_lowDM               (double BDTcutOffset = 0.0)  {  return  pair<double,double>(2.2551,     1.1161);     }
+pair<double,double>  backgroundPrediction_BDT_T2tt_1_highLSP                (double BDTcutOffset = 0.0)  {  return  pair<double,double>(19.0043,    6.7369);     }
+pair<double,double>  backgroundPrediction_BDT_T2tt_1_lowLSP                 (double BDTcutOffset = 0.0)  {  return  pair<double,double>(363.2726,   84.9480);    }
+pair<double,double>  backgroundPrediction_BDT_T2tt_1_mediumLSP              (double BDTcutOffset = 0.0)  {  return  pair<double,double>(46.2930,    15.5090);    }
+pair<double,double>  backgroundPrediction_BDT_T2tt_2                 		(double BDTcutOffset = 0.0)  {  return  pair<double,double>(37.0223,    12.8932);    }
+pair<double,double>  backgroundPrediction_BDT_T2tt_5_lowDM                  (double BDTcutOffset = 0.0)  {  return  pair<double,double>(5.6895,     2.3958);     }
+pair<double,double>  backgroundPrediction_BDT_T2tt_5_highDM               	(double BDTcutOffset = 0.0)  {  return  pair<double,double>(3.5999,     1.6790);     }
+
+// Cut and Count
+pair<double,double>  backgroundPrediction_cutAndCount_T2bw025_highMasses    (double BDTcutOffset = 0.0)  {  return  pair<double,double>(1.8211,     0.9339     );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2bw025_lowMasses     (double BDTcutOffset = 0.0)  {  return  pair<double,double>(12.0031,    5.1469     );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2bw025_offShell      (double BDTcutOffset = 0.0)  {  return  pair<double,double>(24.1765,    7.1989     );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2bw050_highDeltaM    (double BDTcutOffset = 0.0)  {  return  pair<double,double>(2.5166,     1.1367     );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2bw050_lowMasses     (double BDTcutOffset = 0.0)  {  return  pair<double,double>(97.0783,    15.5374    );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2bw050_mediumDeltaM  (double BDTcutOffset = 0.0)  {  return  pair<double,double>(31.0122,    8.7674     );} 
+pair<double,double>  backgroundPrediction_cutAndCount_T2bw050_offShell      (double BDTcutOffset = 0.0)  {  return  pair<double,double>(24.1765,    7.1989     );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2bw075_highDeltaM    (double BDTcutOffset = 0.0)  {  return  pair<double,double>(5.1450,     2.3324     );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2bw075_lowDeltaM     (double BDTcutOffset = 0.0)  {  return  pair<double,double>(5.2540,     2.2102     );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2bw075_mediumDeltaM  (double BDTcutOffset = 0.0)  {  return  pair<double,double>(34.0299,    7.9762     );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2tt_highDeltaM       (double BDTcutOffset = 0.0)  {  return  pair<double,double>(3.4188,     1.8802     );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2tt_lowDeltaM        (double BDTcutOffset = 0.0)  {  return  pair<double,double>(178.8980,   22.4669    );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2tt_mediumDeltaM     (double BDTcutOffset = 0.0)  {  return  pair<double,double>(10.6587,    2.5980     );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2tt_offShellLoose    (double BDTcutOffset = 0.0)  {  return  pair<double,double>(38.5279,    8.3550     );}
+pair<double,double>  backgroundPrediction_cutAndCount_T2tt_offShellTight    (double BDTcutOffset = 0.0)  {  return  pair<double,double>(11.3975,    4.9383     );}
+pair<double,double>  backgroundPrediction_preselection                      (double BDTcutOffset = 0.0)  {  return  pair<double,double>(9940.2217,  1666.3855  );}
