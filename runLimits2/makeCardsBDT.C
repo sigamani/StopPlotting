@@ -81,7 +81,8 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
    	  if (SignalRegion == "T2tt_5_highDM")   {SignalRegion_ = "R5";   }
 
 
-      TFile sig("ntp_8/"+decay_mode+".root");
+      //TFile sig("ntp_8/"+decay_mode+".root");
+      TFile sig("ntp_8_Polarization/"+decay_mode+"LR.root");
       TH1D* signal= (TH1D*)sig.Get("hist_BDT_output_"+decay_mode_+"_"+SignalRegion_+"_S"+TString(stop)+"_N"+TString(neut));
       TH1D* signal_RAW= (TH1D*)sig.Get("hist_BDT_output_"+decay_mode_+"_"+SignalRegion_+"_RAW_S"+TString(stop)+"_N"+TString(neut));
       TH1D* signalJESUp= (TH1D*)sig.Get("hist_BDT_output_"+decay_mode_+"_"+SignalRegion_+"JESUp_S"+TString(stop)+"_N"+TString(neut));
@@ -109,6 +110,7 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
       int max_bin = signal->GetXaxis()->FindBin(cut);
 
       double ndata = datahist->Integral(max_bin,nbins+1);
+
 
 	  double nsignal = signal->Integral(max_bin,nbins+1);
       double nsignal_RAW = signal_RAW->Integral(max_bin,nbins+1);
@@ -255,7 +257,13 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 	  double BVetoLighttot =  (BVetoLightUp + BVetoLightDown)/ 2. ;
 	  double BVetoBCtot =  (BVetoBCUp + BVetoBCDown)/ 2. ;
 	  double BVetotot = sqrt (BVetoBCtot*BVetoBCtot + BVetoLighttot*BVetoLighttot); 
-	  double stat_err = 1. + sqrt (1. /nsignal_RAW + 1. / totalsignal -   1. /   (sqrt(nsignal_RAW * totalsignal)));
+	  //double stat_err = 1. + sqrt (1. /nsignal_RAW + 1. / totalsignal -   1. /   (sqrt(nsignal_RAW * totalsignal)));
+      double stat_err_a = 1 /nsignal_RAW + 1 / totalsignal;
+      double stat_err_b = 1 /(sqrt(nsignal_RAW * totalsignal));
+      double stat_err;
+      if (stat_err_b > stat_err_a) stat_err = 100 * sqrt(stat_err_a);
+         else stat_err = 100 * sqrt(stat_err_a - stat_err_b);
+
       double PDF_err = 10.;
       double ISR_err;
 
@@ -352,7 +360,7 @@ void createTableCLsBDT(TString decay_mode, double BDTdefCutOffset, TString Signa
   tablesFile.close();
 
 
-  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_18/"+TString(decay_mode)+"_CUT"+TString(CUT)+"/";
+  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_19_T2bwLR/"+TString(decay_mode)+"_CUT"+TString(CUT)+"/";
   gSystem->Exec("mkdir -p "+savedir); 
   gSystem->Exec("mv "+TString(datacardname)+" "+savedir); 
 

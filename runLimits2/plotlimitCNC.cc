@@ -104,8 +104,11 @@ double return_limit(TString dir, int x, int y, int SR, TString Exp){
                sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsCNC_15_UB/%s/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, SR_, x, y);
 
 	   	       TFile* file  = new TFile(filename, "READ");  
-		       char* name = (char*)file->GetName();
 
+
+               ifstream ifile(filename);
+
+			   if (ifile.good()) { 
 
 			   TTree *limittree = (TTree*)file->Get("limit");
 			   double high_val = 100.;
@@ -124,9 +127,11 @@ double return_limit(TString dir, int x, int y, int SR, TString Exp){
                if ( Exp == "ExpP" ) limit =  expp1->GetMean();
 
 
-		  	file->Close();
+  		  	   file->Close(); return limit;
 
-         return limit; 	
+				} else return 1.1;
+
+//         return limit; 	
 
 }
 
@@ -142,7 +147,7 @@ void plot_limit(TString decay_mode, TString Exp){
    TH2D *SMS = new TH2D(decay_mode+"_"+Exp,"",29,87.5, 812.5, 17, -12.5,412.5);
    TH2D *SMS2 = new TH2D(decay_mode+"_"+Exp,"",29,87.5, 812.5, 17, -12.5,412.5);
 	
-              for(int x=100; x<800; x+=25){
+              for(int x=100; x<=800; x+=25){
 
                       for(int y=0; y<=400; y+=25){
 

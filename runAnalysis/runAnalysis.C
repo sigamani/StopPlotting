@@ -42,20 +42,6 @@ using namespace std;
 // #  Main function  #
 // ###################
 
-double signal_RW(int stopmass, int lspmass){
-
-   TFile* file = TFile::Open("/afs/cern.ch/work/s/sigamani/public/CMSSW_5_3_14_STOPS/src/Stops-AN-14-067/runAnalysis/scale_t2bw025.root");
-   TH2D* hist = (TH2D*)file->Get("t2bw025"); 
-  
-   int X = hist->GetXaxis()->FindBin(stopmass);
-   int Y = hist->GetYaxis()->FindBin(lspmass);
-   double weight = hist->GetBinContent(X,Y);
-
-    file->Close();
-
-    if (fabs(weight > 1.1)) return weight;
-      else return 1.;
-}
 
 
 int main (int argc, char *argv[])
@@ -388,6 +374,8 @@ int main (int argc, char *argv[])
    TH1D* Events_T2bw075_highDeltaM;
 
 
+
+
    TH1D* hist_BDT_output_t2bw025_R1_RAW;
    TH1D* hist_BDT_output_t2bw025_R3_RAW;
    TH1D* hist_BDT_output_t2bw025_R4_RAW;
@@ -676,10 +664,11 @@ int main (int argc, char *argv[])
    TH1D* hist_BDT_output_t2tt_R2JESDown;
    TH1D* hist_BDT_output_t2tt_R5JESDown;
 
+
+
    int STOPMASS = atoi(argv[3]);
    int LSPMASS = atoi(argv[4]);
 
-//   if (LSPMASS == 1) LSPMASS = 0;
 
    sprintf(name0,"Events_NGenSignal_S%i_N%i", STOPMASS, LSPMASS);
    sprintf(title0,"Events_NGenSignal_S%i_N%i", STOPMASS, LSPMASS);
@@ -1730,6 +1719,39 @@ int main (int argc, char *argv[])
    hist_BDT_output_t2tt_R5JESDown = new TH1D(name32JESDown,title32JESDown,10000,-2,2);
 
 
+ // for stat errors
+   Events_T2tt_offShellLoose->Sumw2() ; 
+   Events_T2tt_offShellTight->Sumw2() ; 
+   Events_T2tt_lowDeltaM->Sumw2() ; 
+   Events_T2tt_mediumDeltaM->Sumw2() ; 
+   Events_T2tt_highDeltaM->Sumw2() ; 
+   Events_T2bw025_offShell->Sumw2();
+   Events_T2bw025_lowMasses->Sumw2(); 
+   Events_T2bw025_highMasses->Sumw2();
+   Events_T2bw050_offShell->Sumw2();
+   Events_T2bw050_lowMasses->Sumw2();
+   Events_T2bw050_mediumDeltaM->Sumw2();
+   Events_T2bw050_highDeltaM->Sumw2();
+   Events_T2bw075_lowDeltaM->Sumw2();
+   Events_T2bw075_mediumDeltaM->Sumw2();
+   Events_T2bw075_highDeltaM->Sumw2();
+
+   hist_BDT_output_t2bw025_R1->Sumw2();
+   hist_BDT_output_t2bw025_R3->Sumw2();
+   hist_BDT_output_t2bw025_R4->Sumw2();
+   hist_BDT_output_t2bw025_R6->Sumw2();
+   hist_BDT_output_t2bw050_R1->Sumw2();
+   hist_BDT_output_t2bw050_R3->Sumw2();
+   hist_BDT_output_t2bw050_R4->Sumw2();
+   hist_BDT_output_t2bw050_R5->Sumw2();
+   hist_BDT_output_t2bw050_R6->Sumw2();
+   hist_BDT_output_t2bw075_R1->Sumw2();
+   hist_BDT_output_t2bw075_R2->Sumw2();
+   hist_BDT_output_t2bw075_R3->Sumw2();
+   hist_BDT_output_t2bw075_R5->Sumw2();
+   hist_BDT_output_t2tt_R1->Sumw2();
+   hist_BDT_output_t2tt_R2->Sumw2();
+   hist_BDT_output_t2tt_R5->Sumw2();
 
    // ########################################
    // ##        Run over the events         ##
@@ -1862,7 +1884,6 @@ int main (int argc, char *argv[])
    int counter16BVetoLightDown = 0; 
 
 
-   double signalWeight = signal_RW(STOPMASS, LSPMASS);
 
 
    for (int i = 0 ; i < theInputTree->GetEntries() ; i++){
@@ -1977,10 +1998,9 @@ int main (int argc, char *argv[])
 
 				
 				// BDT STUFF
-				
+	
 					if (myEvent.isUsedInBDTTraining == 0) {
-					double weight = getWeight() * 2. * signalWeight; 
-
+					double weight = getWeight() * 2 ; 
 
 					hist_BDT_output_t2bw025_R1_RAW->Fill(myEvent.BDT_output_t2bw025_R1);		
 					hist_BDT_output_t2bw025_R3_RAW->Fill(myEvent.BDT_output_t2bw025_R3);		
@@ -2534,7 +2554,7 @@ int main (int argc, char *argv[])
                     if (myEvent.isUsedInBDTTraining == 0) {
 
 
-					double weight = getWeight() * 2. * signalWeight; 
+					double weight = getWeight() * 2. ; 
 
 
 					if (nBJetsUpBC > 0 ) {
