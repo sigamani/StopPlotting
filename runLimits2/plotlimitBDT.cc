@@ -91,7 +91,7 @@ void plot_limit(TString dir, TString Exp){
   		  char filename[500];
 
                   
-  					sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_18/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);  
+  					sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_21/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);  
 
                  ifstream ifile(filename);
 				 if (!ifile.good()) continue; 
@@ -119,12 +119,12 @@ void plot_limit(TString dir, TString Exp){
         if ( Exp == "ExpM" ) limit =  expM->GetMean();
         if ( Exp == "ExpP" ) limit =  expP->GetMean();
 
-		double limit_cleaned = ReturnCleanedLimit( x, y, limit, dir, true, Exp);
+		//double limit_cleaned = ReturnCleanedLimit( x, y, limit, dir, true, Exp);
 
-		        if (limit_cleaned < 1.0){
-		        //if (limit < 1.0){
-		        hist_limit->Fill(x,y,1./limit_cleaned);
-		        //hist_limit->Fill(x,y,limit);
+		        //if (limit_cleaned < 1.0){
+		        if (limit < 1.0){
+		        //hist_limit->Fill(x,y,1./limit_cleaned);
+		        hist_limit->Fill(x,y,limit);
 			    file->Close();
 
 		 }

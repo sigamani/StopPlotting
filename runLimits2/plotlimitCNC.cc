@@ -232,8 +232,8 @@ void plot_limit(TString decay_mode, TString Exp){
 			      		  //double limit_smooth = ReturnCleanedLimit( x, y, limit, decay_mode, false, exp);
 
 						  //if (limit < 1.0) {
-							SMS->Fill(x,y, limit);
-							//SMS2->Fill(x,y,mvaval+1);
+							//SMS->Fill(x,y, limit);
+							SMS2->Fill(x,y,mvaval+1);
 						  //}
 				}
 		   }
@@ -307,9 +307,10 @@ void plot_limit(TString decay_mode, TString Exp){
 	   l1.DrawLatex(0.155, 0.98, "CMS Preliminary");
 	   l1.DrawLatex(0.7, 0.98, "20 fb^{-1} (8 TeV)");
 	  
-//       c1.SaveAs("~/www/STOP/Limits/V12_CNC/"+decay_mode+"_"+Exp+".png");
+       //c1.SaveAs("~/www/STOP/Limits/V12_CNC/"+decay_mode+"_"+Exp+".png");
+       c1.SaveAs("~/www/"+decay_mode+"_PDF.png");
 
       fout->cd();
-      SMS->Write();
+      SMS2->Write();
       fout->Close();	  
 }

@@ -895,7 +895,6 @@ int main (int argc, char *argv[])
 
 
 
-   //vector<Float_t> BDToutputs_t2bw025, BDToutputs_t2bw050, BDToutputs_t2bw075, BDToutputs_t2tt;
    Int_t isUsedInBDTTraining;
    Float_t m3b_2; 
 
@@ -974,22 +973,18 @@ int main (int argc, char *argv[])
 
 
         bool isSignal = false;
-        //bool isTTbar  = false;
         bool isTTbarmadgraph = false;
 
         if (myEvent.mStop == -1) { isSignal = false;}
                 else isSignal = true;
 
-//        if (string(argv[1]).find("ttbar") != std::string::npos) isTTbar = true;
         if (string(argv[1]).find("madgraph") != std::string::npos) isTTbarmadgraph = true;
 
 
 
         if ( isSignal && ((myEvent.event%2)==1)) isUsedInBDTTraining = 1;
-        //if ( isTTbarmadgraph )  	         isUsedInBDTTraining = 1;
 		else isUsedInBDTTraining = 0;
 
-        if (myEvent.nJets < 4) continue;
 
 	met = myEvent.MET;
 	mT = myEvent.MT;
@@ -1010,10 +1005,6 @@ int main (int argc, char *argv[])
 	METoverSqrtHT = myEvent.METoverSqrtHT;
 	HT_MET_lep_pt = myEvent.HTPlusLeptonPtPlusMET;
 	Chi2SNT = myEvent.hadronicChi2;
-
-
-
-
 
 
 
@@ -1042,7 +1033,6 @@ int main (int argc, char *argv[])
 
         if (myEvent.nJets < 3 ) {m3b_2 = 0. ; }
                 else { m3b_2 = myEvent.M3b;}
-
 
 
 	// JES Up

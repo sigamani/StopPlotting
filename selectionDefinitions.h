@@ -10,8 +10,8 @@
 // since one often needs to use a modified format because
 // of skimming or use of tiny tuples...
 
-//#include "Reader.h"
-#include "Reader_final.h"  // Has the extended BDT info defined 
+#include "Reader.h"
+//#include "Reader_final.h"  // Has the extended BDT info defined 
 //#include "Reader_final_PDF.h"  // Has the extended PDF syst info defined 
 
 
