@@ -1034,7 +1034,7 @@ int main (int argc, char *argv[])
         if (myEvent.nJets < 3 ) {m3b_2 = 0. ; }
                 else { m3b_2 = myEvent.M3b;}
 
-
+/*
 	// JES Up
         met = myEvent.MET_JESup;
         mT = myEvent.MT_JESup;
@@ -1124,7 +1124,7 @@ int main (int argc, char *argv[])
         BDT_output_t2tt_R2_JESdown = reader_t2ttOnShell->EvaluateMVA( "BDT_output_t2tt_R2_JESdown" );
         BDT_output_t2tt_R5_JESdown = reader_t2ttOnShell->EvaluateMVA( "BDT_output_t2tt_R5_JESdown" );
 
-
+*/
 
         theOutputTree->Fill();
 
