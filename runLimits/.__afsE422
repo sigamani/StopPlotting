@@ -1,0 +1,178 @@
+#include "TColor.h"
+#include "TStyle.h"
+#include "TMath.h"
+#include "TFile.h"
+#include "TF2.h"
+#include "TH1F.h"
+#include "TH2F.h"
+#include "TH2D.h"
+#include "TTree.h"
+#include "TGraph.h"
+#include "TMultiGraph.h"
+#include "TCanvas.h"
+#include "TLegend.h"
+#include "TStyle.h"
+#include "TLatex.h"
+#include "TPolyLine.h"
+#include "TROOT.h"
+#include "TF1.h"
+#include "TGaxis.h"
+
+
+#include <iomanip>
+#include <fstream>
+#include <iostream>
+#include <time.h>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <map>
+#include <utility>
+
+
+
+
+using namespace std;
+void rootlogon();
+
+
+TString savedir = "~/www/";
+
+
+
+
+
+double return_limit(TString dir, int x, int y, int SR){
+
+
+   double limit;
+   double shell;
+   //TString SR_;
+
+   if (dir == "T2bw025") {dataset_name = "T2bw025"; shell = 80. / 0.25;}
+   if (dir == "T2bw050") {dataset_name = "T2bw050"; shell = 80. / 0.50;}
+   if (dir == "T2bw075") {dataset_name = "T2bw075"; shell = 80. / 0.75;}
+   if (dir == "T2tt")    {dataset_name = "T2tt";    shell = 173.;}
+
+
+
+   if (dataset_name == "T2bw025") {	 
+
+	   if (SR == 1)    {SR_ = "highDeltaM";}
+	   if (SR == 2)    {SR_ = "lowDeltaMTight";}
+	   if (SR == 3)    {SR_ = "offShellLoose";}
+	   if (SR == 4)    {SR_ = "veryOffShellLoose";}
+
+   }
+
+
+   if (dataset_name == "T2bw050") {	 
+
+	   if (SR == 1)    {SR_ = "highDeltaM";}
+	   if (SR == 2)    {SR_ = "mediumDeltaMLoose";}
+	   if (SR == 3)    {SR_ = "lowMass";}
+	   if (SR == 4)    {SR_ = "offShellLoose";}
+
+   }
+
+
+   if (dataset_name == "T2bw075") {	 
+
+	   if (SR == 1)    {SR_ = "highDeltaM";}
+	   if (SR == 2)    {SR_ = "mediumDeltaM";}
+	   if (SR == 3)    {SR_ = "lowDeltaMTight";}
+
+   }
+
+
+   if (dataset_name == "T2tt") {	 
+
+	   if (SR == 1)    {SR_ = "highDeltaM";}
+	   if (SR == 2)    {SR_ = "mediumDeltaM";}
+	   if (SR == 3)    {SR_ = "lowDeltaM";}
+	   if (SR == 4)    {SR_ = "offShellTight";}
+	   if (SR == 5)    {SR_ = "offShellLoose";}
+
+   }
+
+
+
+
+  		  char shortfilename[500];
+  		  char filename[500];
+
+                  sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsCNC_3/%s/%s/higgsCombineS%d-N%d.Asymptotic.mH120.root", dataset_name, SR_, x, y);
+
+   
+	         
+		  TFile* file  = new TFile(filename, "READ");  
+		  char* name = (char*)file->GetName();
+
+
+
+			TTree *limittree = (TTree*)file->Get("limit");
+			double high_val = 100.;
+			TH1F* exp = new TH1F("exp","",100,0,high_val);
+			limittree->Draw("limit>>exp", "quantileExpected==0.5");
+
+			limit =  exp->GetMean(); 
+		  	file->Close();
+
+
+
+ return limit; 	
+}
+
+
+
+
+void plot_limit(TString decay_mode){
+
+			
+              for(int x=175; x<800; x+=25){
+
+
+                      for(int y=25; y<=700; y+=25){
+
+                               if (x - y > 75){
+
+	                                        double limits[6] = {
+
+						return_limit(decay_mode,x,y,1),
+						return_limit(decay_mode,x,y,2),
+						return_limit(decay_mode,x,y,3),
+						return_limit(decay_mode,x,y,4)
+						};
+						
+						cout << limits[0] << endl;
+						cout << limits[1] << endl;
+						cout << limits[2] << endl;
+						cout << limits[3] << endl;
+
+						double temp = -999.;
+						int mvaval = -1;
+
+        					// Get the maximum of each point for all MVAs
+                   				for(int i=0;i<4;i++){
+        
+							if( (limits[i]<temp) && limits[i] > 0. ){
+		
+								
+								 temp    = limits[i];                     
+								 mvaval  = i;
+													   
+																   
+							}
+                                                                                                                                             
+						}
+
+						
+						cout << "i: "<< mvaval << endl;  
+                                                cout << "val: "<< temp << endl; 
+
+				}
+		}
+	  }
+
+
+}
