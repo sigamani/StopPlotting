@@ -25,8 +25,10 @@
 
 
 //#include "../cutAndCountDefinitions.h"
-#include "../backgroundPredictions_MT100.h" 
 
+#include "../signalRegionDefinitions.h"
+#include "../backgroundPrediction_CNC_SignalContamination.C"
+#include "../backgroundPrediction.h"
 
 using namespace std;
 
@@ -44,7 +46,7 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
           std::string neut = ostr2.str();
 
 
-          TFile sig("ntp_7_MT100/"+decay_mode+".root");
+          TFile sig("ntp_8/"+decay_mode+".root");
 
           TH1D* signal= (TH1D*)sig.Get("Events_"+decay_mode+"_"+SignalRegion+"_S"+TString(stop)+"_N"+TString(neut));
           TH1D* signalBVetoBCUp= (TH1D*)sig.Get("Events_"+decay_mode+"_"+SignalRegion+"BVetoBCUp_S"+TString(stop)+"_N"+TString(neut));
@@ -55,10 +57,11 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
           TH1D* signalJESDown= (TH1D*)sig.Get("Events_"+decay_mode+"_"+SignalRegion+"JESDown_S"+TString(stop)+"_N"+TString(neut));
           TH1D* signalGEN = (TH1D*)sig.Get("Events_NGenSignal_S"+TString(stop)+"_N"+TString(neut));
       		
-      	  TFile datafile("ntp_7_MT100/data.root");
+      	  TFile datafile("ntp_8/data.root");
           TH1D* datahist= (TH1D*)datafile.Get("Events_"+decay_mode+"_"+SignalRegion+"_S0_N0");
 
           double nsignal = signal->Integral();
+          double nsignal_RAW = signal->GetEntries();
           double nsignalBVetoBCUp = signalBVetoBCUp->Integral();
           double nsignalBVetoBCDown = signalBVetoBCDown->Integral();
           double nsignalBVetoLightUp = signalBVetoLightUp->Integral();
@@ -188,8 +191,22 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
           double BVetoLighttot =  (BVetoLightUp + BVetoLightDown)/ 2. ;
           double BVetoBCtot =  (BVetoBCUp + BVetoBCDown)/ 2. ;
           double BVetotot = sqrt (BVetoBCtot*BVetoBCtot + BVetoLighttot*BVetoLighttot);
-          double stat_err = 1 + sqrt (1 /nsignal + 1 / totalsignal -   1 /   (sqrt(nsignal * totalsignal)));
-      	  double PDF_err = 10.;
+
+		  double stat_err_a = 1 /nsignal_RAW + 1 / totalsignal;
+		  double stat_err_b = 1 /(sqrt(nsignal_RAW * totalsignal));
+	      double stat_err;
+		  if (stat_err_b > stat_err_a) stat_err = 100 * sqrt(stat_err_a);
+			else stat_err = 100 * sqrt(stat_err_a - stat_err_b);
+
+		  TFile PDF_err_file("PDFUncertainties/"+decay_mode+"_presel.root");
+		  TH2D* PDF_err_hist= (TH2D*)PDF_err_file.Get("twodplot");
+		  int max_binX = PDF_err_hist->GetXaxis()->FindBin(MSTOP);
+	      int max_binY = PDF_err_hist->GetYaxis()->FindBin(MLSP);
+	  	  double PDF_err = PDF_err_hist->GetBinContent(max_binX,max_binY);
+
+		  if (PDF_err > 25.) PDF_err = 20.;
+		  if (PDF_err == 0) PDF_err = 10.;
+		  if (PDF_err != PDF_err) PDF_err = 10.;
 
           if (JEStot > 20.) JEStot = 20.;       // put upper bound on JES uncertainty
           if (BVetotot > 10.) BVetotot = 10.;     // put upper bound on JES uncertainty
@@ -200,8 +217,6 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
 
           createTableCLsCNC(decay_mode, SignalRegion, MSTOP, MLSP, ndata, nsignal, sig_err_percentage, bkg, bkg_err_percentage);
 
-     
-	  
 }
 
 
@@ -266,7 +281,7 @@ void createTableCLsCNC(TString decay_mode, TString SignalRegion, int S, int N, d
 
   tablesFile.close();
 
-  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsCNC_15_UB/"+TString(decay_mode)+"/"+TString(SignalRegion);
+  TString savedir = "/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsCNC_22_noSC/"+TString(decay_mode)+"/"+TString(SignalRegion);
   gSystem->Exec("mkdir -p "+savedir); 
   gSystem->Exec("mv "+TString(datacardname)+" "+savedir); 
 

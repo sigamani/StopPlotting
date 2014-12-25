@@ -1,4 +1,4 @@
-pair<float,float> backgroundPrediction_BDT(TString decaymode, int mStop, int mLSP)
+pair<float,float> backgroundPrediction_BDT_SignalContamination(TString decaymode, int mStop, int mLSP)
 {
 
   if (decaymode == "T2bw025") {
