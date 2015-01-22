@@ -90,8 +90,6 @@ void plot_limit(TString decay_mode, TString Exp){
   Double_t blue[NRGBs]  = { 0.99, 0.0, 1.00, 0.12, 0.00, 0.00 };
 
 
-  //TColor::CreateGradientColorTable(NRGBs, stops, red, green, blue, NCont);
-  //gStyle->SetNumberContours(NCont);
 
   gStyle->SetOptStat(0);
 
@@ -124,8 +122,8 @@ void plot_limit(TString decay_mode, TString Exp){
 						TFile* file; 
 						TFile* file0; 
 
-						sprintf(filenameFULL,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_22SC/%s/FULL_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);  
-						sprintf(filenameASY,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_22SC/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);  
+						sprintf(filenameFULL,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_22_noSCnoPDFnoSTAT/%s/FULL_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);  
+						sprintf(filenameASY,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_22_noSCnoPDFnoSTAT/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);  
 
    
 						 
@@ -172,10 +170,8 @@ void plot_limit(TString decay_mode, TString Exp){
 
 						double limit_cleaned = ReturnCleanedLimit( x, y, limit, decay_mode, true, Exp);
 
-						  //      if (limit < 1.0){
 						       if (limit_cleaned < 1.0){
 								hist_limit->Fill(x,y,limit_cleaned);
-							//	hist_limit->Fill(x,y,limit);
 								file->Close();
 								file0->Close();
 
@@ -231,8 +227,7 @@ void plot_limit(TString decay_mode, TString Exp){
       l1.DrawLatex(0.155, 0.98, "CMS Preliminary");
       l1.DrawLatex(0.7, 0.98, "20 fb^{-1} (8 TeV)");
 
-	  c1.SaveAs("~/www/test.png");
-//      c1.SaveAs("~/www/STOP/Limits/V12_BDT2/"+dir+"_"+Exp+".png");
+	  c1.SaveAs("~/www/limit.png");
 
       fout->cd();
       fout->Write();
