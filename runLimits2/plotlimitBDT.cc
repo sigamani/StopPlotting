@@ -92,7 +92,7 @@ void plot_limit(TString dir, TString Exp){
   		  char filename[500];
 
                   
-  					sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_22_CombinationNoSC/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);  
+  					sprintf(filename,"/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/HiggsAnalysis/CombinedLimit/LimitsBDT_22_noSCnoPDFnoSTAT/%s/ASYMPTOTIC_CLS_RESULT_S%d-N%d.root", dataset_name, x, y);  
 
                  ifstream ifile(filename);
 				 if (!ifile.good()) continue; 

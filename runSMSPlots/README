@@ -35,6 +35,6 @@ python python/makeSMSplots.py config/SUS14015/T2bw075_SUS14015.cfg T2bw -b
 
 would create three plots
 
-T1ttttRA2bBAND.pdf   <-- plot with 1 sigma band (Brazilian-like plots)	
-T1ttttRA2bCONT.pdf   <-- plot with color contour	 
-T1ttttRA2bXSEC.pdf   <-- temperature plot
+T2ttXSEC_BDTBAND.pdf   <-- plot with 1 sigma band (Brazilian-like plots)	
+T2ttXSEC_BDTCONT.pdf   <-- plot with color contour	 
+T2ttXSEC_BDTXSEC.pdf   <-- temperature plot

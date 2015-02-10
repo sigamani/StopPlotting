@@ -45,7 +45,7 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
           std::string neut = ostr2.str();
 
 
-          TFile sig("ntp_8/"+decay_mode+".root");
+          TFile sig("../runLimits2/ntp_8/"+decay_mode+".root");
 
           TH1D* signal= (TH1D*)sig.Get("Events_"+decay_mode+"_"+SignalRegion+"_S"+TString(stop)+"_N"+TString(neut));
           TH1D* signalBVetoBCUp= (TH1D*)sig.Get("Events_"+decay_mode+"_"+SignalRegion+"BVetoBCUp_S"+TString(stop)+"_N"+TString(neut));
@@ -56,7 +56,7 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
           TH1D* signalJESDown= (TH1D*)sig.Get("Events_"+decay_mode+"_"+SignalRegion+"JESDown_S"+TString(stop)+"_N"+TString(neut));
           TH1D* signalGEN = (TH1D*)sig.Get("Events_NGenSignal_S"+TString(stop)+"_N"+TString(neut));
       		
-      	  TFile datafile("ntp_8/data.root");
+      	  TFile datafile("../runLimits2/ntp_8/data.root");
           TH1D* datahist= (TH1D*)datafile.Get("Events_"+decay_mode+"_"+SignalRegion+"_S0_N0");
 
           double nsignal = signal->Integral();
@@ -86,22 +86,22 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
 		if (SignalRegion == "offShell") {
 		  B = backgroundPrediction_cutAndCount_T2bw025_offShell().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2bw025_offShell().second ; 
-		  //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-		  //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ; 
+		  Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+		  Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ; 
 		  }
 
 		if (SignalRegion == "lowMasses") {
 		  B = backgroundPrediction_cutAndCount_T2bw025_lowMasses().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2bw025_lowMasses().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 		if (SignalRegion == "highMasses") {
 		  B = backgroundPrediction_cutAndCount_T2bw025_highMasses().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2bw025_highMasses().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 	  }
@@ -113,29 +113,29 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
 		if (SignalRegion == "offShell") {
 		  B = backgroundPrediction_cutAndCount_T2bw050_offShell().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2bw050_offShell().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 		if (SignalRegion == "lowMasses") {
 		  B = backgroundPrediction_cutAndCount_T2bw050_lowMasses().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2bw050_lowMasses().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 		if (SignalRegion == "mediumDeltaM") {
 		  B = backgroundPrediction_cutAndCount_T2bw050_mediumDeltaM().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2bw050_mediumDeltaM().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 		if (SignalRegion == "highDeltaM") {
 		  B = backgroundPrediction_cutAndCount_T2bw050_highDeltaM().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2bw050_highDeltaM().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 	  }
@@ -148,22 +148,22 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
 		if (SignalRegion == "lowDeltaM") {
 		  B = backgroundPrediction_cutAndCount_T2bw075_lowDeltaM().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2bw075_lowDeltaM().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 		if (SignalRegion == "mediumDeltaM") {
 		  B = backgroundPrediction_cutAndCount_T2bw075_mediumDeltaM().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2bw075_mediumDeltaM().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 		if (SignalRegion == "highDeltaM") {
 		  B = backgroundPrediction_cutAndCount_T2bw075_highDeltaM().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2bw075_highDeltaM().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 	  }
@@ -175,36 +175,36 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
 		if (SignalRegion == "offShellLoose") {
 		  B = backgroundPrediction_cutAndCount_T2tt_offShellLoose().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2tt_offShellLoose().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 		if (SignalRegion == "offShellTight") {
 		  B = backgroundPrediction_cutAndCount_T2tt_offShellTight().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2tt_offShellTight().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 		if (SignalRegion == "lowDeltaM") {
 		  B = backgroundPrediction_cutAndCount_T2tt_lowDeltaM().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2tt_lowDeltaM().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 		if (SignalRegion == "mediumDeltaM") {
 		  B = backgroundPrediction_cutAndCount_T2tt_mediumDeltaM().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2tt_mediumDeltaM().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 		if (SignalRegion == "highDeltaM") {
 		  B = backgroundPrediction_cutAndCount_T2tt_highDeltaM().first  ; 
 		  B_err = backgroundPrediction_cutAndCount_T2tt_highDeltaM().second ; 
-          //Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
-          //Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
+          Bp = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).first  ; 
+          Bp_err = backgroundPrediction_CNC_SignalContamination(decay_mode,SignalRegion,MSTOP,MLSP).second ;
 		  }
 
 	  }
@@ -231,7 +231,7 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
 		  if (stat_err_b > stat_err_a) stat_err = 100 * sqrt(stat_err_a);
 			else stat_err = 100 * sqrt(stat_err_a - stat_err_b);
 
-		  TFile PDF_err_file("PDFUncertainties/"+decay_mode+"_presel.root");
+		  TFile PDF_err_file("../runLimits2/PDFUncertainties/"+decay_mode+"_presel.root");
 		  TH2D* PDF_err_hist= (TH2D*)PDF_err_file.Get("twodplot");
 		  int max_binX = PDF_err_hist->GetXaxis()->FindBin(MSTOP);
 	      int max_binY = PDF_err_hist->GetYaxis()->FindBin(MLSP);
@@ -247,6 +247,8 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
 
           double S_err = sqrt(stat_err*stat_err + BVetotot*BVetotot + JEStot*JEStot + 3*3 + 5*5 + 2.2*2.2 + PDF_err*PDF_err);
 		  double sig_err_percentage = S_err/100. + 1.;
+          if (nsignal<0) sig_err_percentage=0.;
+  
           B_err_percentage = (B_err / B) + 1. ;
 
 
@@ -257,13 +259,14 @@ void makeCLsCards(TString decay_mode, TString SignalRegion, int MSTOP, int MLSP)
 				if (nsignal_new < 0) nsignal_new = 0.;
 
 		  // No SC
-          createTableCLsCNC(decay_mode, SignalRegion, MSTOP, MLSP, ndata, nsignal, sig_err_percentage, B, B_err_percentage);
+          //createTableCLsCNC(decay_mode, SignalRegion, MSTOP, MLSP, ndata, nsignal, sig_err_percentage, B, B_err_percentage);
 
 		  // SC
-          //createTableCLsCNC(decay_mode, SignalRegion, MSTOP, MLSP, ndata, nsignal_new, SigmaTot, B, B_err_percentage);
+          createTableCLsCNC(decay_mode, SignalRegion, MSTOP, MLSP, ndata, nsignal_new, sig_err_percentage, B, B_err_percentage);
 
-//      cout << "S: "<< nsignal << " +/- " << S_err_abs << endl;
-//      cout << "S': "<< nsignal_new << " +/- " << SigmaTot << endl;
+    //  cout << "S: "<< nsignal << " +/- " << S_err_abs << endl;
+    //  cout << "S': "<< nsignal_new << " +/- " << SigmaTot << endl;
+      //cout << "S': "<< nsignal_new << " +/- " << sig_err_percentage << endl;
 }
 
 

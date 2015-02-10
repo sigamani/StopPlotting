@@ -82,7 +82,7 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
    	  if (SignalRegion == "T2tt_5_highDM")   {SignalRegion_ = "R5";   }
 
 
-      TFile sig("ntp_8/"+decay_mode+".root");
+      TFile sig("ntp8/"+decay_mode+"L.root");
       TH1D* signal= (TH1D*)sig.Get("hist_BDT_output_"+decay_mode_+"_"+SignalRegion_+"_S"+TString(stop)+"_N"+TString(neut));
       TH1D* signal_RAW= (TH1D*)sig.Get("hist_BDT_output_"+decay_mode_+"_"+SignalRegion_+"_RAW_S"+TString(stop)+"_N"+TString(neut));
       TH1D* signalJESUp= (TH1D*)sig.Get("hist_BDT_output_"+decay_mode_+"_"+SignalRegion_+"JESUp_S"+TString(stop)+"_N"+TString(neut));
@@ -97,7 +97,7 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
       TH1D* signalPRESEL = (TH1D*)sig.Get("Events_Preselection_S"+TString(stop)+"_N"+TString(neut));
 
 
-      TFile datafile("ntp_8/data.root");
+      TFile datafile("ntp8/data.root");
       TH1D* datahist= (TH1D*)datafile.Get("hist_BDT_output_"+decay_mode_+"_"+SignalRegion_+"_S0_N0");
 
 
@@ -266,7 +266,7 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
          else stat_err = 100 * sqrt(stat_err_a - stat_err_b);
 
 //      double PDF_err = 10.;
-	  TFile PDF_err_file("PDFUncertainties/"+decay_mode+"_presel.root");
+	  TFile PDF_err_file("../runLimits2/PDFUncertainties/"+decay_mode+"_presel.root");
 	  TH2D* PDF_err_hist= (TH2D*)PDF_err_file.Get("twodplot"); 
 	  int max_binX = PDF_err_hist->GetXaxis()->FindBin(MSTOP);
 	  int max_binY = PDF_err_hist->GetYaxis()->FindBin(MLSP);
@@ -304,8 +304,8 @@ void makeCLsCards(TString decay_mode, double BDTdefCutOffset, int MSTOP, int MLS
 	  
 	  double sig_err_percentage = S_err + 1.;
       double bkg_err_percentage = (B_err / B) + 1. ;
-      //createTableCLsBDT(decay_mode, BDTdefCutOffset, SignalRegion, MSTOP, MLSP, ndata, nsignal_new, sig_err_percentage, B, bkg_err_percentage);
-      createTableCLsBDT(decay_mode, BDTdefCutOffset, SignalRegion, MSTOP, MLSP, ndata, nsignal, sig_err_percentage, B, bkg_err_percentage);
+      createTableCLsBDT(decay_mode, BDTdefCutOffset, SignalRegion, MSTOP, MLSP, ndata, nsignal_new, sig_err_percentage, B, bkg_err_percentage);
+      //createTableCLsBDT(decay_mode, BDTdefCutOffset, SignalRegion, MSTOP, MLSP, ndata, nsignal, sig_err_percentage, B, bkg_err_percentage);
 	 
 }
 
