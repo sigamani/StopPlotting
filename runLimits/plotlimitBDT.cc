@@ -29,8 +29,8 @@
 #include <map>
 #include <utility>
 
-#include "smooth.C"
-//#include "smooth_noSC.C"
+#include "smooth_noSyst.C"
+//#include "smooth_noSCnoPDFnoSTAT.C"
 #include "../stopCrossSectionsErr.h"
 
 
@@ -104,8 +104,7 @@ void plot_limit(TString decay_mode, TString Exp){
 
    TFile *fout = new TFile(TString(decay_mode)+"_"+Exp+"_BDT.root","recreate");
 
-   TH2D *hist_limit =  new TH2D(TString(decay_mode)+"_"+Exp,"",29,87.5, 812.5, 19, -62.5,412.5); 
-//    T2ttContourFix(hist_limit);
+   TH2D *hist_limit =  new TH2D(TString(decay_mode)+"_"+Exp,"",29,87.5, 812.5, 17, -12.5,412.5);
 
 
               for(int x=100; x<=800; x+=25){
@@ -131,8 +130,9 @@ void plot_limit(TString decay_mode, TString Exp){
 						file0  = new TFile(filenameFULL, "READ");  
 
 						double size = file0->GetSize();
+                        bool has_limit_tree = file0->GetListOfKeys()->Contains("limit"); 
 
-						if ( (ifile.good()) && (size > 835) ) {
+						if ( (ifile.good()) && (has_limit_tree == 1) ) {
 
 						file  = new TFile(filenameFULL, "READ");  
 
@@ -174,8 +174,8 @@ void plot_limit(TString decay_mode, TString Exp){
 								hist_limit->Fill(x,y,limit_cleaned);
 								file->Close();
 								file0->Close();
-
-						 }
+			
+						}
 
 	        }
 
@@ -208,13 +208,12 @@ void plot_limit(TString decay_mode, TString Exp){
           hist_limit->Draw("cont3c");
           hist_limit->SetLineColor(4);
           hist_limit->SetLineWidth(2);
- */ 
+  */
 
 	  TLegendEntry *legge;
 	  TLegend *leg;
 	  leg = new TLegend(0.4,0.55,0.7,0.85);
 	  leg->SetFillStyle(0); leg->SetBorderSize(0); leg->SetTextSize(0.043);
-//	  legge = leg->AddEntry(hist_limit,   "#color[4]{Expected U.L. @95\% CL}", "");
 	  leg->SetFillColor(0);
 	  hist_limit->Draw("colz");
 	  leg->Draw();
@@ -227,7 +226,7 @@ void plot_limit(TString decay_mode, TString Exp){
       l1.DrawLatex(0.155, 0.98, "CMS Preliminary");
       l1.DrawLatex(0.7, 0.98, "20 fb^{-1} (8 TeV)");
 
-	  c1.SaveAs("~/www/limit.png");
+	  c1.SaveAs("~/www/test.png");
 
       fout->cd();
       fout->Write();
