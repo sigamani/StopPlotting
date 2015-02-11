@@ -28,9 +28,10 @@ class inputFile():
             fileIN.close()
             rootFileIn = rt.TFile.Open(tmpLINE[1])
             return {'histogram': rootFileIn.Get(tmpLINE[2])}
-            
+    
     def findEXPECTED(self, fileName):
         fileIN = open(fileName)        
+        #print str(fileName)        
         for line in fileIN:
             tmpLINE =  line[:-1].split(" ")
             if tmpLINE[0] != "EXPECTED": continue
@@ -39,9 +40,9 @@ class inputFile():
             return {'nominal': rootFileIn.Get(tmpLINE[2]),
                     'plus': rootFileIn.Get(tmpLINE[3]),
                     'minus': rootFileIn.Get(tmpLINE[4]),
-                    'OffShellnominal': rootFileIn.Get(tmpLINE[7]),
-                    'OffShellplus': rootFileIn.Get(tmpLINE[8]),
-                    'OffShellminus': rootFileIn.Get(tmpLINE[9]),
+                #    'OffShellnominal': rootFileIn.Get(tmpLINE[7]),
+                #    'OffShellplus': rootFileIn.Get(tmpLINE[8]),
+                #    'OffShellminus': rootFileIn.Get(tmpLINE[9]),
                     'colorLine': tmpLINE[5],
                     'colorArea': tmpLINE[6]}
 
@@ -55,9 +56,9 @@ class inputFile():
             return {'nominal': rootFileIn.Get(tmpLINE[2]),
                     'plus': rootFileIn.Get(tmpLINE[3]),
                     'minus': rootFileIn.Get(tmpLINE[4]),
-                    'OffShellnominal': rootFileIn.Get(tmpLINE[7]),
-                    'OffShellplus': rootFileIn.Get(tmpLINE[8]),
-                    'OffShellminus': rootFileIn.Get(tmpLINE[9]),
+                 #   'OffShellnominal': rootFileIn.Get(tmpLINE[7]),
+                 #   'OffShellplus': rootFileIn.Get(tmpLINE[8]),
+                 #   'OffShellminus': rootFileIn.Get(tmpLINE[9]),
                     'colorLine': tmpLINE[5],
                     'colorArea': tmpLINE[6]}
 

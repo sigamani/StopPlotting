@@ -39,16 +39,18 @@ void ReturnTGraph(TH2D *, int);
 
 
 
-TFile *fout = new TFile("/afs/cern.ch/work/s/sigamani/public/CMSSW_6_1_1/src/PlotsSMS/config/SUS14015/TEST_results.root","recreate");
+// create temp output file
+TFile *fout = new TFile("temp_results.root","recreate");
 
 
 
 
 double ReturnUpperLimit(int stopmass, int lspmass, TString decay_mode, TString Exp){
 
+
    TString Exp0;
 
-   TFile* file = TFile::Open("h_SigStrengthLimits_T2ttPerPol50.root");
+   TFile* file = TFile::Open(decay_mode+".root");
 
    if (Exp == "Exp") {
     Exp0 = "Exp";
@@ -165,7 +167,35 @@ void ReturnTGraph(TH2D *input_hist, TString Exp){
 
 
 
-void plot_limit_contour_OnShell(TString decay_mode, TString Exp){
+void plot_limit_contour_T2bw(TString decay_mode, TString Exp){
+
+
+
+   TH2D *hist = new TH2D("hist","",29,87.5, 812.5, 17, -12.5,412.5);
+
+
+              for(int x=100; x<=800; x+=25){
+
+
+                      for(int y=0; y<=400; y+=25){
+
+                        if (x - y < 100) continue;
+
+                        double limit = ReturnUpperLimit(x, y, decay_mode, Exp);
+                        hist->Fill(x,y,1./ limit);
+
+                        }
+            }
+
+    	ReturnTGraph(hist, Exp);
+
+  delete hist;
+
+}
+
+
+
+void plot_limit_contour_T2ttOnShell(TString Exp){
 
 
 
@@ -179,7 +209,7 @@ void plot_limit_contour_OnShell(TString decay_mode, TString Exp){
 
                         if (x - y <= 150) continue;
 
-                        double limit = ReturnUpperLimit(x, y, decay_mode, Exp);
+                        double limit = ReturnUpperLimit(x, y, "T2tt", Exp);
                         hist->Fill(x,y,1./ limit);
 
                         }
@@ -196,8 +226,7 @@ void plot_limit_contour_OnShell(TString decay_mode, TString Exp){
 
 
 
-
-void plot_limit_contour_OffShell(TString decay_mode, TString Exp){
+void plot_limit_contour_T2ttOffShell(TString Exp){
 
 
 
@@ -211,13 +240,13 @@ void plot_limit_contour_OffShell(TString decay_mode, TString Exp){
                         if (x - y < 100) continue;
                         if (x - y > 150) continue;
 
-                        double limit = ReturnUpperLimit(x, y, decay_mode, Exp);
+                        double limit = ReturnUpperLimit(x, y, "T2tt", Exp);
                         hist->Fill(x,y,1./ limit);
 
                         }
             	}
 
-    		ReturnTGraph(hist, Exp+"_OffShell");
+    		ReturnTGraph(hist, "T2tt_OffShell");
 
 	delete hist;
 
@@ -259,27 +288,55 @@ void Return2DTemperatureMap(TString decay_mode, TString Exp){
 
 
 
-void doAll(){
+void doAll(TString decay_mode){
 
+
+  cout << "Running over "<< decay_mode << endl;
+
+  if (decay_mode == "T2tt") {
 
  Return2DTemperatureMap("T2tt", "Exp");
+ cout << "1/7 plots done"<< endl;
+ plot_limit_contour_T2ttOffShell("Exp");
+ plot_limit_contour_T2ttOnShell("Exp");
+ cout << "2/7 plots done"<< endl;
+ plot_limit_contour_T2ttOffShell("ExpM");
+ plot_limit_contour_T2ttOnShell("ExpM");
+ cout << "3/7 plots done"<< endl;
+ plot_limit_contour_T2ttOffShell("ExpP");
+ plot_limit_contour_T2ttOnShell("ExpP");
+ cout << "4/7 plots done"<< endl;
+ plot_limit_contour_T2ttOffShell("Obs");
+ plot_limit_contour_T2ttOnShell("Obs");
+ cout << "5/7 plots done"<< endl;
+ plot_limit_contour_T2ttOffShell("ObsM");
+ plot_limit_contour_T2ttOnShell("ObsM");
+ cout << "6/7 plots done"<< endl;
+ plot_limit_contour_T2ttOffShell("ObsP");
+ plot_limit_contour_T2ttOnShell("ObsP");
+ cout << "7/7 plots done"<< endl;
 
- cout << "Making expected"<< endl;
- plot_limit_contour_OffShell("T2tt", "Exp");
- plot_limit_contour_OnShell("T2tt", "Exp");
- plot_limit_contour_OffShell("T2tt", "ExpM");
- plot_limit_contour_OnShell("T2tt", "ExpM");
- plot_limit_contour_OffShell("T2tt", "ExpP");
- plot_limit_contour_OnShell("T2tt", "ExpP");
 
- cout << "Making observed"<< endl;
- plot_limit_contour_OffShell("T2tt", "Obs");
- plot_limit_contour_OnShell("T2tt", "Obs");
- plot_limit_contour_OffShell("T2tt", "ObsM");
- plot_limit_contour_OnShell("T2tt", "ObsM");
- plot_limit_contour_OffShell("T2tt", "ObsP");
- plot_limit_contour_OnShell("T2tt", "ObsP");
+ } else 
 
- fout->Close();
-   
+
+    Return2DTemperatureMap(decay_mode, "Exp");
+    cout << "1/7 plots done"<< endl;
+    plot_limit_contour_T2bw(decay_mode, "Exp");
+    cout << "2/7 plots done"<< endl;
+    plot_limit_contour_T2bw(decay_mode, "ExpM");
+    cout << "3/7 plots done"<< endl;
+    plot_limit_contour_T2bw(decay_mode, "ExpP");
+    cout << "4/7 plots done"<< endl;
+    plot_limit_contour_T2bw(decay_mode, "Obs");
+    cout << "5/7 plots done"<< endl;
+    plot_limit_contour_T2bw(decay_mode, "ObsP");
+    cout << "6/7 plots done"<< endl;
+    plot_limit_contour_T2bw(decay_mode, "ObsM");
+    cout << "7/7 plots done"<< endl;
+
+    fout->Close();
+
+    gSystem->Exec("mv temp_results.root config/SUS14015-SUS13025-Combination/"+decay_mode+"_results.root");
+ 
 }

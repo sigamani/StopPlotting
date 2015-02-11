@@ -215,25 +215,23 @@ void DataMCplots(TString plotname, TString selectionname, TString leptonname){
            leg->SetFillColor(0);
 
  
-
            double binsize = Data->GetBinWidth(4);
 	
            std::ostringstream ostr1;
            ostr1 << binsize;
            std::string binsizename = ostr1.str();
 
-
-	   TCanvas *c1 = new TCanvas("c1","example",650,700);
-	   TPad *pad1 = new TPad("pad1","pad1",0,0.29,1,0.97);
-	   pad1->SetBottomMargin(0);
-	   pad1->Draw();
-	   pad1->cd();
+		   TCanvas *c1 = new TCanvas("c1","example",650,700);
+		   TPad *pad1 = new TPad("pad1","pad1",0,0.29,1,0.97);
+		   pad1->SetBottomMargin(0);
+		   pad1->Draw();
+		   pad1->cd();
 
            Data->GetXaxis()->SetLabelSize(0.);
 
            Data->Draw("");
            stack->Draw("same");
-	   Data->Draw("samepe");
+  	       Data->Draw("samepe");
            if (plotname == "h1_njets") { Data->GetYaxis()->SetTitle("Entries");  } else
            Data->GetYaxis()->SetTitle("Entries / "+TString(binsizename)+" "+TString(binunits));
            leg->Draw();
