@@ -28,7 +28,8 @@
 #include <map>
 #include <utility>
 
-#include "../stopCrossSections.h"
+#include "../smooth.C"
+#include "../stopCrossSections.h" 
 
 
 using namespace std;
@@ -43,112 +44,6 @@ void ReturnTGraph(TH2D *, int);
 TFile *fout = new TFile("temp_results.root","recreate");
 
 
-void smoothTH2( TH2D* h , char* sample , bool doBDT = false , float min = 1.0e-10 , float max = 9){
-
-
-  for( int ibin = 1 ; ibin <= h->GetXaxis()->GetNbins() ; ibin++ ){
-    for( int jbin = 1 ; jbin <= h->GetYaxis()->GetNbins() ; jbin++ ){
-
-      int x      = h->GetXaxis()->GetBinCenter(ibin);
-      int y      = h->GetYaxis()->GetBinCenter(jbin);
-
-      //if( TString(sample).Contains("T2tt") && (int) x-y <= 175 ) continue;
-      //if( TString(sample).Contains("T2tt") && (int) x-y <= 200 ) continue;
-      
-	
-      float valdd  = h->GetBinContent(ibin-1,jbin-1);
-      float valdn  = h->GetBinContent(ibin-1,jbin);
-      float valdu  = h->GetBinContent(ibin-1,jbin+1);
-
-      float valnd  = h->GetBinContent(ibin,jbin-1);
-      float valnn  = h->GetBinContent(ibin,jbin);
-      float valnu  = h->GetBinContent(ibin,jbin+1);
-
-      float valud  = h->GetBinContent(ibin+1,jbin-1);
-      float valun  = h->GetBinContent(ibin+1,jbin);
-      float valuu  = h->GetBinContent(ibin+1,jbin+1);
-
-      int   nbins   = 0;
-      float average = 0.0;
-
-      if( valnn > 9 ) continue;
-
-       if( TString(sample).Contains("T2bw") ){
-       	if( valdn > 9 ) continue;
-       	if( valnd > 9 ) continue;
-       	if( valnu > 9 ) continue;
-       	if( valun > 9 ) continue;
-       }
-
-       if( valdd > 9 ) continue;
-       if( valdn > 9 ) continue;
-       if( valdu > 9 ) continue;
-
-       if( valnd > 9 ) continue;
-       if( valnn > 9 ) continue;
-       if( valnu > 9 ) continue;
-
-       if( valud > 9 ) continue;
-       if( valun > 9 ) continue;
-       if( valuu > 9 ) continue;
-
-      if( valdd > min  && valdd < max ){
-      	nbins++;
-      	average+=valdd;
-      }
-
-      if( valdn > min  && valdn < max ){
-      	nbins++;
-      	average+=valdn;
-      }
-
-      if( valdu > min  && valdu < max ){
-      	nbins++;
-      	average+=valdu;
-      }
-
-      if( valnd > min && valnd < max ){
-      	nbins++;
-      	average+=valnd;
-      }
-
-      if( valnn > min && valnn < max){
-      	nbins++;
-      	average+=valnn;
-      }
-
-      if( valnu > min && valnu < max){
-      	nbins++;
-      	average+=valnu;
-      }
-
-      if( valud > min  && valud < max ){
-      	nbins++;
-      	average+=valud;
-      }
-
-      if( valun > min  && valun < max ){
-      	nbins++;
-      	average+=valun;
-      }
-
-      if( valuu > min  && valuu < max ){
-      	nbins++;
-      	average+=valuu;
-      }
-
-      if( nbins > 0.0 ) average = average / (float) nbins;
-      else              average = 10.0;
-
-      h->SetBinContent(ibin,jbin,average);
-
-      //if( nbins < 3 ) h->SetBinContent(ibin,jbin,100);
-    }
-  }
-
-
-}
-
 
 
 
@@ -158,7 +53,7 @@ double ReturnUpperLimit(int stopmass, int lspmass, TString decay_mode, TString E
 
    TString Exp0;
 
-   TFile* file = TFile::Open(decay_mode+".root");
+   TFile* file = TFile::Open(decay_mode+"_input.root");
 
    if (Exp == "Exp") {
     Exp0 = "Exp";
@@ -290,7 +185,9 @@ void plot_limit_contour_T2bw(TString decay_mode, TString Exp){
                         if (x - y < 100) continue;
 
                         double limit = ReturnUpperLimit(x, y, decay_mode, Exp);
-                        hist->Fill(x,y,1./ limit);
+                        double limit_cleaned = ReturnSmoothedLimitCombination( x, y, limit, decay_mode, Exp);
+
+                        hist->Fill(x,y,1./ limit_cleaned);
 
                         }
             }
@@ -378,9 +275,10 @@ void Return2DTemperatureMap(TString decay_mode, TString Exp){
                         if (x-y >= 100) { 
 
                         double limit = ReturnUpperLimit(x, y, decay_mode, Exp);
-						double upperlimit = limit * stopCrossSection(x).first ; 
+                        double limit_cleaned = ReturnSmoothedLimitCombination( x, y, limit, decay_mode, Exp);
+						double upperlimit = limit_cleaned * stopCrossSection(x).first ; 
 
-						//if (limit > 1.) continue;
+						//if (limit_cleaned > 1.) continue;
 						hXsec_exp_corr->Fill(x,y, upperlimit);
 
 	 				    }	
@@ -444,7 +342,9 @@ void doAll(TString decay_mode){
     cout << "6/7 plots done"<< endl;
     plot_limit_contour_T2bw(decay_mode, "ObsM");
     cout << "7/7 plots done"<< endl;
+
   }  
+
     fout->Close();
 
     gSystem->Exec("mv temp_results.root config/SUS14015-SUS13025-Combination/"+decay_mode+"_results.root");

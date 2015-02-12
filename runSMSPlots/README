@@ -1,4 +1,4 @@
-This code is basically adapted from:
+This code is adapted from:
 https://github.com/CMS-SUS-XPAG/PlotsSMS
 
 To run the code
@@ -17,6 +17,11 @@ export PATH=${PATH}:${ROOTSYS}/bin
 - expected limit
 - expected limit +/- 1 sigma
 
+You can do this in a root session with the following commands:
+root [0] .L makeRootFile.cc 
+root [1] doAll("T2bw025")
+
+
 3) prepare a config file similar to the example provided (see config/SUS14015/T2bw075_SUS14015.cfg)
 
 Run the code as
@@ -29,9 +34,9 @@ where
 e.g. for the 1 lepton stops analysis 
 
 python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2tt_SUS14015.cfg T2tt -b
-python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw025_SUS14015-SUS13025-Combination.cfg T2bw -b
-python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw050_SUS14015-SUS13025-Combination.cfg T2bw -b
-python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw075_SUS14015-SUS13025-Combination.cfg T2bw -b
+python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw025_SUS14015.cfg T2bw -b
+python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw050_SUS14015.cfg T2bw -b
+python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw075_SUS14015.cfg T2bw -b
 
 would create three plots
 
