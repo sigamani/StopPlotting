@@ -208,7 +208,6 @@ class smsPlotXSEC(smsPlotABS):
         tex2.SetLineWidth(2)
         tex2.Draw("SAME")
 
-
         lm = rt.TLine( 173, 0. , 482. , 482. - 173)
         lm.SetLineColor(1) 
         lm.SetLineWidth(2)

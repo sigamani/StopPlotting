@@ -28,7 +28,7 @@ where
 
 e.g. for the 1 lepton stops analysis 
 
-python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2tt_SUS14015-SUS13025-Combination.cfg T2tt -b
+python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2tt_SUS14015.cfg T2tt -b
 python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw025_SUS14015-SUS13025-Combination.cfg T2bw -b
 python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw050_SUS14015-SUS13025-Combination.cfg T2bw -b
 python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw075_SUS14015-SUS13025-Combination.cfg T2bw -b

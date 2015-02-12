@@ -10,6 +10,7 @@ class inputFile():
         self.LUMI = self.findATTRIBUTE(fileName, "LUMI")
         self.ENERGY = self.findATTRIBUTE(fileName, "ENERGY")
         print self.ENERGY
+      
         self.PRELIMINARY = self.findATTRIBUTE(fileName, "PRELIMINARY")
 
     def findATTRIBUTE(self, fileName, attribute):
@@ -31,20 +32,27 @@ class inputFile():
     
     def findEXPECTED(self, fileName):
         fileIN = open(fileName)        
-        #print str(fileName)        
         for line in fileIN:
             tmpLINE =  line[:-1].split(" ")
             if tmpLINE[0] != "EXPECTED": continue
             fileIN.close()
             rootFileIn = rt.TFile.Open(tmpLINE[1])
-            return {'nominal': rootFileIn.Get(tmpLINE[2]),
-                    'plus': rootFileIn.Get(tmpLINE[3]),
-                    'minus': rootFileIn.Get(tmpLINE[4]),
-                #    'OffShellnominal': rootFileIn.Get(tmpLINE[7]),
-                #    'OffShellplus': rootFileIn.Get(tmpLINE[8]),
-                #    'OffShellminus': rootFileIn.Get(tmpLINE[9]),
-                    'colorLine': tmpLINE[5],
-                    'colorArea': tmpLINE[6]}
+            s = str(fileName) 
+            if s.find("T2tt") == -1:
+                return {'nominal': rootFileIn.Get(tmpLINE[2]),
+                        'plus': rootFileIn.Get(tmpLINE[3]),
+                        'minus': rootFileIn.Get(tmpLINE[4]),
+                        'colorLine': tmpLINE[5],
+                        'colorArea': tmpLINE[6]}
+            else:
+                return {'nominal': rootFileIn.Get(tmpLINE[2]),
+                        'plus': rootFileIn.Get(tmpLINE[3]),
+                        'minus': rootFileIn.Get(tmpLINE[4]),
+                        'OffShellnominal': rootFileIn.Get(tmpLINE[5]),
+                        'OffShellplus': rootFileIn.Get(tmpLINE[6]),
+                        'OffShellminus': rootFileIn.Get(tmpLINE[7]),
+                        'colorLine': tmpLINE[8],
+                        'colorArea': tmpLINE[9]}
 
     def findOBSERVED(self, fileName):
         fileIN = open(fileName)        
@@ -53,12 +61,19 @@ class inputFile():
             if tmpLINE[0] != "OBSERVED": continue
             fileIN.close()
             rootFileIn = rt.TFile.Open(tmpLINE[1])
-            return {'nominal': rootFileIn.Get(tmpLINE[2]),
-                    'plus': rootFileIn.Get(tmpLINE[3]),
-                    'minus': rootFileIn.Get(tmpLINE[4]),
-                 #   'OffShellnominal': rootFileIn.Get(tmpLINE[7]),
-                 #   'OffShellplus': rootFileIn.Get(tmpLINE[8]),
-                 #   'OffShellminus': rootFileIn.Get(tmpLINE[9]),
-                    'colorLine': tmpLINE[5],
-                    'colorArea': tmpLINE[6]}
-
+            s = str(fileName) 
+            if s.find("T2tt") == -1:
+                return {'nominal': rootFileIn.Get(tmpLINE[2]),
+                        'plus': rootFileIn.Get(tmpLINE[3]),
+                        'minus': rootFileIn.Get(tmpLINE[4]),
+                        'colorLine': tmpLINE[5],
+                        'colorArea': tmpLINE[6]}
+            else:
+                return {'nominal': rootFileIn.Get(tmpLINE[2]),
+                        'plus': rootFileIn.Get(tmpLINE[3]),
+                        'minus': rootFileIn.Get(tmpLINE[4]),
+                        'OffShellnominal': rootFileIn.Get(tmpLINE[5]),
+                        'OffShellplus': rootFileIn.Get(tmpLINE[6]),
+                        'OffShellminus': rootFileIn.Get(tmpLINE[7]),
+                        'colorLine': tmpLINE[8],
+                        'colorArea': tmpLINE[9]}

@@ -26,6 +26,7 @@ class smsPlotABS(object):
         self.preliminary = preliminary
         # create the reference empty histo
         self.emptyhisto = self.emptyHistogramFromModel()
+        print modelname
 
     def emptyHistogramFromModel(self):
         self.emptyHisto = rt.TH2D("emptyHisto", "", 1, self.model.Xmin, self.model.Xmax, 1, self.model.Ymin, self.model.Ymax)
@@ -52,7 +53,7 @@ class smsPlotABS(object):
         self.emptyHisto.GetXaxis().SetTitleSize(0.05)
         self.emptyHisto.GetXaxis().SetTitleOffset(1.2)
         self.emptyHisto.GetXaxis().SetTitle(self.model.sParticle)
-        #self.emptyHisto.GetXaxis().CenterTitle(True)
+       
 
         # set y axis
         self.emptyHisto.GetYaxis().SetLabelFont(42)
@@ -61,7 +62,6 @@ class smsPlotABS(object):
         self.emptyHisto.GetYaxis().SetTitleSize(0.05)
         self.emptyHisto.GetYaxis().SetTitleOffset(1.35)
         self.emptyHisto.GetYaxis().SetTitle(self.model.LSP)
-        #self.emptyHisto.GetYaxis().CenterTitle(True)
                 
     def DrawText(self):
         #redraw axes
@@ -111,9 +111,10 @@ class smsPlotABS(object):
 
     def Save(self,label):
         # save the output
+        #self.c.SaveAs("PlotSMS/%s.png" %label)
+        #self.c.SaveAs("PlotSMS/%s.pdf" %label)
         self.c.SaveAs("~/www/PlotSMS/%s.png" %label)
         self.c.SaveAs("~/www/PlotSMS/%s.pdf" %label)
-        #self.c.SaveAs("~/www/PlotSMS/%s.C" %label)
         
     def DrawLegend(self):
         xRange = self.model.Xmax-self.model.Xmin
@@ -135,7 +136,6 @@ class smsPlotABS(object):
         LObsP.SetLineColor(color(self.OBS['colorLine']))
         LObsP.SetLineStyle(7)
         LObsP.SetLineWidth(2)
- #       LObsP.SetMarkerStyle(20)
         LObsP.SetPoint(0,self.model.Xmin+3*xRange/100, self.model.Ymax-1.20*yRange/100*10)
         LObsP.SetPoint(1,self.model.Xmin+10*xRange/100, self.model.Ymax-1.20*yRange/100*10)
 
@@ -145,7 +145,6 @@ class smsPlotABS(object):
         LObsM.SetLineColor(color(self.OBS['colorLine']))
         LObsM.SetLineStyle(7)
         LObsM.SetLineWidth(2)
-#        LObsM.SetMarkerStyle(20)
         LObsM.SetPoint(0,self.model.Xmin+3*xRange/100, self.model.Ymax-1.50*yRange/100*10)
         LObsM.SetPoint(1,self.model.Xmin+10*xRange/100, self.model.Ymax-1.50*yRange/100*10)
 
@@ -168,8 +167,7 @@ class smsPlotABS(object):
         LExp.SetName("LExp")
         LExp.SetTitle("LExp")
         LExp.SetLineColor(color(self.EXP['colorLine']))
-        #LExp.SetLineStyle(7)
-        LExp.SetLineStyle(1) # Pedrame change
+        LExp.SetLineStyle(1) 
         LExp.SetLineWidth(4)
         LExp.SetPoint(0,self.model.Xmin+3*xRange/100, self.model.Ymax-2.00*yRange/100*10)
         LExp.SetPoint(1,self.model.Xmin+10*xRange/100, self.model.Ymax-2.00*yRange/100*10)
@@ -238,32 +236,34 @@ class smsPlotABS(object):
         self.EXP['minus'].SetLineColor(color(self.EXP['colorLine']))
         self.EXP['minus'].SetLineStyle(7)
         self.EXP['minus'].SetLineWidth(2)                        
-		# new change
-        #self.OBS['OffShellnominal'].SetLineColor(color(self.OBS['colorLine']))
-        #self.OBS['OffShellnominal'].SetLineStyle(1)
-        #self.OBS['OffShellnominal'].SetLineWidth(4)
-        #self.OBS['OffShellplus'].SetLineColor(color(self.OBS['colorLine']))
-        #self.OBS['OffShellplus'].SetLineStyle(7)
-        #self.OBS['OffShellplus'].SetLineWidth(2)        
-        #self.OBS['OffShellminus'].SetLineColor(color(self.OBS['colorLine']))
-        #self.OBS['OffShellminus'].SetLineStyle(7)
-        #self.OBS['OffShellminus'].SetLineWidth(2)        
-        #self.EXP['OffShellnominal'].SetLineColor(color(self.EXP['colorLine']))
-        #self.EXP['OffShellnominal'].SetLineStyle(1) 
-        #self.EXP['OffShellnominal'].SetLineWidth(4)        
-        #self.EXP['OffShellplus'].SetLineColor(color(self.EXP['colorLine']))
-        #self.EXP['OffShellplus'].SetLineStyle(7)
-        #self.EXP['OffShellplus'].SetLineWidth(2)                
-        #self.EXP['OffShellminus'].SetLineColor(color(self.EXP['colorLine']))
-        #self.EXP['OffShellminus'].SetLineStyle(7)
-        #self.EXP['OffShellminus'].SetLineWidth(2)                        
-        #self.EXP['OffShellnominal'].Draw("LSAME")
-        #self.EXP['OffShellplus'].Draw("LSAME")
-        #self.EXP['OffShellminus'].Draw("LSAME")
-        #self.OBS['OffShellnominal'].Draw("LSAME")
-        #self.OBS['OffShellplus'].Draw("LSAME")
-        #self.OBS['OffShellminus'].Draw("LSAME")
-        # new change		
+
+		# Comment this block out for T2bw
+        self.OBS['OffShellnominal'].SetLineColor(color(self.OBS['colorLine']))
+        self.OBS['OffShellnominal'].SetLineStyle(1)
+        self.OBS['OffShellnominal'].SetLineWidth(4)
+        self.OBS['OffShellplus'].SetLineColor(color(self.OBS['colorLine']))
+        self.OBS['OffShellplus'].SetLineStyle(7)
+        self.OBS['OffShellplus'].SetLineWidth(2)        
+        self.OBS['OffShellminus'].SetLineColor(color(self.OBS['colorLine']))
+        self.OBS['OffShellminus'].SetLineStyle(7)
+        self.OBS['OffShellminus'].SetLineWidth(2)        
+        self.EXP['OffShellnominal'].SetLineColor(color(self.EXP['colorLine']))
+        self.EXP['OffShellnominal'].SetLineStyle(1) 
+        self.EXP['OffShellnominal'].SetLineWidth(4)        
+        self.EXP['OffShellplus'].SetLineColor(color(self.EXP['colorLine']))
+        self.EXP['OffShellplus'].SetLineStyle(7)
+        self.EXP['OffShellplus'].SetLineWidth(2)                
+        self.EXP['OffShellminus'].SetLineColor(color(self.EXP['colorLine']))
+        self.EXP['OffShellminus'].SetLineStyle(7)
+        self.EXP['OffShellminus'].SetLineWidth(2)                        
+        self.EXP['OffShellnominal'].Draw("LSAME")
+        self.EXP['OffShellplus'].Draw("LSAME")
+        self.EXP['OffShellminus'].Draw("LSAME")
+        self.OBS['OffShellnominal'].Draw("LSAME")
+        self.OBS['OffShellplus'].Draw("LSAME")
+        self.OBS['OffShellminus'].Draw("LSAME")
+		# Comment this block out for T2bw
+
         self.EXP['nominal'].Draw("LSAME")
         self.EXP['plus'].Draw("LSAME")
         self.EXP['minus'].Draw("LSAME")
