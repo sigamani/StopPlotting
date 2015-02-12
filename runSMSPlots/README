@@ -17,7 +17,7 @@ export PATH=${PATH}:${ROOTSYS}/bin
 - expected limit
 - expected limit +/- 1 sigma
 
-You can do this in a root session with the following commands:
+You can do this (in a root session) with the following commands:
 root [0] .L makeRootFile.cc 
 root [1] doAll("T2bw025")
 
@@ -33,10 +33,10 @@ where
 
 e.g. for the 1 lepton stops analysis 
 
-python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2tt_SUS14015.cfg T2tt -b
-python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw025_SUS14015.cfg T2bw -b
-python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw050_SUS14015.cfg T2bw -b
-python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw075_SUS14015.cfg T2bw -b
+python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2tt_config.cfg T2tt -b
+python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw025_config.cfg T2bw -b
+python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw050_config.cfg T2bw -b
+python python/makeSMSplots.py config/SUS14015-SUS13025-Combination/T2bw075_config.cfg T2bw -b
 
 would create three plots
 
