@@ -110,10 +110,10 @@ class smsPlotABS(object):
 
     def Save(self,label):
         # save the output
-        #self.c.SaveAs("PlotSMS/%s.png" %label)
-        #self.c.SaveAs("PlotSMS/%s.pdf" %label)
-        self.c.SaveAs("~/www/PlotSMS/%s.png" %label)
-        self.c.SaveAs("~/www/PlotSMS/%s.pdf" %label)
+        self.c.SaveAs("%s.png" %label)
+        self.c.SaveAs("%s.pdf" %label)
+        #self.c.SaveAs("~/www/PlotSMS/%s.png" %label)
+        #self.c.SaveAs("~/www/PlotSMS/%s.pdf" %label)
         
     def DrawLegend(self):
         xRange = self.model.Xmax-self.model.Xmin
