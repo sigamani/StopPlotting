@@ -38,6 +38,23 @@ using namespace std;
 
 
 
+struct SUSYGenParticle { // To be filled with status-3 genParticles
+      int pdgId; // PDG identifier (with sign, please)
+      int firstMother; // first mother, set to <0 if no mothers
+      double energy; // energy [GeV]
+      double pt; // pt [GeV]
+      double eta; // eta
+      double phi; // phi
+
+};
+
+
+float getT2ttPolarization(char);
+double GetThetaMixing(double, double, double, double );
+double Reweight_Stop_to_TopChi0_with_SUSYmodel (std::vector<SUSYGenParticle>, double, double );
+
+
+
 // ###################
 // #  Main function  #
 // ###################
@@ -1908,6 +1925,9 @@ int main (int argc, char *argv[])
 			double width = fabs(myEvent.mNeutralino - 1);
 		        if (width < 0.1) myEvent.mNeutralino = 0; // For the MLSP=0 plane	
 
+					cout << "mLSP: "<< myEvent.mNeutralino <<  ", mSTOP: "<< myEvent.mStop << endl;
+					cout << "weightL: "<< getT2ttPolarization('l') << endl;
+					cout << "weightR: "<< getT2ttPolarization('r') << endl;
 
 			if ( (sampleType == "signal")  &&  !((myEvent.mStop ==  atoi(argv[3]) ) && (myEvent.mNeutralino ==  atoi(argv[4]) )) )continue;
 				
@@ -2001,6 +2021,7 @@ int main (int argc, char *argv[])
 	
 					if (myEvent.isUsedInBDTTraining == 0) {
 					double weight = getWeight() * 2 ; 
+
 
 					hist_BDT_output_t2bw025_R1_RAW->Fill(myEvent.BDT_output_t2bw025_R1);		
 					hist_BDT_output_t2bw025_R3_RAW->Fill(myEvent.BDT_output_t2bw025_R3);		
@@ -2865,4 +2886,114 @@ int main (int argc, char *argv[])
 }
 
 
+
+float getT2ttPolarization(char topPolarization) {
+
+   vector<SUSYGenParticle> SUSYGenParticles;
+
+   for (unsigned int i = 0 ; i < myEvent.genParticles.size() ; i++)
+   {
+       // Create and fill the SUSY gen particle
+       SUSYGenParticle p;
+       p.energy      = myEvent.genParticles[i].E();
+       p.pt          = myEvent.genParticles[i].Pt();
+       p.eta         = (p.pt == 0 ? 9999999.0 : myEvent.genParticles[i].Eta());
+       p.phi         = myEvent.genParticles[i].Phi();
+       p.pdgId       = myEvent.genParticlesPDGId[i];
+       p.firstMother = myEvent.genParticlesMother[i];
+
+       // Append it to the vector
+       SUSYGenParticles.push_back(p);
+   }
+
+   float topPolarization_;
+        if (topPolarization == 'r') topPolarization_ =  1;
+   else if (topPolarization == 'l') topPolarization_ = -1;
+   else { cout << "Unrecognized target polarization format in getT2ttPolarization" << endl; exit(-1); }
+
+   // FIXME / WARNING : not sure what mTop is supposed to be when offshell ?
+
+   float mTop = 172.5;
+
+   float theta = GetThetaMixing(topPolarization_, myEvent.mStop , mTop, myEvent.mNeutralino);
+   float weight = Reweight_Stop_to_TopChi0_with_SUSYmodel(SUSYGenParticles, theta, mTop);
+
+   return weight;
+}
+
+
+
+double GetThetaMixing(double topPol, double m_stop, double m_top, double m_chi0) {
+      double p_chi0 = sqrt(pow(m_top*m_top+m_chi0*m_chi0-m_stop*m_stop,2)/4 - pow(m_top*m_chi0,2))/m_stop;
+      double e_chi0 = sqrt(p_chi0*p_chi0+m_chi0*m_chi0);
+      double sqrPol = 0.; if (fabs(topPol)<1) sqrPol = sqrt(1-topPol*topPol);
+      double tanThetaEff = (p_chi0*sqrPol-m_chi0*topPol)/(topPol*e_chi0+p_chi0);
+      // This is also a valid solution leading to the same top polarization value
+      //double tanThetaEff = (-p_chi0*sqrPol-m_chi0*topPol)/(topPol*e_chi0+p_chi0);
+      return atan(tanThetaEff);
+}
+
+// The following reweighting makes sense in all cases (OFF-SHELL CASE TOO)
+// It assumes isotropy for the reference MC and any SUSY scenario as target 
+// (via a thetaMixingTarget input)
+double Reweight_Stop_to_TopChi0_with_SUSYmodel (std::vector<SUSYGenParticle> genParticles, double thetaMixingTarget, double TOPMASS_REF=172.5) {
+    double weight = 1.;
+
+    unsigned int ngen = genParticles.size();
+
+    for (unsigned int ig=0; ig<ngen; ++ig) {
+      const SUSYGenParticle& gen = genParticles[ig];
+      if (gen.firstMother<0) continue;
+      if (abs(gen.pdgId)>20) continue; // expect quarks or leptons from W decay
+
+      // Navigate upwards in the stop->top->W->fermion decay chain
+      const SUSYGenParticle& genW = genParticles[gen.firstMother];
+      if (genW.firstMother<0) continue;
+      if (abs(genW.pdgId)!=24) continue;
+      const SUSYGenParticle& genTop = genParticles[genW.firstMother];
+      if (abs(genTop.pdgId)!=6) continue;
+
+      // We only care about the down-type fermion
+      if (genTop.pdgId*gen.pdgId>0) continue;
+
+      // We also need a stop
+      if (genTop.firstMother<0) continue;
+      const SUSYGenParticle& genStop = genParticles[genTop.firstMother];
+      if (abs(genStop.pdgId)!=1000006) continue;
+
+      TLorentzVector top4;
+      top4.SetPtEtaPhiE(genTop.pt, genTop.eta, genTop.phi, genTop.energy);
+
+      TLorentzVector ferm4;
+      ferm4.SetPtEtaPhiE(gen.pt, gen.eta, gen.phi, gen.energy);
+
+      // Get the neutralino
+      int igstop = genTop.firstMother;
+      int igchi0 = -1;
+      TLorentzVector chi04;
+      for (unsigned int ig=igstop+1; ig<ngen; ++ig) { // assume chi0 comes later
+            // Move chi0 to the stop rest frame
+            const SUSYGenParticle& genChi0 = genParticles[ig];
+            if (genChi0.firstMother!=igstop) continue;
+            if (abs(genChi0.pdgId)!=1000022) continue;
+            igchi0 = ig;
+            chi04.SetPtEtaPhiE(genChi0.pt, genChi0.eta, genChi0.phi, genChi0.energy);
+            break;
+      }
+      if (igchi0<0) continue;
+
+      // Determine weight according to model
+      double cX = cos(thetaMixingTarget);
+      double sX = sin(thetaMixingTarget);
+
+      double coeffTop = 2*sX*sX*(chi04*top4) + 2*sX*cX*chi04.M()*TOPMASS_REF;
+      double coeffChi = pow(cX*TOPMASS_REF,2) - pow(sX*top4.M(),2);
+      double coeffNorm = (chi04*top4)*(sX*sX+cX*cX*pow(TOPMASS_REF/top4.M(),2)) + 2*sX*cX*chi04.M()*TOPMASS_REF;
+      weight *= (coeffTop*(ferm4*top4)+coeffChi*(ferm4*chi04))/(coeffNorm*(ferm4*top4));
+
+    }
+
+    return weight;
+
+};
 

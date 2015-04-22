@@ -88,7 +88,7 @@ class smsPlotXSEC(smsPlotABS):
         tex2.SetLineWidth(2)
         tex2.Draw("SAME")
    
-        tex3 = rt.TLatex(0.14,0.065,"m_{#tilde{#chi}^{0}_{1}} = 0.75 m_{#tilde{t}} + 0.25 m_{#tilde{#chi}^{0}_{1}}");
+        tex3 = rt.TLatex(0.14,0.065,"m_{#tilde{#chi}^{#pm}_{1}} = 0.75 m_{ #tilde{t}}  +  0.25 m_{ #tilde{#chi}^{0}_{1}}");
         tex3.SetNDC()
         tex3.SetTextAlign(13)
         tex3.SetTextFont(42)
@@ -132,7 +132,7 @@ class smsPlotXSEC(smsPlotABS):
         tex2.SetLineWidth(2)
         tex2.Draw("SAME")
 
-        tex3 = rt.TLatex(0.14,0.065,"m_{#tilde{#chi}^{0}_{1}} = 0.50 m_{#tilde{t}} + 0.50 m_{#tilde{#chi}^{0}_{1}}");
+        tex3 = rt.TLatex(0.14,0.065,"m_{#tilde{ #chi}^{#pm}_{1}} = 0.50 m_{ #tilde{t}}  +  0.50 m_{ #tilde{#chi}^{0}_{1}}");
         tex3.SetNDC()
         tex3.SetTextAlign(13)
         tex3.SetTextFont(42)
@@ -174,7 +174,7 @@ class smsPlotXSEC(smsPlotABS):
         tex2.SetTextAngle(62.35402)
         tex2.SetLineWidth(2)
         tex2.Draw("SAME")
-        tex3 = rt.TLatex(0.14,0.065,"m_{#tilde{#chi}^{0}_{1}} = 0.25 m_{#tilde{t}} + 0.75 m_{#tilde{#chi}^{0}_{1}}");
+        tex3 = rt.TLatex(0.14,0.065,"m_{#tilde{ #chi}^{#pm}_{1}} = 0.25 m_{ #tilde{t}}  +  0.75 m_{ #tilde{#chi}^{0}_{1}}");
         tex3.SetNDC()
         tex3.SetTextAlign(13)
         tex3.SetTextFont(42)

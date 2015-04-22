@@ -21,7 +21,7 @@ class sms():
         self.Ymin = -12.5
         self.Ymax = 412.5
         # produce sparticle
-        self.sParticle = "m_{#tilde{t}} (GeV)"
+        self.sParticle = "m_{ #tilde{t}} (GeV)"
         # LSP
         self.LSP = "m_{#tilde{#chi}^{0}_{1}} (GeV)"        
         # diagonal position: mLSP = mgluino - 2mtop 

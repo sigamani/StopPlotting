@@ -28,8 +28,13 @@
 #include <map>
 #include <utility>
 
+//#include "../smooth_Comb.C"
 #include "../smooth.C"
 #include "../stopCrossSections.h" 
+
+
+TString ANA = "LepCombo";
+TString ANA = "SingLep";
 
 
 using namespace std;
@@ -38,42 +43,28 @@ void rootlogon();
 
 void ReturnTGraph(TH2D *, int);
 
-
-
-// create temp output file
 TFile *fout = new TFile("temp_results.root","recreate");
-
-
-
-
-
 
 double ReturnUpperLimit(int stopmass, int lspmass, TString decay_mode, TString Exp){
 
 
    TString Exp0;
+   TString decay_mode0;
 
-   TFile* file = TFile::Open(decay_mode+"_input.root");
+   if (decay_mode == "T2bw025") decay_mode0 = "T2bw_CharFrac0.25_SCharSW";
+   if (decay_mode == "T2bw050") decay_mode0 = "T2bw_CharFrac0.50_SCharSW";
+   if (decay_mode == "T2bw075") decay_mode0 = "T2bw_CharFrac0.75_SCharSW";
+   if (decay_mode == "T2tt")    decay_mode0 = "T2tt_PerPol50";
 
-   if (Exp == "Exp") {
-    Exp0 = "Exp";
-   }
-   if (Exp == "ExpM") {
-    Exp0 = "Exp_OneSigDown";
-   }
-   if (Exp == "ExpP") {
-    Exp0 = "Exp_OneSigUp";
-   }
-   if (Exp == "Obs") {
-    Exp0 = "Obs";
-   }
-   if (Exp == "ObsM") {
-    Exp0 = "Obs_OneSigDown";
-   }
-   if (Exp == "ObsP") {
-    Exp0 = "Obs_OneSigUp";
-   }
+   if (Exp == "Exp")  Exp0 = "Exp";
+   if (Exp == "ExpM") Exp0 = "Exp_OneSigDown";
+   if (Exp == "ExpP") Exp0 = "Exp_OneSigUp";
+   if (Exp == "Obs")  Exp0 = "Obs";
+   if (Exp == "ObsM") Exp0 = "Obs_OneSigDown";
+   if (Exp == "ObsP") Exp0 = "Obs_OneSigUp";
+   
 
+   TFile* file = TFile::Open("combined_ntuples2/h_SigStrengthLimit_FullFreq_"+ANA+"_BaseFullSel_WithSigContam_CC_CutAnd_"+decay_mode0+".root");
 
    TH2D* hist = (TH2D*)file->Get("h_SigStrengthLimitHist_LPS_"+Exp0);
 
@@ -185,7 +176,7 @@ void plot_limit_contour_T2bw(TString decay_mode, TString Exp){
                         if (x - y < 100) continue;
 
                         double limit = ReturnUpperLimit(x, y, decay_mode, Exp);
-                        double limit_cleaned = ReturnSmoothedLimitCombination( x, y, limit, decay_mode, Exp);
+                        double limit_cleaned = ReturnSmoothedLimit( x, y, limit, decay_mode, Exp);
 
                         hist->Fill(x,y,1./ limit_cleaned);
 
@@ -275,10 +266,11 @@ void Return2DTemperatureMap(TString decay_mode, TString Exp){
                         if (x-y >= 100) { 
 
                         double limit = ReturnUpperLimit(x, y, decay_mode, Exp);
-                        double limit_cleaned = ReturnSmoothedLimitCombination( x, y, limit, decay_mode, Exp);
+                        double limit_cleaned = ReturnSmoothedLimit( x, y, limit, decay_mode, Exp);
 						double upperlimit = limit_cleaned * stopCrossSection(x).first ; 
 
-						//if (limit_cleaned > 1.) continue;
+//						if (limit_cleaned > 1.) continue;
+
 						hXsec_exp_corr->Fill(x,y, upperlimit);
 
 	 				    }	
@@ -286,7 +278,6 @@ void Return2DTemperatureMap(TString decay_mode, TString Exp){
 
 					}
 	  			}
-
 
    fout->cd();
    fout->Write();
@@ -347,6 +338,7 @@ void doAll(TString decay_mode){
 
     fout->Close();
 
-    gSystem->Exec("mv temp_results.root config/SUS14015-SUS13025-Combination/"+decay_mode+"_results.root");
+    //gSystem->Exec("mv temp_results.root config/SUS14015-SUS13025-Combination/"+decay_mode+"_results.root");
+    gSystem->Exec("mv temp_results.root config/SUS14015/"+decay_mode+"_results.root");
  
 }

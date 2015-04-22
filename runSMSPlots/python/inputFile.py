@@ -43,7 +43,8 @@ class inputFile():
                         'plus': rootFileIn.Get(tmpLINE[3]),
                         'minus': rootFileIn.Get(tmpLINE[4]),
                         'colorLine': tmpLINE[5],
-                        'colorArea': tmpLINE[6]}
+                        'colorArea': tmpLINE[6]}  #,
+                        #'Islandnominal': rootFileIn.Get(tmpLINE[7])} #just for the island on t2bw050 exp
             else:
                 return {'nominal': rootFileIn.Get(tmpLINE[2]),
                         'plus': rootFileIn.Get(tmpLINE[3]),

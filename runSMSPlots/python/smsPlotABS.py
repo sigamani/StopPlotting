@@ -59,7 +59,7 @@ class smsPlotABS(object):
         self.emptyHisto.GetYaxis().SetLabelSize(0.04)
         self.emptyHisto.GetYaxis().SetTitleFont(42)
         self.emptyHisto.GetYaxis().SetTitleSize(0.05)
-        self.emptyHisto.GetYaxis().SetTitleOffset(1.35)
+        self.emptyHisto.GetYaxis().SetTitleOffset(1.3)
         self.emptyHisto.GetYaxis().SetTitle(self.model.LSP)
                 
     def DrawText(self):
@@ -92,7 +92,9 @@ class smsPlotABS(object):
         textCMS.Draw()
         self.c.textCMS = textCMS
         # MODEL LABEL
-        textModelLabel= rt.TLatex(0.16,0.90,"%s #scale[0.7]{  (SUS-13-025 + SUS-14-017)}" %self.model.label)
+        #textModelLabel= rt.TLatex(0.16,0.90,"%s #scale[0.7]{  (SUS-13-025 + SUS-14-015)}" %self.model.label)
+        textModelLabel= rt.TLatex(0.16,0.90,"%s #scale[0.7]{  }" %self.model.label)
+        #textModelLabel= rt.TLatex(0.16,0.90,"%s  (BDT analysis)" %self.model.label)
         textModelLabel.SetNDC()
         textModelLabel.SetTextAlign(13)
         textModelLabel.SetTextFont(42)
@@ -100,7 +102,9 @@ class smsPlotABS(object):
         textModelLabel.Draw()
         self.c.textModelLabel = textModelLabel
         # NLO NLL XSEC
-        textNLONLL= rt.TLatex(0.16,0.32,"SUS13-025 + SUS14-017")
+        #textNLONLL= rt.TLatex(0.16,0.32,"SUS-13-025 + SUS-14-015")
+        textNLONLL= rt.TLatex(0.16,0.32,"")
+        #textNLONLL= rt.TLatex(0.16,0.32,"BDT analysis")
         textNLONLL.SetNDC()
         textNLONLL.SetTextAlign(13)
         textNLONLL.SetTextFont(42)
@@ -110,10 +114,10 @@ class smsPlotABS(object):
 
     def Save(self,label):
         # save the output
-        self.c.SaveAs("%s.png" %label)
-        self.c.SaveAs("%s.pdf" %label)
-        #self.c.SaveAs("~/www/PlotSMS/%s.png" %label)
-        #self.c.SaveAs("~/www/PlotSMS/%s.pdf" %label)
+        #self.c.SaveAs("%s.png" %label)
+        #self.c.SaveAs("%s.pdf" %label)
+        self.c.SaveAs("~/www/PlotSMS/%s.png" %label)
+        self.c.SaveAs("~/www/PlotSMS/%s.pdf" %label)
         
     def DrawLegend(self):
         xRange = self.model.Xmax-self.model.Xmin
@@ -236,7 +240,8 @@ class smsPlotABS(object):
         self.EXP['minus'].SetLineStyle(7)
         self.EXP['minus'].SetLineWidth(2)                        
 
-		# Comment this block out for T2bw
+
+		# Comment this block in for T2tt
         #self.OBS['OffShellnominal'].SetLineColor(color(self.OBS['colorLine']))
         #self.OBS['OffShellnominal'].SetLineStyle(1)
         #self.OBS['OffShellnominal'].SetLineWidth(4)
@@ -261,7 +266,14 @@ class smsPlotABS(object):
         #self.OBS['OffShellnominal'].Draw("LSAME")
         #self.OBS['OffShellplus'].Draw("LSAME")
         #self.OBS['OffShellminus'].Draw("LSAME")
-		## Comment this block out for T2bw
+		## Comment this block in for T2tt
+
+		## Comment this block in for T2bw050
+        #self.EXP['Islandnominal'].SetLineColor(color(self.EXP['colorLine']))
+        #self.EXP['Islandnominal'].SetLineStyle(1) 
+        #self.EXP['Islandnominal'].SetLineWidth(4)        
+        #self.EXP['Islandnominal'].Draw("LSAME")
+		## Comment this block in for T2bw050
 
         self.EXP['nominal'].Draw("LSAME")
         self.EXP['plus'].Draw("LSAME")

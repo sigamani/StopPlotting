@@ -235,14 +235,14 @@ void plot_limit(TString decay_mode, TString Exp){
         				  double limit = temp; 
 								    							
 						  if (mvaval+1 > 0) double limit = return_limit(decay_mode,x,y, mvaval+1, Exp);
-			      		  double limit_smooth = ReturnCleanedLimit( x, y, limit, decay_mode, false, exp);
+			      		  //double limit_smooth = ReturnCleanedLimit( x, y, limit, decay_mode, false, exp);
 
-						  if (limit_smooth < 1.0) {
-							//SMS->Fill(x,y, limit);
+						  //if (limit_smooth < 1.0) {
+							SMS->Fill(x,y, limit);
 							//SMS->Fill(x,y, limit_smooth);
 
-							SMS2->Fill(x,y,mvaval+1);
-						  }
+						//	SMS2->Fill(x,y,mvaval+1);
+						//  }
 				}
 		   }
 	  }
